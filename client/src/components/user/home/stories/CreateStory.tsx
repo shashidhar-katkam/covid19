@@ -42,7 +42,7 @@ interface IProps {
     User: IUserState;
 }
 
-class ComposeNews extends React.Component<IProps, IState> {
+class CreateStory extends React.Component<IProps, IState> {
     private service: Service;
     private _menuButtonElement = React.createRef<HTMLImageElement>();
     private authservice: AuthService;
@@ -232,22 +232,25 @@ class ComposeNews extends React.Component<IProps, IState> {
                 {this.state.isLoading && <Loading />}
                 <div className="compose-c">
                     <div className="sp-compose-body">
-                        <TextField label={this.props.User.staticConstants.Constants.title}
-                            placeholder={this.props.User.staticConstants.Constants.enterTitle}
-                            name="Title"
-                            errorMessage={this.state.composeNewsFormErr.TitleErr}
-                            value={this.state.composeNewsForm.Title}
-                            onChange={(event: any) => this._inputChangeHandle(event)}
-                            required />
-                        <TextField label={this.props.User.staticConstants.Constants.descripiton}
-                            multiline={true}
-                            rows={6}
-                            placeholder={this.props.User.staticConstants.Constants.enterNewsDescription}
-                            name="Description"
-                            errorMessage={this.state.composeNewsFormErr.DescriptionErr}
-                            value={this.state.composeNewsForm.Description}
-                            onChange={(event: any) => this._inputChangeHandle(event)}
-                        />
+                        <p>Would you like to share your Experience</p>
+                        <div className="ms-Grid sp-no-pm" dir="ltr">
+                            <div className="ms-Grid-row">
+                                <div className="ms-Grid-col ms-sm1">
+                                    <img className="p-pic" src={`http://localhost:7777${this.props.User.User.imagePath}`} />
+                                </div>
+                                <div className="ms-Grid-col ms-sm11">
+                                    <TextField
+                                        multiline={true}
+                                        rows={1}
+                                        placeholder={this.props.User.staticConstants.Constants.enterNewsDescription}
+                                        name="Description"
+                                        errorMessage={this.state.composeNewsFormErr.DescriptionErr}
+                                        value={this.state.composeNewsForm.Description}
+                                        onChange={(event: any) => this._inputChangeHandle(event)}
+                                    />
+                                </div>
+                            </div>
+                        </div>
                         <div className="sp-clearFix"> </div>
                         <div className="" >
                             {this.filesUploadedBindingInfo(this.state.uploadedFilesInfo)}
@@ -291,7 +294,7 @@ class ComposeNews extends React.Component<IProps, IState> {
                                 afterFilesUploaded={this._afterFilesUploaded} />
                             <DefaultButton onClick={this._submitForm}
                                 className="sp-btn-login btn-send"
-                                text={this.props.User.staticConstants.Constants.send} />
+                                text="Share" />
                         </div>
                     </div>
                 </div>
@@ -320,4 +323,4 @@ const mapStateToProps = (state: AppState): AppState => ({
 
 export default connect(
     mapStateToProps,
-)(ComposeNews);
+)(CreateStory);

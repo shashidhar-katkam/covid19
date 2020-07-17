@@ -6,6 +6,7 @@ import Privacy from "../Privacy";
 import Navbar from "../Navbar/index";
 import Secondnavbar from '../Navbar/Secondnavbar';
 import ImageTextCard from "./templates/ImageTextCard";
+import Stories from './stories';
 import { DefaultButton, IStackStyles } from "office-ui-fabric-react";
 const stackStyles: Partial<IStackStyles> = { root: { color: "#0078d4" } };
 interface IProps {
@@ -19,7 +20,7 @@ class Home extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = {
-            model: 0
+            model: 2
         }
         this._onModelOpen = this._onModelOpen.bind(this);
         this.reRender = this.reRender.bind(this);
@@ -57,18 +58,18 @@ class Home extends React.Component<IProps, IState> {
                 </div>
                 <div className="ms-Grid sp-no-pm" dir="ltr">
                     <div className="ms-Grid-row">
-                        <div className="ms-Grid-col ms-sm12 ms-md8 ms-lg7-5 ">
+                        <div className="ms-Grid-col ms-sm12 ms-md8 ">
                             {
                                 this.state.model === 1 && <MainNews></MainNews>
                             }
                             {
-                                this.state.model === 1 && <MainNews></MainNews>
+                                this.state.model === 2 && <Stories />
                             }
                             {
-                                this.state.model === 1 && <MainNews></MainNews>
+                                this.state.model === 3 && <MainNews></MainNews>
                             }
                         </div>
-                        <div className="ms-Grid-col ms-sm4 ms-md4 ms-lg4-5 ms-hiddenSm " >
+                        <div className="ms-Grid-col ms-sm4 ms-md4 ms-hiddenSm " >
                             {/* <div className="sticky-right1 cust-scroll" >
                                 <ListTemplate></ListTemplate>
                                 <ImageTextCard />

@@ -15,6 +15,7 @@ import { Shimmer3 } from "../../../common/Loading/Shimmers";
 import Analysis from "../templates/Analysis";
 import { debug } from "console";
 import Donations from "../Donations";
+import CreateStory from "./CreateStory";
 
 interface IState {
     allNews: INewsInfoC[];
@@ -195,9 +196,9 @@ class Stories extends React.Component<IProps, IState> {
         return (
             <>
                 <div className="main-container-wrapper">
-                    <Actions />
-                    <Donations />
-                    <ImageCarousel />
+                    <div className="compose-co c-style1" >
+                        <CreateStory />
+                    </div>
                     {(this.state.allNews && this.infoBind(this.state.allNews))}
                     {this.state.isLoading && <>
                         <div className="shimmer-main-w"> <Shimmer3 /> </div>
