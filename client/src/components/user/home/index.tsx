@@ -59,9 +59,14 @@ class Home extends React.Component<IProps, IState> {
                     <div className="ms-Grid-row">
                         <div className="ms-Grid-col ms-sm12 ms-md8 ms-lg7-5 ">
                             {
-                                this.state.model ===1 && <MainNews></MainNews>
+                                this.state.model === 1 && <MainNews></MainNews>
                             }
-                            
+                            {
+                                this.state.model === 1 && <MainNews></MainNews>
+                            }
+                            {
+                                this.state.model === 1 && <MainNews></MainNews>
+                            }
                         </div>
                         <div className="ms-Grid-col ms-sm4 ms-md4 ms-lg4-5 ms-hiddenSm " >
                             {/* <div className="sticky-right1 cust-scroll" >
