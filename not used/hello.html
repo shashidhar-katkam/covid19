@@ -1,0 +1,22 @@
+<select onchange="mprofile(this.value);gentrack();" class="inputcon" id="REGISTERED_BY" name="REGISTERED_BY" style="-moz-appearance: none; background: #ffffff none repeat scroll 0 0; border: 1px solid #e0e0e0; color: #777; cursor: pointer; display: inline-block; padding-left: 10px;"><option value="0">-Select-</option><option value="1">Myself</option><option value="8">Son</option><option value="9">Daughter</option><option value="10">Brother</option><option value="11">Sister</option><option value="4">Relative</option><option value="5">Friend</option></select>
+
+
+
+<div class="mail-option">  
+    <!-- [ngClass]="{ 'progressbarshow': progressbartrue }" -->
+<div class="btn-group">
+    <button (click)="Refresh()" class="refresh">
+        <i class=" fa fa-refresh"></i>
+    </button>
+    <span *ngIf="refreshalert" style="color:#006600; background-color:#D4EDDA; margin-left:15px;padding-left:10px;padding-right: 10px; box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);">{{refreshalert}}</span>
+</div>
+<ul class="unstyled inbox-pagination">
+    <li><span>{{count}}</span></li>
+    <li>
+        <button class="np-btn" id="btnPrevious" (click)="previousRecords()" ><i class="fa fa-angle-left  pagination-left"></i></button>
+    </li>
+    <li>
+        <button class="np-btn" id="btnNext" (click)="nextRecords()"><i class="fa fa-angle-right pagination-right"></i></button>
+    </li>
+</ul>
+</div> 

@@ -1,0 +1,9 @@
+File from: [public/uploads/uncompress/files/file-1575523250432.PNG]
+
+File to: [public/uploads/files/file-1575523250432.PNG]
+
+Compression algorithm: [pngquant]
+
+Description: Error: Command failed: C:\Users\SHASHIDHAR.K\my all\all tasks\namaste\node_modules\pngquant-bin\vendor\pngquant.exe --quality=20-50 -o public/uploads/files/file-1575523250432.PNG public/uploads/uncompress/files/file-1575523250432.PNG
+  error: Not a PNG file (libpng failed)
+  error: cannot decode image public\uploads\uncompress\files\file-1575523250432.PNG

@@ -1,0 +1,13 @@
+.loading1 {
+    position: absolute;
+    z-index: 100000;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.1);
+    .loading-c1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+    }
+}

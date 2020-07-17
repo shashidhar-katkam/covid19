@@ -1,0 +1,718 @@
+export const UselessCandidatesList = [
+    {
+        name: 'Kalvakuntla Chandrashekar Rao (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 040-23410333, 040-23410666, 040-23456698, 040-23455205, 040-23452933, Fax: 23452498, Ext:1616, Ext:1215, Ext:2450, Ext:2480',
+        constituency: 'Gajwel, Telangana'
+    },
+    {
+        name: 'Koneru​ Konappa (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9441255522, 9701255522, 0873823919',
+        constituency: 'Sirpur, Telangana'
+    },
+    {
+        name: 'Balka Suman (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9676436666, 9493866666, 040-23112666',
+        constituency: 'Chennur (SC), Telangana'
+    },
+    {
+        name: 'Durgam Chinnaiah (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9866242008',
+        constituency: 'Bellampalli (SC), Telangana'
+    },
+    {
+        name: 'Diwakar Rao Nadipelli (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849466566, 9849766566, 08736252274, 08736231004',
+        constituency: 'Mancherial, Telangana'
+    },
+    {
+        name: 'Athram Sakku (MLA)',
+        party: 'Indian National Congress',
+        phoneNumbers: 'Phone Numbers: 9440588105, 7989595910',
+        constituency: 'Asifabad (ST), Telangana'
+    },
+    {
+        name: 'Ajmeera Rekha (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9000236888, 9949420666',
+        constituency: 'Khanapur (ST), Telangana'
+    },
+    {
+        name: 'Jogu Ramanna (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9440416823, 8096969623',
+        constituency: 'Adilabad, Telangana'
+    },
+    {
+        name: 'Rathod Bapu Rao (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9440061611',
+        constituency: 'Boath (ST), Telangana'
+    },
+    {
+        name: 'Allola Indra Karan Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9848024246, 040-23004999, 08734242288, 040-23450503',
+        constituency: 'Nirmal, Telangana'
+    },
+    {
+        name: 'Gaddigari Vittal Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9440885061, 8790527009',
+        constituency: 'Mudhole, Telangana'
+    },
+
+    {
+        name: 'Ashannagari Jeevan Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9949699999, 9397999999',
+        constituency: 'Armur, Telangana'
+    },
+
+    {
+        name: 'Shakil Aamir Mohammed (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 8008107777, 9908941111, 8985666666',
+        constituency: 'Bodhan, Telangana'
+    },
+    {
+        name: 'Hanmanth Shinde (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9440474268',
+        constituency: 'Jukkal (SC), Telangana'
+    },
+    {
+        name: 'Srinivas Reddy Pocharam (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9984170007, 9440401527, 040-23317007, 040-23233829',
+        constituency: 'Banswada, Telangana'
+    },
+    {
+        name: 'Jajala Surender (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849014635',
+        constituency: 'Yella Reddy, Telangana'
+    },
+    {
+        name: 'Gampa Govardhan (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9502157111, 9440123888, 7093901456, 040-23386144',
+        constituency: 'Kamareddy, Telangana'
+    },
+    {
+        name: 'Bigala Ganesh (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849037398, 9347585858, 040-23350666',
+        constituency: 'Nizamabad(Urban), Telangana'
+    },
+    {
+        name: 'Goverdhan Baji Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849353535',
+        constituency: 'Nizamabad (Rural), Telangana'
+    },
+    {
+        name: 'Vemula Prashanth Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9866882244, 040-66103633',
+        constituency: 'Balkonda, Telangana'
+    },
+    {
+        name: 'Kalvakuntla Vidya Sagar Rao (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9440071179, 9908221333',
+        constituency: 'Koratla, Telangana'
+    },
+    {
+        name: 'Dr Sanjay Kumar. M (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849043300, 08724225000',
+        constituency: 'Jagtial, Telangana'
+    },
+    {
+        name: 'Koppula Eshwar (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9949588444, 9502159111, 9849245132',
+        constituency: 'Dharmapuri (SC), Telangana'
+    },
+    {
+        name: 'Korukanti Chandar (MLA)',
+        party: 'All India Forward Bloc',
+        phoneNumbers: 'Phone Numbers: 9989476666',
+        constituency: 'Ramagundam, Telangana'
+    },
+    {
+        name: 'Duddilla Sridhar Babu (MLA)',
+        party: 'Indian National Congress',
+        phoneNumbers: 'Phone Numbers: 9441966456',
+        constituency: 'Manthani, Telangana'
+    },
+    {
+        name: 'Manohar Reddy Dasari (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849597102, 8497959999',
+        constituency: 'Peddapalli, Telangana'
+    },
+    {
+        name: 'Gangula Kamalakar (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9866194229, 9177783333, 08782233333, 9177333333',
+        constituency: 'Karimnagar, Telangana'
+    },
+    {
+        name: 'Ravi Shankar Sunke (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9441314939, 7997426666',
+        constituency: 'Choppadandi (SC), Telangana'
+    },
+    {
+        name: 'Ramesh Chennamaneni (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9440469763, 040-233977200',
+        constituency: 'Vemulawada, Telangana'
+    },
+    {
+        name: 'K. Taraka Rama Rao (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9490866666, 9949132222, 08723233466, 040-23453233',
+        constituency: 'Rajanna Sircilla, Telangana'
+    },
+    {
+        name: 'Rasamai Balakishan (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9440885920, 9959683646',
+        constituency: 'Manakondur (Sc), Telangana'
+    },
+    {
+        name: 'Eatala Rajender (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849224411, 040-29881044, 040-29881055, 08727283646',
+        constituency: 'Huzurabad, Telangana'
+    },
+    {
+        name: 'Voditela Sathish Kumar (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9440171003, 9849600003, 08702552000',
+        constituency: 'Husnabad, Telangana'
+    },
+    {
+        name: 'Thanneeru Harish Rao (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9866199999, 9985000006, 9441887191, 040-23324504',
+        constituency: 'Siddipet, Telangana'
+    },
+    {
+        name: 'M. Padma Devender Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9550696666, 9704621444',
+        constituency: 'Medak, Telangana'
+    },
+    {
+        name: 'Maha Reddy Bhupal Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9440151822, 9949450537',
+        constituency: 'Narayankhed, Telangana'
+    },
+    {
+        name: 'Kranthi Kiran Chanti (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9948299444',
+        constituency: 'Andole (SC), Telangana'
+    },
+    {
+        name: 'Chilumula Madan Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9440057151, 9440464545, 8978189986',
+        constituency: 'Narsapur, Telangana'
+    },
+    {
+        name: 'Koninty Manik Rao (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9000418964',
+        constituency: 'Zahirabad (SC), Telangana'
+    },
+    {
+        name: 'Turupu Jayaprakash Reddy (MLA)',
+        party: 'Indian National Congress',
+        phoneNumbers: 'Phone Numbers: 9440606826, 08455278355',
+        constituency: 'Sangareddy, Telangana'
+    },
+    {
+        name: 'Gudem Mahipal Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849699916, 9000499916, 0845242967',
+        constituency: 'Patancheru, Telangana'
+    },
+    {
+        name: 'Solipeta Ramalinga Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9440380141',
+        constituency: 'Dubbak, Telangana'
+    },
+    {
+        name: 'Chamakura Malla Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9848052418, 040-2775245, 040-27750100',
+        constituency: 'Medchal, Telangana'
+    },
+    {
+        name: 'Mynampally Hanumanth Rao (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9010428999, 9989646464, 040-27963577',
+        constituency: 'Malkajgiri, Telangana'
+    },
+    {
+        name: 'K.P. Vivekanand (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9701144144, 040-23085738',
+        constituency: 'Quthbullapur, Telangana'
+    },
+    {
+        name: 'Madhavaram Krishna Rao (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9347056789, 9394115559, 040-23162789',
+        constituency: 'Kukatpalle, Telangana'
+    },
+    {
+        name: 'Bethi Subhash​ Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9246276626, 9849280409',
+        constituency: 'Uppal, Telangana'
+    },
+    {
+        name: 'Manchireddy Kishan Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9848099699, 9490426141, 040-2406061',
+        constituency: 'Ibrahimpatnam, Telangana'
+    },
+    {
+        name: 'Devi Reddy Sudheer Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9948045555, 040-24060679',
+        constituency: 'Lal Bahadur Nagar, Telangana'
+    },
+    {
+        name: 'Patlolla Sabitha Indra Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9848033090, 040-23757108',
+        constituency: 'Maheswaram, Telangana'
+    },
+    {
+        name: 'Tolkanti Prakash Goud (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849049082, 9347358803',
+        constituency: 'Rajendranagar, Telangana'
+    },
+    {
+        name: 'Arekapudi Gandhi (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9848042499, 9177664333',
+        constituency: 'Serilingampally, Telangana'
+    },
+    {
+        name: 'Kale Yadaiah (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9440414583',
+        constituency: 'Chevella (SC), Telangana'
+    },
+    {
+        name: 'Koppula Mahesh Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9441113333',
+        constituency: 'Pargi, Telangana'
+    },
+    {
+        name: 'Dr. Anand Methuku (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849445031, 9346394540',
+        constituency: 'Vikarabad (SC), Telangana'
+    },
+    {
+        name: 'P Rohith Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9000004007',
+        constituency: 'Tandur, Telangana'
+    },
+    {
+        name: 'Muta Gopal (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9866889388',
+        constituency: 'Musheerabad, Telangana'
+    },
+    {
+        name: 'Ahmed Bin Abdullah Balala (MLA)',
+        party: 'All India Majlis-E-Ittehadul Muslimeen',
+        phoneNumbers: 'Phone Numbers: 9246532703, 9912252786, 040-24562324',
+        constituency: 'Malakpet, Telangana'
+    },
+    {
+        name: 'Kaleru Venkatesh (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849026242',
+        constituency: 'Amberpet, Telangana'
+    },
+    {
+        name: 'Danam Nagender (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9550597788',
+        constituency: 'Khairatabad, Telangana'
+    },
+    {
+        name: 'Maganti Gopinath (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849599999, 9849055455',
+        constituency: 'Jubilee Hills, Telangana'
+    },
+    {
+        name: 'Talasani Srinivas Yadav (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9848098166, 04023453215, 040-23453217',
+        constituency: 'Sanathnagar, Telangana'
+    },
+    {
+        name: 'Jaffar Hussain (MLA)',
+        party: 'All India Majlis-E-Ittehadul Muslimeen',
+        phoneNumbers: 'Phone Numbers: 9963741786, 9848032321, 040-24444544, 040-23309611',
+        constituency: 'Nampally, Telangana'
+    },
+    {
+        name: 'Kausar Mohiuddin (MLA)',
+        party: 'All India Majlis-E-Ittehadul Muslimeen',
+        phoneNumbers: 'Phone Numbers: 9885322786, 040-23569696',
+        constituency: 'Karwan, Telangana'
+    },
+    {
+        name: 'Sri T. Raja Singh (MLA)',
+        party: 'Bharatiya Janata Party',
+        phoneNumbers: 'Phone Numbers: 9000214000; 9000043214',
+        constituency: 'Goshamahal, Telangana'
+    },
+    {
+        name: 'Mumtaz Ahmed Khan (MLA)',
+        party: 'All India Majlis-E-Ittehadul Muslimeen',
+        phoneNumbers: 'Phone Numbers: 9246538144, 040-24572790, 040-24578144',
+        constituency: 'Charminar, Telangana'
+    },
+    {
+        name: 'Akbaruddin Owaisi (MLA)',
+        party: 'All India Majlis-E-Ittehadul Muslimeen',
+        phoneNumbers: 'Phone Numbers: 9848049783, 040-24804947, 040-23379213, 040-23396370',
+        constituency: 'Chandrayangutta, Telangana'
+    },
+    {
+        name: 'Syed Ahmed Pasha Quadri (MLA)',
+        party: 'All India Majlis-E-Ittehadul Muslimeen',
+        phoneNumbers: 'Phone Numbers: 9246532393, 040-24804947, 040-24082655',
+        constituency: 'Yakutpura, Telangana'
+    },
+    {
+        name: 'Mohd Moazam Khan (MLA)',
+        party: 'All India Majlis-E-Ittehadul Muslimeen',
+        phoneNumbers: 'Phone Numbers: 9849021517; 040-23391585; 040-24804947',
+        constituency: 'Bahadurpura, Telangana'
+    },
+    {
+        name: 'T. Padma Rao (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9505722211, 9848166612, 040-23241441, 040-23231141',
+        constituency: 'Secunderabad, Telangana'
+    },
+    {
+        name: 'G. Sayanna (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849339692, 040-27899978',
+        constituency: 'Secunderabad (CONTT) (SC), Telangana'
+    },
+    {
+        name: 'Patnam Narender Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9848005695, 040-23545371, 08417279248',
+        constituency: 'Kodangal, Telangana'
+    },
+    {
+        name: 'S. Rajender Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9845239749, 9880734369',
+        constituency: 'Narayanpet, Telangana'
+    },
+    {
+        name: 'Srinivas Goud. V (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9949994039, 040-23450368, 040-23455135',
+        constituency: 'Mahbubnagar, Telangana'
+    },
+    {
+        name: 'Charlakola Laxma Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9441869699',
+        constituency: 'Jadcherla, Telangana'
+    },
+    {
+        name: 'Alla Venkateswar Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9440769873, 040-27664618',
+        constituency: 'Devarkadra, Telangana'
+    },
+    {
+        name: 'Chittem Ram Mohan Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9440014941, 9000390009, 040-23550099, 0850283636',
+        constituency: 'Makthal, Telangana'
+    },
+    {
+        name: 'Singireddy Niranjan Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9490127386',
+        constituency: 'Wanaparthy, Telangana'
+    },
+    {
+        name: 'Bandla Krishna Mohan Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9440256611, 8463960555',
+        constituency: 'Gadwal, Telangana'
+    },
+    {
+        name: 'V.M. Abraham (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9177737031, 9963323670',
+        constituency: 'Alampur (SC), Telangana'
+    },
+    {
+        name: 'Marri Janardhan Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: ',
+        constituency: 'Nagarkurnool, Telangana'
+    },
+    {
+        name: 'Guvvala Balaraju (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9490752933, 9912315315, 7032409877',
+        constituency: 'Achampet (SC), Telangana'
+    },
+    {
+        name: 'Gurka Jaipal Yadav (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9959129737',
+        constituency: 'Kalwakurthy, Telangana'
+    },
+    {
+        name: 'Anjaiah Yelganamoni (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9912138888, 9505500041',
+        constituency: 'Shadnagar, Telangana'
+    },
+    {
+        name: 'Beeram Harshavardhan Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9989803636, 9866641609',
+        constituency: 'Kollapur, Telangana'
+    },
+    {
+        name: 'Ravindra Kumar Ramavath (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9440140755, 040-23224966',
+        constituency: 'Devarakonda (ST), Telangana'
+    },
+    {
+        name: 'Nomula Narsimhaiah (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9490098345',
+        constituency: 'Nagarjuna Sagar, Telangana'
+    },
+    {
+        name: 'Nallamothu Bhaskar Rao (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9885104404',
+        constituency: 'Miryalaguda, Telangana'
+    },
+    {
+        name: 'Bollam Mallaiah Yadav (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849068530',
+        constituency: 'Kodad, Telangana'
+    },
+    {
+        name: 'Guntakandla Jagadish Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9989053604, 8008301204, 040-23453212',
+        constituency: 'Suryapet, Telangana'
+    },
+    {
+        name: 'Kancharla Bhupal Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9848484303',
+        constituency: 'Nalgonda, Telangana'
+    },
+    {
+        name: 'Komatireddy Raj Gopal Reddy (MLA)',
+        party: 'Indian National Congress',
+        phoneNumbers: 'Phone Numbers: 9848011221, 040-23606068',
+        constituency: 'Munugode, Telangana'
+    },
+    {
+        name: 'Pailla Shekar Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9492638899, 9972953359',
+        constituency: 'Bhongir, Telangana'
+    },
+    {
+        name: 'Chirumarthi Lingaiah (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9441025826',
+        constituency: 'Nakrekal (SC), Telangana'
+    },
+    {
+        name: 'Gadari Kishore Kumar (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9885533737, 9010446666',
+        constituency: 'Tungaturthi (SC), Telangana'
+    },
+    {
+        name: 'Gongidi Sunitha (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9000647878, 7093596007, 7032710045, 9866257568',
+        constituency: 'Alair, Telangana'
+    },
+    {
+        name: 'Muthireddy Yadagiri Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849256207, 8008911992',
+        constituency: 'Jangaon, Telangana'
+    },
+    {
+        name: 'Dr. Thatikonda Rajaiah (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849790363, 9849773366, 9849790369',
+        constituency: 'Ghanpur (SC), Telangana'
+    },
+    {
+        name: 'Dayakar Rao Errabelli (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9848012459, 9440165526, 08702578877, 040-23303767',
+        constituency: 'Palakurthi​, Telangana'
+    },
+    {
+        name: 'D. S. Redya Naik (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 8008098887',
+        constituency: 'Dornakal (ST), Telangana'
+    },
+    {
+        name: 'Banoth Shankar Nayak (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9989303555, 9000903555, 08702573555',
+        constituency: 'Mahabubabad (ST), Telangana'
+    },
+    {
+        name: 'Peddi Sudarshan Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849210133, 9908284133',
+        constituency: 'Narsampet, Telangana'
+    },
+    {
+        name: 'Challa Dharma Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9866614499, 9848072199, 040-23232299, 08702425699',
+        constituency: 'Parkal, Telangana'
+    },
+    {
+        name: 'Dasyam Vinay Bhasker (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849766789',
+        constituency: 'Warangal West, Telangana'
+    },
+    {
+        name: 'Narender Nannapuneni (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9912092099',
+        constituency: 'Warangal East, Telangana'
+    },
+    {
+        name: 'Aroori Ramesh (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9676516666; 9494326666; 08702430275',
+        constituency: 'Wardhannapet (SC), Telangana'
+    },
+    {
+        name: 'Gandra Venkata Ramana Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9866665962',
+        constituency: 'Bhupalpally, Telangana'
+    },
+    {
+        name: 'Dansari Anasuya (MLA)',
+        party: 'Indian National Congress',
+        phoneNumbers: 'Phone Numbers: 9440170702',
+        constituency: 'Mulugu (ST), Telangana'
+    },
+    {
+        name: 'Kantha Rao Rega (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9000003145, 9666690989',
+        constituency: 'Pinapaka (ST), Telangana'
+    },
+    {
+        name: 'Haripriya Banoth (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9533079999, 9858529999',
+        constituency: 'Yellandu (ST), Telangana'
+    },
+    {
+        name: 'Ajay Kumar Puvvada (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849555778, 08742280862, 040-23556737',
+        constituency: 'Khammam, Telangana'
+    },
+    {
+        name: 'Kandala Upender Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9848018819, 040-23002883',
+        constituency: 'Palair, Telangana'
+    },
+    {
+        name: 'Bhatti Vikramarka Mallu (MLA)',
+        party: 'Indian National Congress',
+        phoneNumbers: 'Phone Numbers: 9948500123, 9440100421, 040-23384224',
+        constituency: 'Madhira (SC), Telangana'
+    },
+    {
+        name: 'Lavudya Ramulu Naik (MLA)',
+        party: 'Independent',
+        phoneNumbers: 'Phone Numbers: 9701225054',
+        constituency: 'Wyra (ST), Telangana'
+    },
+    {
+        name: 'Sandra Venkata Veeraiah (MLA)',
+        party: 'Telugu Desham Party',
+        phoneNumbers: 'Phone Numbers: 9440625955, 08742-226376, 9492846666',
+        constituency: 'Sathupally (SC), Telangana'
+    },
+    {
+        name: 'Vanama Venkateswara Rao (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 9849285866',
+        constituency: 'Kothagudem, Telangana'
+    },
+    {
+        name: 'Mecha Nageswara Rao (MLA)',
+        party: 'Telugu Desham Party',
+        phoneNumbers: 'Phone Numbers: 9963523907, 8186063456',
+        constituency: 'Aswaraopeta (ST), Telangana'
+    },
+    {
+        name: 'Podem Veeraiah (MLA)',
+        party: 'Indian National Congress',
+        phoneNumbers: 'Phone Numbers: 9346454325, 9494282535',
+        constituency: 'Bhadrachalam (ST)​​​​​​​​​​​​​​​​​​​​​​​​​, Telangana'
+    },
+    {
+        name: 'Shanampudi Saidi Reddy (MLA)',
+        party: 'Telan​​​gana Rashtra Samithi',
+        phoneNumbers: 'Phone Numbers: 7729922227',
+        constituency: 'Huzurnagar, Telangana'
+    }
+]

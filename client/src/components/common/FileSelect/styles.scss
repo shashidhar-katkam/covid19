@@ -1,0 +1,49 @@
+.files-selection {
+    width: 90% !important;
+    min-width: 90% !important;
+    //max-height: 90%;
+  
+    .files-selection-co {
+      margin-top: 10px;
+      display: block;
+      height: 480px;
+      max-height: 480px;
+      overflow-y: auto;
+      //display: grid;
+  
+      .files-select {
+        //max-height: 400px;
+        //overflow-y: auto;
+  
+        width: 300px;
+        //display: grid;
+        float: left;
+        margin: 5px;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  
+        .video-co {
+          // height: 300px;
+          //max-height: 300px;
+          width: 100%;
+          max-width: 100%;
+          //max-height: 300px !important ;
+          max-height: 200px !important ;
+          display: inline-block;
+          overflow: hidden;
+          
+        }
+  
+        .image-co {
+          // height: 100%;
+          // max-height: 500px;
+         // height: auto;
+          max-height: 200px !important ;
+          display: inline-block;
+          overflow: hidden;
+          
+          width: 100%;
+          max-width: 100%;
+        }
+      }
+    }
+  }

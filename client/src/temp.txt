@@ -1,0 +1,150 @@
+  //   tempFiles.forEach((file:any, index: number) => {
+          //     if(file.name == filesInfo.name) {
+          //       // this.setState({
+          //       //   uploadedFilesInfo:  tempFiles.map(
+          //       //           (file: any) =>{ if(file.name === filesInfo.name){
+          //       //               return file = file;
+          //       //           }else{
+          //       //               return file
+          //       //           }
+          //       //   })
+          //       // });
+          //       tempFiles = tempFiles.map(
+          //         (file: any) =>{ if(file.name === filesInfo.name){
+          //             return file = file;
+          //         }else{
+          //             return file
+          //         }
+          // });
+                
+          //     }else {
+          //       // this.setState((prevState : IState) => {
+          //       //   return {uploadedFilesInfo: [...prevState.uploadedFilesInfo, filesInfo] }
+          //       // });
+          //       console.log(tempFiles.length);
+          //       console.log(this.state.uploadedFilesInfo.length);
+          //       console.log(tempFiles);
+          //       console.log(filesInfo);
+          //         tempFiles = [...tempFiles, filesInfo];
+          //         added =true;
+                
+                
+          //     }
+          //   });
+
+                // this.setState((prevState : IState) => {
+          //   return {uploadedFilesInfo: [...prevState.uploadedFilesInfo, filesInfo] }
+          // });
+
+                // {/* <div *ngIf="files.length !=0">
+                //   <div className="row upload"  *ngFor="let file of files" >
+                //       <div className="col-md-6">
+                //           <p className="filename">{{file.filename}}</p>
+                //       </div>
+                //       <div className="col-md-6">
+                //         <div className="row">
+                //           <div className="col-md-11">
+                //             <p className="form-inline filename"><mat-progress-bar className="matprogress" *ngIf="file.uploadedpercentage !=100" style="width:80% !important; " mode="determinate" value="{{file.uploadedpercentage}}"></mat-progress-bar><span *ngIf="file.uploadedpercentage !=100" >{{file.uploadedpercentage}}%</span></p>
+                //           </div>
+                //           <div className="col-md-1">
+                //             <p className="btnremovefile float-right" style="float: right; text-align: right;" (click)="removefile(file)"><mat-icon aria-hidden="false"  aria-label="Example home icon" className="sp-item-upload-close">close</mat-icon></p>
+                //           </div>
+                //         </div>
+                //       </div>
+                //   </div>
+                // </div> */}
+                // {/* <div className="sp-item">
+                //   <img src="https://i.picsum.photos/id/611/300/200.jpg" alt="Avatar" className="image" style="width:100%">
+                //   <div className="middle">
+                //     <span className="sp-close-icon">&times;</span>
+                //   </div>
+                // </div> */}
+
+
+
+
+
+                    // () => {
+            //     console.log(window.pageYOffset);
+            //     const totalHeight = document.documentElement.scrollHeight;
+            //     if (window.pageYOffset > totalHeight - 1300 && !this.state.isLoadNext) {
+            //         //this.complaints = this.userservice.test();
+            //         //  console.log('dddddd');
+            //         // console.log(this.state.skipTotal);
+            //         // console.log(this.state.allNews.length);
+            //         console.log(window.pageYOffset);
+            //         console.log(totalHeight);
+            //         // this.setState((prevState: IState) => {
+            //         //     return {
+            //         //         allNews: { ...prevState.allNews, pre },
+            //         //         isLoading: false,
+            //         //         scrollPosition: window.scrollY,
+            //         //         skipTotal: this.state.skipTotal + 10
+            //         //     }
+            //         // });
+            //         // if (this.state.skipTotal !== this.state.allNews.length) {
+            //         this.setState({
+            //             isLoadNext: true
+            //         });
+            //         this.newsService.getAllNewsForUser({ skip: this.state.skipTotal }).then((data: any) => {
+            //             let records: [] = data.data;
+            //             let allre: INewsInfoC[] = this.state.allNews;
+            //             // if (this.state.allNews.length > 30) {
+            //             //     allre = this.state.allNews.splice(0, 10);
+            //             // } else {
+            //             //     allre = this.state.allNews;
+            //             // }
+
+            //             records.map((d: any) => {
+            //                 allre = [...allre, d];
+            //             })
+            //             this.setState((prevState: IState) => {
+            //                 return {
+            //                     allNews: allre,
+            //                     isLoading: false,
+            //                     scrollPosition: window.scrollY,
+            //                     skipTotal: this.state.skipTotal + 10,
+            //                     isLoadNext: false
+
+            //                 }
+            //             });
+            //             console.log(data.data);
+
+            //         });
+            //         // }
+
+            //     }
+            // }
+
+
+
+
+              // public inputChangeHandle = (event: React.ChangeEvent<HTMLInputElement>, field?: string): void => {
+  //   let fieldName: string;
+  //   let subfield: string;
+  //   let subfieldErr: string;
+  //   let errorField: string;
+  //   if (field) {
+  //     fieldName = field;
+
+  //     subfield = event.target.name;
+  //     subfieldErr = event.target.name + 'Err';
+  //   } else {
+  //     fieldName = event.target.name;
+  //     subfield = 'value';
+  //     subfieldErr = 'errorMessage';
+  //   }
+  //   let erorMessage: string;
+  //   if (event.target.value === "") {
+  //     erorMessage = this.errorMessage(event.target.name);
+  //   } else {
+  //     erorMessage = "";
+  //   }
+  //   this.setState((prevState: IState) => {
+  //     return {
+  //       ...prevState,
+  //       [fieldName]: { ...prevState.name, [subfield]: event.target.value, [subfieldErr]: erorMessage }
+  //     }
+  //   });
+  // }
+
