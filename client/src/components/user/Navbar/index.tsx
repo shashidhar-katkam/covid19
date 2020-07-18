@@ -135,7 +135,7 @@ class Navbar extends React.Component<IProps, IState> {
                 <div className="sp-topnav">
                     <div className="sp-nav-container nav-items">
                         <NavLink exact className="home-lin" to="/">
-                            <img src={'http://localhost:7777/uploads/static_files/logo.png'} className="sp-logo" />
+                            <img src={'/uploads/static_files/logo.png'} className="sp-logo" />
                         </NavLink>
                         <NavLink exact className="home-link" to="/">
                             Share Care
@@ -151,7 +151,7 @@ class Navbar extends React.Component<IProps, IState> {
                         <div className="sp-topnav-right" >
                             {(this.state.isUser && this.state.LoggedInUser) && <>
                                 <p onClick={this._onProfileClick} className="user-name sp-pointer">{this.state.LoggedInUser.firstName}</p>
-                                <img className="profile-pict sp-pointer" src={`http://localhost:7777${this.state.LoggedInUser.imagePath}`} ref={this._menuButtonElement} onClick={this._onProfileClick} />
+                                <img className="profile-pict sp-pointer" src={`${this.state.LoggedInUser.imagePath}`} ref={this._menuButtonElement} onClick={this._onProfileClick} />
                             </>
                             }
                             {!this.state.isUser &&

@@ -31,35 +31,35 @@ export default class NewsService {
   }
 
   public createStory(newsInfo: any): Promise<any> {
-    let url = `http://localhost:7777/use${URLs.createStory}`
+    let url = `/use${URLs.createStory}`
     return this.service.post(url, newsInfo, true).then((res: any) => {
       return this.dataOrError(res);
     });
   }
 
   public getStories(filter: any): Promise<any> {
-    let url = `http://localhost:7777/use/${URLs.getStories}`;
+    let url = `/use/${URLs.getStories}`;
     return this.service.post(url, filter, true).then((res: any) => {
       return this.dataOrError(res);
     });
   }
 
   public raiseHelpRequest1(filter: any): Promise<any> {
-    let url = `http://localhost:7777/use/${URLs.raiseHelpRequest1}`;
+    let url = `/use/${URLs.raiseHelpRequest1}`;
     return this.service.post(url, filter, true).then((res: any) => {
       return this.dataOrError(res);
     });
   }
 
   public getHelpRequests1(filter: any): Promise<any> {
-    let url = `http://localhost:7777/use/${URLs.getHelpRequests1}`;
+    let url = `/use/${URLs.getHelpRequests1}`;
     return this.service.post(url, filter, true).then((res: any) => {
       return this.dataOrError(res);
     });
   }
 
   public getProfileByIdF(newsInfo: any): Promise<any> {
-    let url = `http://localhost:7777/use${URLs.getMyProfileInfo}`;
+    let url = `/use${URLs.getMyProfileInfo}`;
     return this.service.post(url, {}, true).then((res: any) => {
       return this.dataOrLogout(res);
     });
@@ -68,28 +68,28 @@ export default class NewsService {
 
 
   public updateProfile(newsInfo: any): Promise<any> {
-    let url = `http://localhost:7777/use${URLs.updateMyProfile}`;
+    let url = `/use${URLs.updateMyProfile}`;
     return this.service.post(url, newsInfo, true).then((res: any) => {
       return this.dataOrLogout(res);
     });
   }
 
   public changePassword(newsInfo: any): Promise<any> {
-    let url = `http://localhost:7777/use${URLs.changePassword}`;
+    let url = `/use${URLs.changePassword}`;
     return this.service.post(url, newsInfo, true).then((res: any) => {
       return this.dataOrLogout(res);
     });
   }
 
   public isAvailable(filter: any): Promise<any> {
-    let url = `http://localhost:7777/use${URLs.checkIsUserAvailable}`;
+    let url = `/use${URLs.checkIsUserAvailable}`;
     return this.service.post(url, filter).then((res: any) => {
       return this.dataOrError(res);
     });
   }
 
   public getCommentsByRef(newsInfo: any): Promise<any> {
-    let url = `http://localhost:7777/use${URLs.getCommentsByRef}`
+    let url = `/use${URLs.getCommentsByRef}`
     return this.service.post(url, newsInfo).then((res: any) => {
       return this.dataOrError(res);
     });
@@ -97,7 +97,7 @@ export default class NewsService {
 
 
   public postComment(newsInfo: any): Promise<any> {
-    let url = `http://localhost:7777/use${URLs.postComment}`
+    let url = `/use${URLs.postComment}`
     return this.service.post(url, newsInfo, true).then((res: any) => {
       return this.dataOrError(res);
 
@@ -105,14 +105,14 @@ export default class NewsService {
   }
 
   public updateDonationRequest(orderInfo: any): Promise<any> {
-    let url = `http://localhost:7777/use${URLs.updateDonationRequest}`;
+    let url = `/use${URLs.updateDonationRequest}`;
     return this.service.post(url, orderInfo).then((res: any) => {
       return this.dataOrLogout(res);
     });
   }
 
   public raiseDonationRequest(filter: any): Promise<any> {
-    let url = `http://localhost:7777/use/${URLs.raiseDonationRequest}`;
+    let url = `/use/${URLs.raiseDonationRequest}`;
     return this.service.post(url, filter).then((res: any) => {
       return this.dataOrError(res);
     });

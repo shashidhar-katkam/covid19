@@ -38,7 +38,7 @@ class LocalVideo extends React.Component<IProps, IState> {
       <div className={`${this.props.isThumbNail ? 'hover-ef' : 'sp-hide'}`}>
       </div>
       <video id={this.props.File._id.substring(1, 10)} width="100%" height="100%" controls >
-        <source src={`http://localhost:7777${this.props.File.filePath}`} type="video/mp4" />
+        <source src={`${this.props.File.filePath}`} type="video/mp4" />
           Your browser does not support the video tag.
       </video>
     </>

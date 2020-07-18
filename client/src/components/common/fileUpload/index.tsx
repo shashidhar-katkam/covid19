@@ -58,7 +58,7 @@ class FileUpload extends React.Component<IProps, IState> {
           const data = new FormData();
           data.append('file', event.target.files[i]);
           var xhr = new XMLHttpRequest();
-          xhr.open("POST", "http://localhost:7777/use/api/uploadfiles");
+          xhr.open("POST", "/use/api/uploadfiles");
           xhr.upload.addEventListener("progress", function (this, evt) {
             if (evt.lengthComputable) {
               let percentComplete: any = evt.loaded / evt.total;

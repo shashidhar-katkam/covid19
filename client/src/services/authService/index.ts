@@ -10,7 +10,7 @@ export default class AuthService {
     }
 
     public Login(userInfo: any): Promise<any> {
-        let url = `http://localhost:7777/use${URLs.login}`;
+        let url = `/use${URLs.login}`;
         const promise = new Promise((resolve, reject) => {
             this.service.post(url, userInfo)
                 .then(
@@ -40,7 +40,7 @@ export default class AuthService {
     }
 
     public verifyEmail(data: any): Promise<any> {
-        let url = "http://localhost:7777/use/api/verifyemail";
+        let url = "/use/api/verifyemail";
         return this.service.post(url, data, true).then((res: any) => {
             if (res.status === 200) {
                 return res.data;
@@ -51,7 +51,7 @@ export default class AuthService {
     }
 
     public verifyOTP(data: any): Promise<any> {
-        let url = "http://localhost:7777/use/api/verifyotp";
+        let url = "/use/api/verifyotp";
         return this.service.post(url, data, true).then((res: any) => {
             if (res.status === 200) {
                 return res.data;
@@ -62,7 +62,7 @@ export default class AuthService {
     }
 
     public verifyUser(data: any): Promise<any> {
-        let url = "http://localhost:7777/use/api/verifyuserforgetpassword";
+        let url = "/use/api/verifyuserforgetpassword";
         return this.service.post(url, data, true).then((res: any) => {
             if (res.status === 200) {
                 return res.data;
@@ -73,7 +73,7 @@ export default class AuthService {
     }
 
     public resetPassword(data: any): Promise<any> {
-        let url = "http://localhost:7777/use/api/forgetpassword";
+        let url = "/use/api/forgetpassword";
         return this.service.post(url, data, true).then((res: any) => {
             if (res.status === 200) {
                 return res.data;

@@ -207,7 +207,7 @@ class Comment extends React.Component<IProps, IState> {
                     <div className="ms-Grid comment-info2" dir="ltr">
                         <div className="ms-Grid-row">
                             <div className="ms-Grid-col sp-1 profile-pic2-c">
-                                <img className="profile-pic2 sp-pointer" src={`http://localhost:7777${this.state.User.User ? this.state.User.User.imagePath : '/uploads/static_files/avatar_2x.png'}`} alt="dd" />
+                                <img className="profile-pic2 sp-pointer" src={`${this.state.User.User ? this.state.User.User.imagePath : '/uploads/static_files/avatar_2x.png'}`} alt="dd" />
                             </div>
                             <div className="ms-Grid-col sp-9 comment-details">
                                 <input

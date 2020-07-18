@@ -22,7 +22,7 @@ class UserInfo extends React.Component<IProps, {}> {
       <div className="row">
         <div className="column">
         <div className="sp-float-left img-c" >
-          <img className="profile-pic sp-pointer" src={`http://localhost:7777${this.props.User.imagePath}`} alt="dd" onClick={() => this.props.onUserClick(this.props.User._id)} />
+          <img className="profile-pic sp-pointer" src={`${this.props.User.imagePath}`} alt="dd" onClick={() => this.props.onUserClick(this.props.User._id)} />
         </div>
         </div>
         <div className="column1" >

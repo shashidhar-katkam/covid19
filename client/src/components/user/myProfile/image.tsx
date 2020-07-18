@@ -68,7 +68,7 @@ class Image extends React.Component<IProps, IState> {
                 const data = new FormData();
                 data.append('file', event.target.files[0]);
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", `http://localhost:7777/use${URLs.uploadProfilePic}`);
+                xhr.open("POST", `/use${URLs.uploadProfilePic}`);
                 xhr.upload.addEventListener("progress", function (this, evt) {
                     if (evt.lengthComputable) {
                         let percentComplete: any = evt.loaded / evt.total;
@@ -105,7 +105,7 @@ class Image extends React.Component<IProps, IState> {
     render(): JSX.Element {
         return (
             <>
-                <img src={`http://localhost:7777${this.state.image.value}`} className="avatar-3" alt="dd" />
+                <img src={`${this.state.image.value}`} className="avatar-3" alt="dd" />
                 <input type="file" name="photo" accept="image/x-png,image/gif,image/jpeg" id="photo" className="display-none" onChange={(event: any) => this._onChangeHandler(event, this._onSucess, this._onProgress)} />
                 <label className="cursor upload-photo" htmlFor="photo">change</label>
                 <span className="sp-danger">{this.state.image.errorMessage}</span>

@@ -8,7 +8,7 @@ interface IProps {
 
 function Image(props: IProps) {
   return (
-    <img className="sp-img" src={`http://localhost:7777${props.File.filePath}`} alt="no image" />
+    <img className="sp-img" src={`${props.File.filePath}`} alt="no image" />
   );
 }
 

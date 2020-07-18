@@ -327,7 +327,7 @@ class Register extends React.Component<IProps, IState> {
                 const data = new FormData();
                 data.append('file', event.target.files[0]);
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", `http://localhost:7777/use${URLs.uploadProfilePic}`);
+                xhr.open("POST", `/use${URLs.uploadProfilePic}`);
                 xhr.upload.addEventListener("progress", function (this, evt) {
                     if (evt.lengthComputable) {
                         let percentComplete: any = evt.loaded / evt.total;
@@ -399,7 +399,7 @@ class Register extends React.Component<IProps, IState> {
                 <div className="ms-Grid" dir="ltr">
                     <div className="ms-Grid-row">
                         <div className="ms-Grid-col ms-sm12 ms-md6 ms-lg6 sp-center">
-                            <img src={`http://localhost:7777${this.state.userForm.imagePath}`} className="avatar" alt="sss" />
+                            <img src={`${this.state.userForm.imagePath}`} className="avatar" alt="sss" />
                             <input type="file" name="photo" id="photo" className="display-none" accept="image/*" onChange={(event: any) => this.onPhotoUpload(event, this._onSucess, this._onProgress)} />
                             <label className="cursor upload-photo" htmlFor="photo">Select photo</label>
                             <span className="sp-danger">{this.state.imageError}</span>

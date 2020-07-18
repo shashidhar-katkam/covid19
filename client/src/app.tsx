@@ -6,7 +6,7 @@ import socketIOClient from 'socket.io-client';
 import configureStore from "./Redux/app.store";
 import { BrowserRouter } from 'react-router-dom';
 import './styles.scss';
-const ENDPOINT = "http://127.0.0.1:7777";
+const ENDPOINT = "/";
 export const store = configureStore();
 export const socket = socketIOClient(ENDPOINT);
 initializeIcons();

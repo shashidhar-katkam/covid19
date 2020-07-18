@@ -438,7 +438,7 @@ class CreateStory extends React.Component<IProps, IState> {
                         <div className="ms-Grid sp-no-pm" dir="ltr">
                             <div className="ms-Grid-row">
                                 <div className="ms-Grid-col ms-sm1">
-                                    <img className="p-pic" src={`http://localhost:7777${this.props.User.User && this.props.User.User.imagePath ? this.props.User.User.imagePath : ''}`} />
+                                    <img className="p-pic" src={`${this.props.User.User && this.props.User.User.imagePath ? this.props.User.User.imagePath : ''}`} />
                                 </div>
                                 <div className="ms-Grid-col ms-sm11">
                                     <p className="text-box" onClick={() => { this.setState({ showStoryForm: true }) }}>Share your Experience</p>
