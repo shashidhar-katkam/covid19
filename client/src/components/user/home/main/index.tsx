@@ -3,26 +3,32 @@ import {
     RouteComponentProps, withRouter
 } from 'react-router-dom';
 import styles from './styles.module.scss';
-
-//import './styles.scss';
 import NewsService from '../../Service';
 import { AppState } from "../../../../Redux/app.store";
 import { connect } from "react-redux";
 import { IUserState } from "../../../../Redux/models";
-import { Shimmer3 } from "../../../common/Loading/Shimmers";
-import { debug } from "console";
-import Donations from "../Donations";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-//import highchartsMap from "highcharts/modules/map";
+import highchartsMap from "highcharts/modules/map";
 import mapDataIN from "@highcharts/map-collection/countries/in/custom/in-all-disputed.geo.json";
 import mapDataWorld from "@highcharts/map-collection/custom/world-eckert3-highres.geo.json";
-//highchartsMap(Highcharts);
-//import { dataIndia } from './dataindia';
-//const dataIndia =* require('./dataindia');
-const dataWorld = require('./dataworld');
-interface IState {
+import { DefaultButton } from "office-ui-fabric-react";
+highchartsMap(Highcharts);
 
+const dataIndia = require('./dataindia');
+const dataWorld = require('./dataworld');
+
+interface IState {
+    covidDataIndia: {
+        confirmed: number;
+        deceased: number;
+        recovered: number;
+    };
+    covidDataWorld: {
+        confirmed: number;
+        deceased: number;
+        recovered: number;
+    };
 }
 
 interface IProps extends RouteComponentProps {
@@ -33,60 +39,70 @@ class Main extends React.Component<IProps, IState> {
     private newsService: NewsService;
     constructor(props: IProps) {
         super(props);
+        this.getIndiaData();
+        this.getWorldData();
         this.state = {
-
+            covidDataIndia: {
+                confirmed: 0,
+                deceased: 0,
+                recovered: 0
+            },
+            covidDataWorld: {
+                confirmed: 0,
+                deceased: 0,
+                recovered: 0
+            }
         }
         this.newsService = new NewsService();
-
     }
 
+    public getIndiaData() {
+        // 'https://api.covidindiatracker.com/state_data.json'
+        fetch('https://api.covidindiatracker.com/total.json', {
+            method: 'GET'
+        }).then(response => {
+            return response.json();
+        }).then(indiaData => {
+            this.setState({
+                covidDataIndia: {
+                    confirmed: indiaData.confirmed,
+                    deceased: indiaData.deaths,
+                    recovered: indiaData.recovered
+                }
+            });
+        })
+    }
 
-    render(): JSX.Element {
-        const dataIndia = [
-            ['madhya pradesh', 0],
-            ['uttar pradesh', 1],
-            ['karnataka', 2],
-            ['nagaland', 3],
-            ['bihar', 4],
-            ['lakshadweep', 5],
-            ['andaman and nicobar', 6],
-            ['assam', 7],
-            ['west bengal', 8],
-            ['puducherry', 9],
-            ['daman and diu', 10],
-            ['gujarat', 11],
-            ['rajasthan', 12],
-            ['dadara and nagar havelli', 13],
-            ['chhattisgarh', 14],
-            ['tamil nadu', 15],
-            ['chandigarh', 16],
-            ['punjab', 17],
-            ['haryana', 18],
-            ['andhra pradesh', 19],
-            ['maharashtra', 20],
-            ['himachal pradesh', 21],
-            ['meghalaya', 22],
-            ['kerala', 23],
-            ['telangana', 24],
-            ['mizoram', 25],
-            ['tripura', 26],
-            ['manipur', 27],
-            ['arunanchal pradesh', 28],
-            ['jharkhand', 29],
-            ['goa', 30],
-            ['nct of delhi', 31],
-            ['odisha', 32],
-            ['jammu and kashmir', 33],
-            ['sikkim', 34],
-            ['uttarakhand', 35]
-        ];
+    public getWorldData() {
+        fetch('https://api.covid19api.com/summary', {
+            method: 'GET'
+        }).then(response => {
+            return response.json();
+        }).then(WorldData => {
+            this.setState({
+                covidDataWorld: {
+                    confirmed: WorldData.Global.TotalConfirmed as number,
+                    deceased: WorldData.Global.TotalDeaths as number,
+                    recovered: WorldData.Global.TotalRecovered as number
+                }
+            });
+        })
+    }
+
+    public goToFacts() {
+        this.props.history.push('/facts');
+    }
+
+    public render() {
+
         const mapOptionsIndia = {
             chart: {
                 map: 'countries/in/custom/in-all-disputed',
                 backgroundColor: 'transparent'
             },
+
             title: {
-                text: 'Map Demo'
+                text: ''
             },
             credits: {
                 enabled: false
@@ -96,7 +112,10 @@ class Main extends React.Component<IProps, IState> {
             },
             tooltip: {
                 headerFormat: '',
-                pointFormat: '<b>{point.freq}</b><br><b>{point.keyword}</b>                      <br>lat: {point.lat}, lon: {point.lon}'
+                pointFormat: '<b>{point.name}:</b>{point.value}'
+            },
+            legend: {
+                enabled: false
             },
             series: [{
                 data: dataIndia,
@@ -107,21 +126,20 @@ class Main extends React.Component<IProps, IState> {
                     }
                 },
                 dataLabels: {
-                    enabled: true,
+                    enabled: false,
                     format: '{point.name}'
                 },
 
                 mapData: mapDataIN,
             }]
         }
-
         const mapOptionsWorld = {
             chart: {
                 map: 'countries/in/custom/in-all-disputed',
                 backgroundColor: 'transparent'
             },
             title: {
-                text: 'Map Demo'
+                text: ''
             },
             credits: {
                 enabled: false
@@ -132,7 +150,10 @@ class Main extends React.Component<IProps, IState> {
             },
             tooltip: {
                 headerFormat: '',
-                pointFormat: '<b>{point.freq}</b><br><b>{point.keyword}</b>                      <br>lat: {point.lat}, lon: {point.lon}'
+                pointFormat: '<b>{point.name}:</b>{point.x}'
+            },
+            legend: {
+                enabled: false
             },
             series: [{
                 data: dataWorld,
@@ -143,7 +164,7 @@ class Main extends React.Component<IProps, IState> {
                     }
                 },
                 dataLabels: {
-                    enabled: true,
+                    enabled: false,
                     format: '{point.name}'
                 },
 
@@ -162,6 +183,17 @@ class Main extends React.Component<IProps, IState> {
                                     highcharts={Highcharts}
                                     options={mapOptionsWorld}
                                 />
+                                <div className={styles.totalValueContainer}>
+                                    <div className={styles.total}>
+                                        Confirmed: <b>{this.state.covidDataWorld.confirmed}</b>
+                                    </div>
+                                    <div className={styles.recovered}>
+                                        Recovered: <b>{this.state.covidDataWorld.recovered}</b>
+                                    </div>
+                                    <div className={styles.deaths}>
+                                        Deceased: <b>{this.state.covidDataWorld.deceased}</b>
+                                    </div>
+                                </div>
                             </div>
                             <div className={styles.indiaMap}>
                                 <HighchartsReact
@@ -169,12 +201,36 @@ class Main extends React.Component<IProps, IState> {
                                     highcharts={Highcharts}
                                     options={mapOptionsIndia}
                                 />
+                                <div className={styles.totalValueContainer}>
+                                    <div className={styles.total}>
+                                        Confirmed: <b>{this.state.covidDataIndia.confirmed}</b>
+                                    </div>
+                                    <div className={styles.recovered}>
+                                        Recovered: <b>{this.state.covidDataIndia.recovered}</b>
+                                    </div>
+                                    <div className={styles.deaths}>
+                                        Deceased: <b>{this.state.covidDataIndia.deceased}</b>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div></div>
+                        <div className={styles.covidDetailsBrief}>
+                            <div className={styles.details}>
+                                <div className={styles.title}>Get the facts about Corona Virus</div>
+                                <div className={styles.subTitle}>Take steps to care for yourself and help protect others in your home and community.</div>
+                                <div className={styles.learnMore}>
+                                    <DefaultButton className={`c-btn`}  onClick={() => this.goToFacts()}text="Learn More" />
+                                </div>
+                            </div>
+                            <div className={styles.imageContainer}>
+                                <img className={styles.image} src={`https://image.freepik.com/free-photo/girl-with-surgical-mask-is-going-buy-cheese_1153-5294.jpg`} alt="Be precautious" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </>
+
         );
     }
 }

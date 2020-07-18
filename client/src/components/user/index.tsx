@@ -10,6 +10,7 @@ import MyProfile from './myProfile';
 import NotFound from '../common/NotFound';
 import Stories from './../user/home/stories';
 import Help from './../user/home/help';
+import Main from './../user/home/main';
 
 class UserApp extends React.Component {
 
@@ -22,6 +23,7 @@ class UserApp extends React.Component {
     return (
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route ecact path="/t" component={Main} />
         <PrivateRoute path="/stories">
           <Stories />
         </PrivateRoute>

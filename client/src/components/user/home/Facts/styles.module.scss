@@ -1,0 +1,26 @@
+.factsContainer {
+    width: 100%;
+    .facts {
+        width: 100%;
+        padding: 0 40px;
+        .title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .description {
+            padding: 10px;
+        }
+        .videoContainer {
+            display: flex;
+            justify-content: center;
+            .video {
+                width: 600px;
+            }
+            iframe {
+                width: 600px !important;
+                height: 340px !important;
+            }
+        }
+    }
+}   
