@@ -1,7 +1,21 @@
 @mixin mapStyle {
     width: 50%;
     margin: 10px;
-    border: 1px solid;
+    // border: 1px solid;
+}
+
+@mixin kpi {
+    display: flex;
+    justify-content: space-around;
+    .total {
+        color: inherit;
+    }
+    .recovered {
+        color: rgb(124, 181, 236)
+    }
+    .deaths {
+        color: rgb(222, 41, 41);
+    }
 }
 
 .homePageContainer {
@@ -12,7 +26,7 @@
     }
     .parallax {
         /* The image used */
-        background-image: url("https://raw.githubusercontent.com/bimalendu04/file_Host/master/ShareCare%20(1).png");
+        background-image: url("https://raw.githubusercontent.com/bimalendu04/file_Host/master/ShareCare1%20(1).png");
         /* Set a specific height */
         min-height: 500px;
         // height: 50%;
@@ -27,15 +41,55 @@
         .mapContainer {
             width: 100%;
             display: inline-flex;
+            // padding-bottom: 20px;
             .worldMap {
                 @include mapStyle;
-                background: rgba(238, 172, 172, 0.5);
-                border-color: rgb(238, 172, 172)
+                // background: rgba(238, 172, 172, 0.5);
+                // border-color: rgb(238, 172, 172)
+                .totalValueContainer {
+                    @include kpi;
+                }
             }
             .indiaMap {
                 @include mapStyle;
-                background: rgba(172, 236, 238, 0.5);
-                border-color: rgb(172, 236, 238);
+                // background: rgba(172, 236, 238, 0.5);
+                border-color: rgba(172, 236, 238, 0.5);
+                border-left: 1px solid;
+                .totalValueContainer {
+                    @include kpi;
+                }
+            }
+        }
+        .covidDetailsBrief {
+            width: 100%;
+            display: inline-flex;
+            height: 400px;
+            justify-content: space-between;
+            padding: 80px;
+            padding-bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+            .details {
+                width: 60%;
+                .title {
+                    font-size: 33px;
+                    font-weight: bold;
+                    width: 350px;
+                    margin-bottom: 20px;
+                }
+                .subTitle {
+                    font-size: 19px;
+                    width: 80%;
+                    margin-bottom: 20px;
+                }
+                .learnMore {
+                    height: 80px;
+                }
+            }
+            .imageContainer {
+                width: 30%;
+                .image {
+                    width: 100%;
+                }
             }
         }
     }
