@@ -27,6 +27,8 @@ const dataIndia = require('./dataIndia');
 const dataWorld = require('./dataWorld');
 
 interface IState {
+    indiaData: any;
+    worldData: any[];
     covidDataIndia: {
         confirmed: number;
         deceased: number;
@@ -44,12 +46,17 @@ interface IProps extends RouteComponentProps {
 }
 
 class Main extends React.Component<IProps, IState> {
+    public indianStateISOtoName: any;
     private newsService: NewsService;
     constructor(props: IProps) {
         super(props);
         this.getIndiaData();
         this.getWorldData();
+        this.getIndiaStateWiseData();
+        this.getWorldData();
         this.state = {
+            indiaData: null,
+            worldData: [],
             covidDataIndia: {
                 confirmed: 0,
                 deceased: 0,
@@ -61,33 +68,71 @@ class Main extends React.Component<IProps, IState> {
                 recovered: 0
             }
         }
+        this.indianStateISOtoName = {
+            AN: 'andaman and nicobar',
+            AP: 'andhra pradesh',
+            AR: 'arunanchal pradesh',
+            AS: 'assam',
+            BR: 'bihar',
+            CH: 'chandigarh',
+            CT: 'chhattisgarh',
+            DL: 'nct of delhi',
+            DN: 'dadara and nagar havelli',
+            GA: 'goa',
+            GJ: 'gujarat',
+            HP: 'himachal pradesh',
+            HR: 'haryana',
+            JH: 'jharkhand',
+            JK: 'jammu and kashmir',
+            KA: 'karnataka',
+            KL: 'kerala',
+            MH: 'maharashtra',
+            ML: 'meghalaya',
+            MN: 'manipur',
+            MP: 'madhya pradesh',
+            MZ: 'mizoram',
+            NL: 'nagaland',
+            OR: 'odisha',
+            PB: 'punjab',
+            PY: 'puducherry',
+            RJ: 'rajasthan',
+            SK: 'sikkim',
+            TG: 'telangana',
+            TN: 'tamil nadu',
+            TR: 'tripura',
+            UP: 'uttar pradesh',
+            UT: 'uttarakhand',
+            WB: 'west bengal'
+        }
         this.newsService = new NewsService();
     }
 
-    public getIndiaData() {
-        // 'https://api.covidindiatracker.com/state_data.json'
-        fetch('https://api.covidindiatracker.com/total.json', {
+    public getIndiaStateWiseData() {
+        fetch('https://api.covid19india.org/v4/min/data.min.json', {
             method: 'GET'
         }).then(response => {
             return response.json();
         }).then(indiaData => {
             this.setState({
+                indiaData,
                 covidDataIndia: {
-                    confirmed: indiaData.confirmed,
-                    deceased: indiaData.deaths,
-                    recovered: indiaData.recovered
+                    confirmed: indiaData.TT.total.confirmed,
+                    deceased: indiaData.TT.total.deceased,
+                    recovered: indiaData.TT.total.recovered
                 }
             });
         })
     }
 
     public getWorldData() {
+
         fetch('https://api.covid19api.com/summary', {
             method: 'GET'
         }).then(response => {
             return response.json();
         }).then(WorldData => {
             this.setState({
+                worldData: WorldData.Countries,
                 covidDataWorld: {
                     confirmed: WorldData.Global.TotalConfirmed as number,
                     deceased: WorldData.Global.TotalDeaths as number,
@@ -102,6 +147,42 @@ class Main extends React.Component<IProps, IState> {
     }
 
     public render() {
+        const { indiaData, worldData, covidDataIndia, covidDataWorld } = this.state;
+        let dataIndia: any[] = [],
+            dataWorld: any[] = [];
+        if (indiaData && Object.keys(indiaData).length) {
+            Object.keys(indiaData).forEach(dataKey => {
+                if (this.indianStateISOtoName[dataKey]) {
+                    dataIndia.push(
+                        {
+                            'hc-key': this.indianStateISOtoName[dataKey],
+                            value: indiaData[dataKey].total.confirmed ? indiaData[dataKey].total.confirmed : 0,
+                            confirmed: indiaData[dataKey].total.confirmed ? indiaData[dataKey].total.confirmed : 0,
+                            recovered: indiaData[dataKey].total.recovered ? indiaData[dataKey].total.recovered : 0,
+                            tested: indiaData[dataKey].total.tested ? indiaData[dataKey].total.tested : 0,
+                            deceased: indiaData[dataKey].total.deceased ? indiaData[dataKey].total.deceased : 0,
+
+                        }
+                    )
+                }
+            });
+        }
+
+        if (worldData && worldData.length) {
+            worldData.forEach(dataKey => {
+                dataWorld.push(
+                    {
+                        'hc-a2': dataKey.CountryCode,
+                        value: dataKey.TotalConfirmed ? dataKey.TotalConfirmed : 0,
+                        confirmed: dataKey.TotalConfirmed ? dataKey.TotalConfirmed : 0,
+                        recovered: dataKey.TotalRecovered ? dataKey.TotalRecovered : 0,
+                        deceased: dataKey.TotalDeaths ? dataKey.TotalDeaths : 0,
+
+                    }
+                )
+            });
+        }
+        console.log('dataWorld', dataWorld);
 
         const mapOptionsIndia = {
             chart: {
@@ -120,7 +201,14 @@ class Main extends React.Component<IProps, IState> {
             },
             tooltip: {
                 headerFormat: '',
-                pointFormat: '<b>{point.name}:</b>{point.value}'
+                pointFormat: `<b>{point.name}:</b>
+                <br/>
+                Confirmed: <span style="color:#000000a6">{point.confirmed}</span>
+                <br/>
+                Recovered: <span style="color:#7cb5ec">{point.recovered}</span>
+                <br/>
+                Deceased: <span style="color:#de2929">{point.deceased}</span>
+                `
             },
             legend: {
                 enabled: false
@@ -158,13 +246,22 @@ class Main extends React.Component<IProps, IState> {
             },
             tooltip: {
                 headerFormat: '',
-                pointFormat: '<b>{point.name}:</b>{point.x}'
+                pointFormat: `<b>{point.name}:</b>
+            <br/>
+            Confirmed: <span style="color:#000000a6">{point.confirmed}</span>
+            <br/>
+            Recovered: <span style="color:#7cb5ec">{point.recovered}</span>
+            <br/>
+            Deceased: <span style="color:#de2929">{point.deceased}</span>
+            `
             },
             legend: {
                 enabled: false
             },
             series: [{
                 data: dataWorld,
+                keys: ['hc-a2', 'value'],
+                joinBy: 'hc-a2',
                 name: 'Random data',
                 states: {
                     hover: {
@@ -193,13 +290,13 @@ class Main extends React.Component<IProps, IState> {
                                 />
                                 <div className={styles.totalValueContainer}>
                                     <div className={styles.total}>
-                                        Confirmed: <b>{this.state.covidDataWorld.confirmed}</b>
+                                        Confirmed: <b>{covidDataWorld.confirmed}</b>
                                     </div>
                                     <div className={styles.recovered}>
-                                        Recovered: <b>{this.state.covidDataWorld.recovered}</b>
+                                        Recovered: <b>{covidDataWorld.recovered}</b>
                                     </div>
                                     <div className={styles.deaths}>
-                                        Deceased: <b>{this.state.covidDataWorld.deceased}</b>
+                                        Deceased: <b>{covidDataWorld.deceased}</b>
                                     </div>
                                 </div>
                             </div>
@@ -211,13 +308,13 @@ class Main extends React.Component<IProps, IState> {
                                 />
                                 <div className={styles.totalValueContainer}>
                                     <div className={styles.total}>
-                                        Confirmed: <b>{this.state.covidDataIndia.confirmed}</b>
+                                        Confirmed: <b>{covidDataIndia.confirmed}</b>
                                     </div>
                                     <div className={styles.recovered}>
-                                        Recovered: <b>{this.state.covidDataIndia.recovered}</b>
+                                        Recovered: <b>{covidDataIndia.recovered}</b>
                                     </div>
                                     <div className={styles.deaths}>
-                                        Deceased: <b>{this.state.covidDataIndia.deceased}</b>
+                                        Deceased: <b>{covidDataIndia.deceased}</b>
                                     </div>
                                 </div>
                             </div>
