@@ -1,0 +1,42 @@
+@mixin mapStyle {
+    width: 50%;
+    margin: 10px;
+    border: 1px solid;
+}
+
+.homePageContainer {
+    width: 100%;
+    // height: 100%;
+    .imageParallax {
+        height: 500px;
+    }
+    .parallax {
+        /* The image used */
+        // background-image: url("https://raw.githubusercontent.com/bimalendu04/file_Host/master/ShareCare%20(1).png");
+        /* Set a specific height */
+        min-height: 500px;
+        // height: 50%;
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .wrapper {
+        width: 100%;
+        .mapContainer {
+            width: 100%;
+            display: inline-flex;
+            .worldMap {
+                @include mapStyle;
+                background: rgba(238, 172, 172, 0.5);
+                border-color: rgb(238, 172, 172)
+            }
+            .indiaMap {
+                @include mapStyle;
+                background: rgba(172, 236, 238, 0.5);
+                border-color: rgb(172, 236, 238);
+            }
+        }
+    }
+}

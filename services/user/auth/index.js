@@ -16,11 +16,9 @@ const transport = nodemailer.createTransport({
         pass: 'yspnotbtjadkesif'
     },
     tls: {
-        // do not fail on invalid certs
         rejectUnauthorized: false
     }
 });
-
 
 const UserType = {
     Normal: 1,
@@ -38,15 +36,11 @@ const AccountStatus = {
 
 module.exports = {
     RegisterUser: function (objUser, callback) {
-
         Util.GenerateUserId((err, id) => {
-            //     console.log(id);
             objUser['UId'] = id
-            //     objUser['dateTime'] = dateTime();
             objUser['userType'] = UserType.Normal;
             objUser['accountStatus'] = AccountStatus.Registered;
             objUser['dateTime'] = dateTime();
-            //     console.log(objUser);
             User.RegisterUser(objUser, (err, objCreated) => {
                 if (err) {
                     var msg = err.message;
@@ -76,64 +70,6 @@ module.exports = {
             });
         });
     },
-    InsertUserDetails: function (objUser, callback) {
-        objUser['createdDate'] = dateTime();
-        objUser['modifiedDate'] = dateTime();
-        console.log(objUser);
-        User.InsertUserDetails(objUser, (err, objCreated) => {
-            if (err) {
-                var msg = err.message;
-                if (msg.includes('duplicate key error')) {
-
-                    callback({
-                        status: false,
-                        message: `Already Registered with ${objUser['MBID']}`,
-                        statuscode: 0
-                    });
-                } else {
-                    callback({
-                        status: false,
-                        message: `${err.message}`,
-                        statuscode: 0
-                    });
-                }
-            } else if (objCreated) {
-                callback({
-                    status: true,
-                    message: `User Details saved Successfully.`,
-                    statuscode: 1
-                });
-            }
-        });
-    },
-    UpdateUserDetails: function (objUser, callback) {
-        objUser['modifiedDate'] = dateTime();
-        console.log(objUser);
-        User.UpdateUserDetails(objUser, (err, objCreated) => {
-            if (err) {
-                var msg = err.message;
-                if (msg.includes('duplicate key error')) {
-                    callback({
-                        status: false,
-                        message: `Already Registered with ${objUser['MBID']}`,
-                        statuscode: 0
-                    });
-                } else {
-                    callback({
-                        status: false,
-                        message: `${err.message}`,
-                        statuscode: 0
-                    });
-                }
-            } else if (objCreated) {
-                callback({
-                    status: true,
-                    message: `User Details saved Successfully.`,
-                    statuscode: 1
-                });
-            }
-        });
-    },
     Login: function (objUser, callback) {
         User.getUserbyUserName({
             phoneNumber: objUser['phoneNumber']
@@ -151,7 +87,6 @@ module.exports = {
                     console.log(data[0]);
                     if (objUser['password'] === data[0]['password']) {
                         const user = data[0];
-
                         if (data[0]['accountStatus'] === AccountStatus.Registered) {
                             callback({
                                 statusmsg: {
@@ -168,7 +103,6 @@ module.exports = {
                                     message: 'your account is rejected due to wrong Information entered.'
                                 }
                             })
-
                         } else if (data[0]['accountStatus'] === AccountStatus.Blocked) {
                             callback({
                                 statusmsg: {
@@ -199,7 +133,7 @@ module.exports = {
                                         phoneNumber: data[0]['phoneNumber']
                                     },
                                     MBwebToken: token
-                                })
+                                });
                             });
                         } else {
                             callback({
@@ -265,13 +199,13 @@ module.exports = {
                                     callback({
                                         status: true,
                                         statuscode: 1,
-                                        message: otpg  //"Please enter otp sent to your email."
+                                        message: otpg  
                                     });
                                     const message = {
-                                        from: 'shashi2puppy@gmail.com', // Sender address
-                                        to: data[0]['email'],         // List of recipients
-                                        subject: 'OTP For Verification', // Subject line
-                                        text: `Your verification code is: ${otpg}`  // Plain text body
+                                        from: 'shashi2puppy@gmail.com',
+                                        to: data[0]['email'],         
+                                        subject: 'OTP For Verification',
+                                        text: `Your verification code is: ${otpg}` 
                                     };
                                     transport.sendMail(message, function (err, info) {
                                         if (err) {
@@ -384,7 +318,7 @@ module.exports = {
                                     callback({
                                         status: true,
                                         statuscode: 1,
-                                        //  message: otpg  //"Please enter otp sent to your email."
+                                         message:""
                                     });
                                 }
                             });

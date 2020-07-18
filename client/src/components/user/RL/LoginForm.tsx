@@ -41,7 +41,7 @@ class LoginForm extends React.Component<IProps, IState> {
     private _passwordChangeHandle = (event: React.ChangeEvent<HTMLInputElement>): void => {
         let errorMessage: string;
         if (event.target.value === "") {
-            errorMessage = this.props.User.staticConstants.Constants.required;
+            errorMessage = "Required";
         } else {
             errorMessage = "";
         }
@@ -55,9 +55,9 @@ class LoginForm extends React.Component<IProps, IState> {
         let errorMessage: string;
         const phoneNumber = (event.target.validity.valid) ? event.target.value : this.state.loginForm.phoneNumber;
         if (event.target.value === "") {
-            errorMessage = errorMessage = this.props.User.staticConstants.Constants.required;
+            errorMessage = errorMessage = "Required";
         } else if (!event.target.validity.valid) {
-            errorMessage = this.props.User.staticConstants.Constants.onlyNumbersAllowed;
+            errorMessage = "Only number are allowed";
         } else {
             errorMessage = "";
         }
@@ -72,16 +72,16 @@ class LoginForm extends React.Component<IProps, IState> {
         let loginFormErr: ILoginFormErr = this.state.loginFormErr;
         let isFormValid: boolean = true;
         if (loginForm.phoneNumber === "") {
-            loginFormErr.phoneNumberErr = this.props.User.staticConstants.Constants.required;
+            loginFormErr.phoneNumberErr = "Required";
             isFormValid = false;
         } else if (loginForm.phoneNumber.length < 10) {
-            loginFormErr.phoneNumberErr = this.props.User.staticConstants.Constants.enterValidNumber;
+            loginFormErr.phoneNumberErr = "Enter valid mobile number"
             isFormValid = false;
         } else {
             loginFormErr.phoneNumberErr = "";
         }
         if (loginForm.password === "") {
-            loginFormErr.passwordErr = this.props.User.staticConstants.Constants.required;
+            loginFormErr.passwordErr = "Required";
             isFormValid = false;
         } else {
             loginFormErr.passwordErr = "";
@@ -112,23 +112,23 @@ class LoginForm extends React.Component<IProps, IState> {
                         } else {
                             if (res.statuscode === 6) {
                                 this.setState({
-                                    FormErrMessage: this.props.User.staticConstants.Constants.invalidPassword
+                                    FormErrMessage: "Invalid Password"
                                 });
                             } else if (res.statuscode === 3) {
                                 this.setState({
-                                    FormErrMessage: this.props.User.staticConstants.Constants.rejectedError
+                                    FormErrMessage: "Your account is rejected."
                                 });
                             } else if (res.statuscode === 4) {
                                 this.setState({
-                                    FormErrMessage: this.props.User.staticConstants.Constants.suspendedError
+                                    FormErrMessage: "Your account is suspended."
                                 });
                             } else if (res.statuscode === 7) {
                                 this.setState({
-                                    FormErrMessage: this.props.User.staticConstants.Constants.accountNotFoundError
+                                    FormErrMessage: "Didn't find your account."
                                 });
                             } else {
                                 this.setState({
-                                    FormErrMessage: this.props.User.staticConstants.Constants.error
+                                    FormErrMessage: "Some error occured."
                                 });
                             }
                         }
@@ -150,7 +150,7 @@ class LoginForm extends React.Component<IProps, IState> {
                 onDismiss={() => { this.props.afterLogin() }}
                 dialogContentProps={{
                     type: DialogType.normal,
-                    title: this.props.User.staticConstants.Constants.loginTitle,
+                    title: "Login",
                     closeButtonAriaLabel: 'Close',
                     showCloseButton: true,
                 }}
@@ -160,15 +160,15 @@ class LoginForm extends React.Component<IProps, IState> {
                     isBlocking: true
                 }} >
                 <div className="login-page">
-                    <input type="text" pattern="[0-9]*" maxLength={10} className={`input-control fadeIn first ${true ? 'error-border' : ''}`} placeholder={this.props.User.staticConstants.Constants.phoneNumber} name="phoneNumber" value={this.state.loginForm.phoneNumber} onChange={this._phoneNumberChangeHandle} />
+                    <input type="text" pattern="[0-9]*" maxLength={10} className={`input-control fadeIn first ${true ? 'error-border' : ''}`} placeholder={"Enter phone number"} name="phoneNumber" value={this.state.loginForm.phoneNumber} onChange={this._phoneNumberChangeHandle} />
                     <p className="sp-danger">{this.state.loginFormErr.phoneNumberErr}</p>
-                    <input type="password" className={`input-control fadeIn second ${true ? 'error-border' : ''}`} placeholder={this.props.User.staticConstants.Constants.password} name="password" value={this.state.loginForm.password} onChange={this._passwordChangeHandle} />
+                    <input type="password" className={`input-control fadeIn second ${true ? 'error-border' : ''}`} placeholder="Enter password" name="password" value={this.state.loginForm.password} onChange={this._passwordChangeHandle} />
                     <p className="sp-danger">{this.state.loginFormErr.passwordErr}</p>
                     <p className="sp-danger">{this.state.FormErrMessage}</p>
-                    <a className="forget-password" onClick={() => this.props.formHandle(FormType.ForgetPassword)} >{this.props.User.staticConstants.Constants.forgetPassword}</a>
+                    <a className="forget-password" onClick={() => this.props.formHandle(FormType.ForgetPassword)} >Forget password?</a>
                     <div className="sp-clearFix"></div>
-                    <p className="create-account">{this.props.User.staticConstants.Constants.newToOurSite}<a className="register" onClick={() => this.props.formHandle(FormType.Register)}>{this.props.User.staticConstants.Constants.createAccount}</a> </p>
-                    <DefaultButton onClick={this._submitForm} className="sp-main-btn sp-float-right btn-login" text={this.props.User.staticConstants.Constants.login} />
+                    <p className="create-account">{"Join with us!"}<a className="register" onClick={() => this.props.formHandle(FormType.Register)}>{"Signup"}</a> </p>
+                    <DefaultButton onClick={this._submitForm} className="sp-main-btn sp-float-right btn-login" text="login" />
                 </div>
             </Dialog>
         );

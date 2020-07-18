@@ -1,6 +1,4 @@
 const User = require('../mongoose/User');
-const SelfAdminRequests = require('../mongoose/SelfAdminRequests');
-const NewsService = require('./user/dataService');
 
 const AccountStatus = {
     Registered: 1,
@@ -39,155 +37,6 @@ module.exports = {
             }
         });
     },
-    getUserInfoAndNewsCount: function (requestObj, callback) {
-        var filter = {};
-        if (requestObj && requestObj.id) {
-            filter._id = requestObj.id;
-        }
-        User.getUserDetailsbyID(filter, (err, data) => {
-            if (err) {
-                callback({
-                    status: false,
-                    message: `Error Occured.`,
-                    statuscode: 0
-                });
-            }
-            else if (data && data.length != 0) {
-                NewsService.getTotalCountNewsPostedByUser({
-                    'User._id': requestObj['id']
-                }, (err1, countInfo) => {
-                    if (err1) {
-                        callback({
-                            status: false,
-                            message: `Error Occured.`,
-                            statuscode: 0
-                        });
-                    }
-                    else if (countInfo !== null) {
-                        var obj = { userInfo: data[0], count: countInfo }
-                        callback({
-                            status: true,
-                            message: `Data fetched successfully.`,
-                            statuscode: 1,
-                            data: obj
-                        });
-                    } else {
-                        var obj = { userInfo: data[0], count: 0 }
-                        callback({
-                            status: true,
-                            message: `Data fetched successfully.`,
-                            statuscode: 1,
-                            data: obj
-                        });
-                    }
-                });
-            } else {
-                callback({
-                    status: false,
-                    message: `No data found.`,
-                    statuscode: 2,
-                });
-            }
-        });
-    },
-    getUserInfoAndNewsCountOfUserNews: function (requestObj, callback) {
-        var filter = {};
-        if (requestObj && requestObj.id) {
-            filter._id = requestObj.id;
-        }
-        User.getUserDetailsbyID(filter, (err, data) => {
-            if (err) {
-                callback({
-                    status: false,
-                    message: `Error Occured.`,
-                    statuscode: 0
-                });
-            }
-            else if (data && data.length != 0) {
-                NewsService.getTotalNewsCountOfUser({
-                    'User._id': requestObj['id']
-                }, (err1, countInfo) => {
-                    if (err1) {
-                        console.log(err);
-                        callback({
-                            status: false,
-                            message: 'Error occured.',
-                            statuscode: 0,
-                        });
-                    }
-                    else if (countInfo) {
-                        var obj = { userInfo: data[0], count: countInfo.length }
-                        callback({
-                            status: true,
-                            message: `No News posted by user.`,
-                            statuscode: 1,
-                            data: obj
-                        });
-                    }
-                });
-            } else {
-                callback({
-                    status: false,
-                    message: `No data found.`,
-                    statuscode: 2,
-                });
-            }
-        });
-    },
-    getAllUsersByFilter: function (query, callback) {
-        User.getAllUsersByFilter(query, (err, data) => {
-            if (err) {
-                callback({
-                    status: false,
-                    message: 'Error occured.',
-                    statuscode: 0
-                });
-            } else if (data) {
-                callback({
-                    status: true,
-                    message: 'All Details saved Successfully.',
-                    statuscode: 1,
-                    data: data
-                });
-            }
-        });
-    },
-    getAllUsersNamesByQuery: function (query, callback) {
-        User.getAllUsersNamesByQuery(query, (err, data) => {
-            if (err) {
-                callback({
-                    status: false,
-                    message: 'Error occured.',
-                    statuscode: 0
-                });
-            } else if (data) {
-                callback({
-                    status: true,
-                    message: `User Details saved Successfully.`,
-                    statuscode: 1,
-                    data: data
-                });
-            }
-        });
-    },
-    getRejectedUsers: function (query, callback) {
-        User.getAllUsersByFilter({ accountStatus: AccountStatus.Rejected }, (err, data) => {
-            if (err) {
-                callback({
-                    status: false,
-                    message: `Error occured.`,
-                    statuscode: 0
-                });
-            } else if (data) {
-                callback({
-                    status: true,
-                    message: `User Details saved Successfully.`,
-                    statuscode: 1,
-                    data: data
-                });
-            }
-        });
-    },
     updateProfile: function (profileInfo, callback) {
         profileInfo['reviewerId'] = 'shashidhar';
         let data;
@@ -214,7 +63,6 @@ module.exports = {
                 callback({
                     status: false,
                     message: 'Error occured.',
-                    //message: `${err.message}`,
                     statuscode: 0
                 });
             } else if (objCreated) {
@@ -222,71 +70,6 @@ module.exports = {
                     status: true,
                     message: `Profile Updated`,
                     statuscode: 1
-                });
-            }
-        });
-    },
-    updateUserProfile: function (profileInfo, callback) {
-        //profileInfo['reviewerId'] = 'shashidhar';
-        // let data;
-        if (profileInfo.field === 'accountStatus') {
-            data = { id: profileInfo.data.id, updateObj: { accountStatus: profileInfo.data.status, accountStatusMsg: profileInfo.data.statusMsg, reviewerId: profileInfo.reviewerId } }
-        } else if (profileInfo.field === 'userType') {
-            data = { id: profileInfo.data.id, updateObj: { userType: profileInfo.data.status, accountStatusMsg: profileInfo.data.statusMsg, reviewerId: profileInfo.reviewerId } }
-        }
-        else {
-            data = {};
-        }
-        User.updateProfile(data, (err, objCreated) => {
-            if (err) {
-                callback({
-                    status: false,
-                    message: 'Error occured.',    // `${err.message}`,
-                    statuscode: 0
-                });
-            } else if (objCreated) {
-                // console.log(objCreated);
-                callback({
-                    status: true,
-                    message: `Profile Updated.`,
-                    statuscode: 1
-                });
-            }
-        });
-    },
-    updateProfileForSelfAdmin: function (profileInfo, callback) {
-        if (profileInfo.field === 'accountStatus') {
-            data = { id: profileInfo.data.id, updateObj: { accountStatus: profileInfo.data.status, accountStatusMsg: profileInfo.data.statusMsg, reviewerId: profileInfo.reviewerId } }
-        } else if (profileInfo.field === 'userType') {
-            data = { id: profileInfo.data.id, updateObj: { userType: profileInfo.data.status, accountStatusMsg: profileInfo.data.statusMsg, reviewerId: profileInfo.reviewerId } }
-        }
-        else {
-            data = {};
-        }
-        User.updateProfile(data, (err, objCreated) => {
-            if (err) {
-                callback({
-                    status: false,
-                    message: 'Error occured.',
-                    statuscode: 0
-                });
-            } else if (objCreated) {
-                let updateInfo = { id: profileInfo.data.id, updateObj: { accountStatus: profileInfo.data.status, accountStatusMsg: profileInfo.data.statusMsg, reviewerId: profileInfo.reviewerId } }
-                SelfAdminRequests.changeStatus(updateInfo, (err, objCreated) => {
-                    if (err) {
-                        callback({
-                            status: false,
-                            message: 'Error occured.',
-                            statuscode: 0
-                        });
-                    } else if (data) {
-                        console.log(objCreated);
-                        callback({
-                            status: true,
-                            message: `Profile Updated`,
-                            statuscode: 1
-                        });
-                    }
                 });
             }
         });
@@ -369,52 +152,5 @@ module.exports = {
             }
         });
     },
-    getUsersCountByAccountStatus: function (requestObj, callback) {
-        User.getUsersCountByAccountStatus({}, (err, newsCreated) => {
-            if (err) {
-                callback({
-                    status: false,
-                    message: 'Error occured.',
-                    statuscode: 0
-                });
-            } else if (newsCreated) {
-                callback({
-                    status: true,
-                    message: `Records fetched successfully`,
-                    statuscode: 1,
-                    data: newsCreated
-                });
-            }
-
-        });
-
-    },
-    getAllUsersByFilter3: function (requestObj, callback) {
-        let filterQuery = {};
-        if (requestObj.field) {
-            filterQuery.filter = { [requestObj.field]: requestObj.value };
-        } else {
-            filterQuery.filter = {};
-        }
-        if (requestObj.skip) {
-            filterQuery.skip = requestObj.skip;
-        }
-        console.log(filterQuery);
-        User.getAllUsersByFilter3(filterQuery, (err, newsCreated) => {
-            if (err) {
-                callback({
-                    status: false,
-                    message: 'Error occured.',
-                    statuscode: 0
-                });
-            } else if (newsCreated) {
-                callback({
-                    status: true,
-                    message: `Records fetched successfully`,
-                    statuscode: 1,
-                    data: newsCreated
-                });
-            }
-        });
-    }
+   
 }

@@ -45,4 +45,4 @@ const DonationSchema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model('Donations', DonationSchema);
+module.exports = mongoose.model('COVID_donations', DonationSchema);

@@ -89,9 +89,9 @@ class Register extends React.Component<IProps, IState> {
     public _emailChangeHandle = (event: React.ChangeEvent<HTMLInputElement>): void => {
         let erorMessage: string;
         if (event.target.value === "") {
-            erorMessage = this.props.User.staticConstants.Constants.required;
+            erorMessage = "Required";
         } else if (!Util.validateEmail(event.target.value)) {
-            erorMessage = this.props.User.staticConstants.Constants.invalidEmail;
+            erorMessage = "Invalid email"
         }
         else {
             erorMessage = "";
@@ -105,7 +105,7 @@ class Register extends React.Component<IProps, IState> {
     public _inputChangeHandle = (event: React.ChangeEvent<HTMLInputElement>): void => {
         let erorMessage: string;
         if (event.target.value === "") {
-            erorMessage = this.props.User.staticConstants.Constants.required;
+            erorMessage = "Required";
         } else {
             erorMessage = "";
         }
@@ -119,9 +119,9 @@ class Register extends React.Component<IProps, IState> {
         let erorMessage: string;
         const phoneNumber = (event.target.validity.valid || event.target.value === '') ? event.target.value : this.state.userForm.phoneNumber;
         if (event.target.value === "") {
-            erorMessage = this.props.User.staticConstants.Constants.required;
+            erorMessage = "Required";
         } else if (!event.target.validity.valid) {
-            erorMessage = this.props.User.staticConstants.Constants.onlyNumbersAllowed;
+            erorMessage = "Only number are allowed";
         } else {
             erorMessage = "";
         }
@@ -134,9 +134,9 @@ class Register extends React.Component<IProps, IState> {
     public confirmPasswordChangeHandle(event: any) {
         let erorMessage: string;
         if (event.target.value === "") {
-            erorMessage = this.props.User.staticConstants.Constants.required;
+            erorMessage = "Required";
         } else if (this.state.userForm.password !== '' && (this.state.userForm.password !== event.target.value)) {
-            erorMessage = this.props.User.staticConstants.Constants.passwordDoesntMatch;
+            erorMessage = "Password doesn't match."
         }
         else {
             erorMessage = "";
@@ -210,24 +210,26 @@ class Register extends React.Component<IProps, IState> {
         let isFormValid: boolean = true;
         let PrivacyCheckErr: string;
         if (userForm.phoneNumber === "") {
-            userFormErr.phoneNumberErr = this.props.User.staticConstants.Constants.required;
+            userFormErr.phoneNumberErr = "Required";
+            isFormValid = false;
+        } else if (userForm.phoneNumber.length < 10) {
+            userFormErr.phoneNumberErr = "Enter valid mobile number"
             isFormValid = false;
         } else {
             userFormErr.phoneNumberErr = "";
         }
-
         if (userForm.password === "") {
-            userFormErr.passwordErr = this.props.User.staticConstants.Constants.required;
+            userFormErr.passwordErr = "Required";
             isFormValid = false;
         } else {
             userFormErr.passwordErr = "";
         }
 
         if (this.state.confirmPassword === "") {
-            confirmPasswordErr = this.props.User.staticConstants.Constants.required;
+            confirmPasswordErr = "Required";
             isFormValid = false;
         } else if (userForm.password !== '' && (this.state.userForm.password !== this.state.confirmPassword)) {
-            confirmPasswordErr = this.props.User.staticConstants.Constants.passwordDoesntMatch;
+            confirmPasswordErr = "Password doesn't match.";
             isFormValid = false;
         }
         else {
@@ -235,60 +237,53 @@ class Register extends React.Component<IProps, IState> {
         }
 
         if (userForm.firstName === "") {
-            userFormErr.firstNameErr = this.props.User.staticConstants.Constants.required;
+            userFormErr.firstNameErr = "Required";
             isFormValid = false;
         } else {
             userFormErr.firstNameErr = "";
         }
 
         if (userForm.lastName === "") {
-            userFormErr.lastNameErr = this.props.User.staticConstants.Constants.required;
+            userFormErr.lastNameErr = "Required";
             isFormValid = false;
         } else {
             userFormErr.lastNameErr = "";
         }
 
         if (userForm.gender === "") {
-            userFormErr.genderErr = this.props.User.staticConstants.Constants.required;
+            userFormErr.genderErr = "Required";
             isFormValid = false;
         } else {
             userFormErr.genderErr = "";
         }
 
         if (userForm.email === "") {
-            userFormErr.emailErr = this.props.User.staticConstants.Constants.required;
+            userFormErr.emailErr = "Required";
             isFormValid = false;
         } else if (!Util.validateEmail(userForm.email)) {
-            userFormErr.emailErr = this.props.User.staticConstants.Constants.invalidEmail;
+            userFormErr.emailErr = "Invlaid email"
             isFormValid = false;
         } else {
             userFormErr.emailErr = "";
         }
 
         if (userForm.state === "") {
-            userFormErr.stateErr = this.props.User.staticConstants.Constants.required;
+            userFormErr.stateErr = "Required";
             isFormValid = false;
         } else {
             userFormErr.stateErr = "";
         }
 
         if (userForm.city === "") {
-            userFormErr.cityErr = this.props.User.staticConstants.Constants.required;
+            userFormErr.cityErr = "Required";
             isFormValid = false;
         } else {
             userFormErr.cityErr = "";
         }
 
-        if (!this.state.isPrivacyCheck) {
-            PrivacyCheckErr = this.props.User.staticConstants.Constants.agreeTermsWarning;
-        }
-        else {
-            PrivacyCheckErr = ""
-        }
         this.setState({
             userFormErr: userFormErr,
             confirmPasswordErr: confirmPasswordErr,
-            PrivacyCheckErr: PrivacyCheckErr
         });
 
         return isFormValid;
@@ -312,7 +307,7 @@ class Register extends React.Component<IProps, IState> {
                 } else {
                     if (res.statuscode === 2) {
                         this.setState({
-                            FormErrMessage: this.props.User.staticConstants.Constants.alreadyRegisteredWarning
+                            FormErrMessage: "Account exit with this number/email"
                         });
                     } else {
                         this.setState({
@@ -359,7 +354,7 @@ class Register extends React.Component<IProps, IState> {
                     };
             } else {
                 this.setState({
-                    imageError: this.props.User.staticConstants.Constants.imageUploadWarning
+                    imageError: "Only images are allowed."
                 });
                 setTimeout(() => {
                     this.setState({
@@ -389,7 +384,7 @@ class Register extends React.Component<IProps, IState> {
                 onDismiss={this._loginCancel}
                 dialogContentProps={{
                     type: DialogType.normal,
-                    title: this.props.User.staticConstants.Constants.createAccount,
+                    title: "Signup",
                     closeButtonAriaLabel: 'Close',
                     showCloseButton: true,
                 }}
@@ -406,33 +401,33 @@ class Register extends React.Component<IProps, IState> {
                         <div className="ms-Grid-col ms-sm12 ms-md6 ms-lg6 sp-center">
                             <img src={`http://localhost:7777${this.state.userForm.imagePath}`} className="avatar" alt="sss" />
                             <input type="file" name="photo" id="photo" className="display-none" accept="image/*" onChange={(event: any) => this.onPhotoUpload(event, this._onSucess, this._onProgress)} />
-                            <label className="cursor upload-photo" htmlFor="photo">{this.props.User.staticConstants.Constants.uploadPhoto}</label>
+                            <label className="cursor upload-photo" htmlFor="photo">Select photo</label>
                             <span className="sp-danger">{this.state.imageError}</span>
                         </div>
                         <div className="ms-Grid-col ms-sm12 ms-md6 ms-lg6">
-                            <TextField pattern="[0-9]*" label={this.props.User.staticConstants.Constants.phoneNumber} autoSave="false" autoComplete="false" name="phoneNumber" errorMessage={this.state.userFormErr.phoneNumberErr} value={this.state.userForm.phoneNumber} onChange={(event: any) => this._phoneNumberChangeHandle(event)} required minLength={10} prefix="+91" maxLength={10} />
-                            <TextField type="password" autoComplete="false" label={this.props.User.staticConstants.Constants.password} name="password" errorMessage={this.state.userFormErr.passwordErr} value={this.state.userForm.password} onChange={(event: any) => this._inputChangeHandle(event)} required minLength={8} />
-                            <TextField type="password" autoComplete="false" label={this.props.User.staticConstants.Constants.confirmPassword} name="confirmPassword" errorMessage={this.state.confirmPasswordErr} value={this.state.confirmPassword} onChange={(event: any) => this.confirmPasswordChangeHandle(event)} required minLength={8} />
+                            <TextField pattern="[0-9]*" label="phoneNumber" autoSave="false" autoComplete="false" name="phoneNumber" errorMessage={this.state.userFormErr.phoneNumberErr} value={this.state.userForm.phoneNumber} onChange={(event: any) => this._phoneNumberChangeHandle(event)} required minLength={10} prefix="+91" maxLength={10} />
+                            <TextField type="password" autoComplete="false" label="Password" name="password" errorMessage={this.state.userFormErr.passwordErr} value={this.state.userForm.password} onChange={(event: any) => this._inputChangeHandle(event)} required minLength={8} />
+                            <TextField type="password" autoComplete="false" label="Confirm password" name="confirmPassword" errorMessage={this.state.confirmPasswordErr} value={this.state.confirmPassword} onChange={(event: any) => this.confirmPasswordChangeHandle(event)} required minLength={8} />
                         </div>
                     </div>
                 </div>
                 <div className="ms-Grid" dir="ltr">
                     <div className="ms-Grid-row">
                         <div className="ms-Grid-col ms-sm12 ms-md6 ms-lg6">
-                            <TextField label={this.props.User.staticConstants.Constants.firstName} name="firstName" errorMessage={this.state.userFormErr.firstNameErr} value={this.state.userForm.firstName} onChange={(event: any) => this._inputChangeHandle(event)} required />
+                            <TextField label="First Name" name="firstName" errorMessage={this.state.userFormErr.firstNameErr} value={this.state.userForm.firstName} onChange={(event: any) => this._inputChangeHandle(event)} required />
                         </div>
                         <div className="ms-Grid-col ms-sm12 ms-md6 ms-lg6">
-                            <TextField label={this.props.User.staticConstants.Constants.lastName} name="lastName" errorMessage={this.state.userFormErr.lastNameErr} value={this.state.userForm.lastName} onChange={(event: any) => this._inputChangeHandle(event)} required />
+                            <TextField label="Last Name" name="lastName" errorMessage={this.state.userFormErr.lastNameErr} value={this.state.userForm.lastName} onChange={(event: any) => this._inputChangeHandle(event)} required />
                         </div>
                     </div>
                 </div>
                 <div className="ms-Grid" dir="ltr">
                     <div className="ms-Grid-row">
                         <div className="ms-Grid-col ms-sm12 ms-md6 ms-lg6">
-                            <TextField label={this.props.User.staticConstants.Constants.email} name="email" errorMessage={this.state.userFormErr.emailErr} value={this.state.userForm.email} onChange={(event: any) => this._emailChangeHandle(event)} required />
+                            <TextField label="Email" name="email" errorMessage={this.state.userFormErr.emailErr} value={this.state.userForm.email} onChange={(event: any) => this._emailChangeHandle(event)} required />
                         </div>
                         <div className="ms-Grid-col ms-sm12 ms-md6 ms-lg6">
-                            <ChoiceGroup defaultSelectedKey="B" options={genderOptions} onChange={(ev: any, o: any) => this._onGenderChange(ev, o, "gender")} label={this.props.User.staticConstants.Constants.gender} required={true} />
+                            <ChoiceGroup defaultSelectedKey="B" options={genderOptions} onChange={(ev: any, o: any) => this._onGenderChange(ev, o, "gender")} label="Gender" required={true} />
                             <span className="sp-danger">{this.state.userFormErr.genderErr}</span>
                             <style>
                                 {`.ms-ChoiceField {
@@ -448,7 +443,7 @@ class Register extends React.Component<IProps, IState> {
                     <div className="ms-Grid-row">
                         <div className="ms-Grid-col ms-sm12 ms-md6 ms-lg6">
                             <Dropdown
-                                label={this.props.User.staticConstants.Constants.state}
+                                label="State"
                                 options={options}
                                 errorMessage={this.state.userFormErr.stateErr}
                                 selectedKey={this.state.userForm.state}
@@ -457,7 +452,7 @@ class Register extends React.Component<IProps, IState> {
                         </div>
                         <div className="ms-Grid-col ms-sm12 ms-md6 ms-lg6">
                             <Dropdown
-                                label={this.props.User.staticConstants.Constants.district}
+                                label="District"
                                 options={this.state.City}
                                 errorMessage={this.state.userFormErr.cityErr}
                                 selectedKey={this.state.userForm.city}
@@ -466,26 +461,8 @@ class Register extends React.Component<IProps, IState> {
                         </div>
                     </div>
                 </div>
-                <p className="read-warning sp-mt10">Please read our
-                <a href="/terms" target="blank">Terms and Condition
-                </a>
-                </p>
-                <p className="read-warning">Please read our
-                <a href="/privacy" target="blank">Privacy Policy
-                </a>
-                </p>
-
-                <Checkbox label={this.props.User.staticConstants.Constants.agreeTerms}
-                    className="privacy-checkbox" checked={this.state.isPrivacyCheck}
-                    onChange={this._onPrivacyCheck}
-                    checkmarkIconProps={{
-                        className: 'privacy-checkbox-mark'
-                    }}
-                />
-
-                <span className="sp-danger sp-ml10">{this.state.PrivacyCheckErr}</span>
                 <span className="sp-danger sp-ml10">{this.state.FormErrMessage}</span>
-                <DefaultButton onClick={this._submitForm} className="sp-main-btn sp-float-right btn-register" text={this.props.User.staticConstants.Constants.register} />
+                <DefaultButton onClick={this._submitForm} className="sp-main-btn sp-float-right btn-register" text="Register" />
             </Dialog>
             <Dialog
                 hidden={!this.state.showRegisterSuccessDialog}
@@ -495,7 +472,7 @@ class Register extends React.Component<IProps, IState> {
                     isBlocking: true
                 }}
             >
-                <h5>{this.props.User.staticConstants.Constants.successFullyRegistered}</h5>
+                <h5>Thanks for joing our community.</h5>
                 <DefaultButton onClick={() => this.props.formHandle(FormType.Login)} className="sp-main-btn sp-float-right btn-login" text="Ok" />
             </Dialog>
         </>

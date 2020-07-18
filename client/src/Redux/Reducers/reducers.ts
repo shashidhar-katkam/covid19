@@ -1,16 +1,8 @@
 import { ActionTypes } from "../action.types";
 import { IUser, IUserState } from '../models';
-import { staticConsants } from '../../constants/staticConstants';
 let language = localStorage.getItem('language');
-let lan = language && language === 'en' ? 'en' : 'te';
+let lan = language && language === 'en' ? 'en' : 'en';
 
-function getStaticConstants(lan: string) {
-  if (lan === 'en') {
-    return staticConsants.en;
-  } else {
-    return staticConsants.te;
-  }
-}
 
 const initialState: IUserState = {
   User: {
@@ -23,7 +15,6 @@ const initialState: IUserState = {
     userType: 0
   },
   language: lan,
-  staticConstants: getStaticConstants(lan),
   login: { show: false, message: '' }
 };
 
@@ -57,10 +48,6 @@ export function UserReducer(
       localStorage.setItem('User', JSON.stringify({ ...state.User, imagePath: action.payload }));
       return {
         ...state, User: { ...state.User, imagePath: action.payload }
-      };
-    case ActionTypes.ChangeLanguage:
-      return {
-        ...state, language: action.language, staticConstants: getStaticConstants(action.language)
       };
     case ActionTypes.UpdateLoginM:
       return {

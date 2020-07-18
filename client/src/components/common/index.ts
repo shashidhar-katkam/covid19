@@ -1,9 +1,4 @@
-
-
-
 export default class Common {
-
-
     public static _onProgress(filesInfo: any, tempFiles: any) {
         let added = false;
         if (tempFiles.length > 0) {

@@ -1,4 +1,3 @@
-import { IStaticConstants2 } from '../constants/static';
 
 export interface IUser {
   firstName: string;
@@ -23,7 +22,6 @@ export interface ILoginM {
 export interface IUserState {
   User: IUser1;
   language: string;
-  staticConstants: IStaticConstants2;
   login: ILoginM;
 }
 

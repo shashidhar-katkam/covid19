@@ -4,20 +4,16 @@ import {
 } from 'react-router-dom';
 import './styles.scss';
 import NewsService from '../../Service';
-import { INewsInfoC, MainNewsModel } from '../../../../models/models';
-import Actions from "../compose";
+import { ISaveHelpCovid,  HelpCovidModel } from '../../../../models/models';
 import { socket } from '../../../../app';
-import ImageCarousel from "../templates/ImageCarousel";
 import { AppState } from "../../../../Redux/app.store";
 import { connect } from "react-redux";
 import { IUserState } from "../../../../Redux/models";
 import { Shimmer3 } from "../../../common/Loading/Shimmers";
-import Analysis from "../templates/Analysis";
-import { debug } from "console";
-import Donations from "../Donations";
-
+import RaiseHelp from './raiseHelp';
+import Navbar from "../../Navbar";
 interface IState {
-    allNews: INewsInfoC[];
+    allNews: ISaveHelpCovid[];
     isLoading: boolean;
     currentScrollPosition: number;
     skip: number;
@@ -30,7 +26,7 @@ interface IProps extends RouteComponentProps {
     User: IUserState;
 }
 
-class Stories extends React.Component<IProps, IState> {
+class Help extends React.Component<IProps, IState> {
     private newsService: NewsService;
     private language: string;
     ddd = localStorage.getItem('language');
@@ -57,12 +53,24 @@ class Stories extends React.Component<IProps, IState> {
         }
     }
 
-    private infoBind(filesInfo: INewsInfoC[]) {
+    private infoBind(filesInfo: ISaveHelpCovid[]) {
         console.log(filesInfo);
         let temp;
         if (filesInfo) {
-            temp = filesInfo.map((news: INewsInfoC) => {
-                return <div id={news._id}><Analysis news={news} /> </div>
+            temp = filesInfo.map((news: ISaveHelpCovid) => {
+                return <div id={news._id}>
+                    <div className="main-contai c-style1" key={news._id}>
+                        <div className="sp-clearFix help-body" >
+                            <p className="sp-no-pm"> <b>{news.name} has asked for </b></p>
+                            <p className="sp-no-pm">{news.problem}</p>
+                        </div>
+                        <hr className="sp-hr" />
+                        <p className="sp-no-pm sp-ml10">Contact Details</p>
+                        <p className="help-name"><b></b> {news.name}</p>
+                        <p className="help-name"><b></b> {news.expect}</p>
+                    </div>
+
+                </div>
             });
         } else {
             temp = <p>no records</p>;
@@ -74,7 +82,7 @@ class Stories extends React.Component<IProps, IState> {
         if (this.language !== newProps.User.language) {
             this.setState({ isLoading: true });
             this.language = newProps.User.language;
-            this.newsService.getAllNewsForUser({ skip: 0 }).then((res: any) => {
+            this.newsService.getHelpRequests1({ skip: 0 }).then((res: any) => {
                 if (res.status) {
                     let data = res.data;
                     this.setState({
@@ -92,8 +100,9 @@ class Stories extends React.Component<IProps, IState> {
     }
     componentDidMount() {
         this.setState({ isLoading: true });
-        this.newsService.getAllNewsForUser({ skip: this.state.skip }).then((res: any) => {
+        this.newsService.getHelpRequests1({ skip: this.state.skip }).then((res: any) => {
             console.log(res);
+            debugger;
             if (res.status) {
                 let data = res.data;
                 this.setState({
@@ -112,12 +121,12 @@ class Stories extends React.Component<IProps, IState> {
             debugger;
             if (this.language === 'en') {
                 let newsInfo: any = data.English;
-                let allNews: INewsInfoC[] = this.state.allNews;
-                let tempNews: INewsInfoC[] = [];
-                allNews.forEach((news: INewsInfoC) => {
+                let allNews: ISaveHelpCovid[] = this.state.allNews;
+                let tempNews: ISaveHelpCovid[] = [];
+                allNews.forEach((news: ISaveHelpCovid) => {
                     if (news._id === newsInfo._id) {
                         if (newsInfo.Show) {
-                            tempNews = [...tempNews, new MainNewsModel(newsInfo)]
+                            tempNews = [...tempNews, new HelpCovidModel(newsInfo)]
                         }
                     } else {
                         tempNews = [...tempNews, news];
@@ -128,9 +137,9 @@ class Stories extends React.Component<IProps, IState> {
                 });
             } else if (this.language === 'te') {
                 let newsInfo: any = data.Telugu;
-                let allNews: INewsInfoC[] = this.state.allNews;
-                let tempNews: INewsInfoC[] = [];
-                allNews.forEach((news: INewsInfoC) => {
+                let allNews: ISaveHelpCovid[] = this.state.allNews;
+                let tempNews: ISaveHelpCovid[] = [];
+                allNews.forEach((news: ISaveHelpCovid) => {
                     if (news._id === newsInfo._id) {
                         if (newsInfo.Show) {
                             tempNews = [...tempNews, newsInfo]
@@ -152,11 +161,11 @@ class Stories extends React.Component<IProps, IState> {
             this.setState({
                 isLoading: true
             });
-            this.newsService.getLatestNews({ skip: this.state.skip, filter: { DateTime: this.state.DateTime } }).then((res: any) => {
+            this.newsService.getHelpRequests1({ skip: this.state.skip, filter: { DateTime: this.state.DateTime } }).then((res: any) => {
                 if (res.status) {
                     let data: [] = res.data;
                     if (data.length > 0) {
-                        let allre: INewsInfoC[] = this.state.allNews;
+                        let allre: ISaveHelpCovid[] = this.state.allNews;
                         data.forEach((d: any) => {
                             allre = [...allre, d];
                         });
@@ -194,14 +203,21 @@ class Stories extends React.Component<IProps, IState> {
     render(): JSX.Element {
         return (
             <>
-                <div className="main-container-wrapper">
-                    <Actions />
-                    <Donations />
-                    <ImageCarousel />
-                    {(this.state.allNews && this.infoBind(this.state.allNews))}
-                    {this.state.isLoading && <>
-                        <div className="shimmer-main-w"> <Shimmer3 /> </div>
-                        <div className="shimmer-main-w"> <Shimmer3 /> </div> </>}
+                <Navbar />
+                <div className="sp-main-wrapper">
+                    <div className="ms-Grid" dir="ltr">
+                        <div className="ms-Grid-row">
+                            <div className="ms-Grid-col ms-sm12 ms-md8 ">
+                                <div className="main-container-wrapper">
+                                    <RaiseHelp />
+                                    {(this.state.allNews && this.infoBind(this.state.allNews))}
+                                    {this.state.isLoading && <>
+                                        <div className="shimmer-main-w"> <Shimmer3 /> </div>
+                                        <div className="shimmer-main-w"> <Shimmer3 /> </div> </>}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </>
         );
@@ -215,4 +231,4 @@ const mapStateToProps = (state: AppState): AppState => ({
 
 export default withRouter(connect(
     mapStateToProps,
-)(Stories));
+)(Help));

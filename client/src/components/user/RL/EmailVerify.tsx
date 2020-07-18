@@ -156,7 +156,7 @@ class EmailVerifyForm extends React.Component<IProps, IState> {
         let emailVerifyFormErr: IEmailVerifyFormErr = this.state.EmailVerifyFormErr;
         let isFormValid: boolean = true;
         if (emailVerifyForm.otp === "") {
-            emailVerifyFormErr.otpErr = this.props.User.staticConstants.Constants.required;
+            emailVerifyFormErr.otpErr = "Required";
             isFormValid = false;
         }
         else {
@@ -218,7 +218,7 @@ class EmailVerifyForm extends React.Component<IProps, IState> {
                 onDismiss={() => { this.props.afterLogin() }}
                 dialogContentProps={{
                     type: DialogType.normal,
-                    title: this.props.User.staticConstants.Constants.verifyEmail,
+                    title: "Verify email",
                     closeButtonAriaLabel: 'Close',
                     showCloseButton: true,
                 }}
@@ -229,19 +229,19 @@ class EmailVerifyForm extends React.Component<IProps, IState> {
                 }} >
                 <div className="login-page">
                     {!this.state.isSuccessDialogHide ? (!this.state.showOtpDialog ? <>
-                        <p className="sp-danger">{this.props.User.staticConstants.Constants.emailNotVerified}</p>
-                        <p>{this.props.User.staticConstants.Constants.pleaseEnterEmailToVerify}</p>
+                        <p className="sp-danger">Your email not verified</p>
+                        <p>Please enter email to verify</p>
                         <TextField
-                            label={this.props.User.staticConstants.Constants.email}
+                            label="Email"
                             name="email"
                             errorMessage={this.state.EmailVerifyFormErr.emailErr}
                             value={this.state.EmailVerifyForm.email}
                             onChange={(event: any) => this._emailChangeHandle(event)}
                             required />
                         <p className="sp-danger">{this.state.FormErrMessage}</p>
-                        <DefaultButton onClick={this._submitForm} className="sp-main-btn sp-float-right btn-login" text={this.props.User.staticConstants.Constants.send} />
+                        <DefaultButton onClick={this._submitForm} className="sp-main-btn sp-float-right btn-login" text="Send" />
                     </> : <>
-                            <p>{this.props.User.staticConstants.Constants.pleaseEnter6DigiiOtp}</p>
+                            <p>Please enter Six digit Otp sent to your email.</p>
                             <TextField
                                 label="OTP"
                                 minLength={6}
@@ -255,11 +255,11 @@ class EmailVerifyForm extends React.Component<IProps, IState> {
 
                             {this.state.showResendButton && <> <p className="no-otp">Didn't recieve OTP,<span onClick={this._resendOTP} >Resend</span></p> </>}
                             {this.state.isResendOtp && <p className="otp-sent">OTP sent succussfully.</p>}
-                            <DefaultButton onClick={this._submitOtp} className="sp-main-btn float-right btn-login" text={this.props.User.staticConstants.Constants.send} />
+                            <DefaultButton onClick={this._submitOtp} className="sp-main-btn float-right btn-login" text="Verify" />
                         </>) :
                         <div style={{ textAlign: "center" }}>
-                            <p>{this.props.User.staticConstants.Constants.accountIsVerified}</p>
-                            <p>{this.props.User.staticConstants.Constants.pleaseLogin}</p>
+                            <p>Your account is verified.</p>
+                            <p>Please login again.</p>
                             <DefaultButton className="sp-btn-login" onClick={this._closeDialog} text="Ok" />
                         </div>
                     }

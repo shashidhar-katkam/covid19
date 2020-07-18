@@ -40,18 +40,10 @@ function ShimmerCircleAndLine(): JSX.Element {
     );
 };
 
-
-
 function getShimmerStyles(props: IShimmerStyleProps): IShimmerStyles {
     return {
-        shimmerWrapper: [
-            {
-                //  backgroundColor: '#deecf9',
-            },
-        ],
         shimmerGradient: [
             {
-                ///  backgroundColor: '#deecf9',
                 backgroundImage:
                     'linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #fff 50%, rgba(255, 255, 255, 0) 100%)',
             },
@@ -71,14 +63,11 @@ function Shimmer1(): JSX.Element {
     );
 };
 
-
-
 export function Shimmer2(): JSX.Element {
     return (
         <Shimmer customElementsGroup={ShimmerCircleAndLine()} width="100%" styles={getShimmerStyles} />
     );
 };
-
 
 export function Shimmer3(): JSX.Element {
     return (<div className="shimmer-wrapper">
@@ -94,7 +83,5 @@ export function Shimmer3(): JSX.Element {
     </div>
     );
 };
-
-
 
 export default Shimmer1;

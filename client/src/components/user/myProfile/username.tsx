@@ -83,7 +83,7 @@ class Username extends React.Component<IProps, IState> {
     else {
       erorMessage = "";
     }
-    
+
     this.setState((prevState: IState) => {
       return {
         ...prevState,
@@ -104,9 +104,6 @@ class Username extends React.Component<IProps, IState> {
                 <div className="ms-Grid-row">
                   <div className="ms-Grid-col ms-sm9 ms-md9 ms-lg9" >
                     <p className="sp-no-pm sp-m3"> +91 {this.state.username.value}</p>
-                  </div>
-                  <div className="ms-Grid-col ms-sm3 ms-md3 ms-lg3" >
-                    {/* <button className="btn-edit btn-action" onClick={() => this.showEditForm('username')}>Edit</button> */}
                   </div>
                 </div>
                 : <div >

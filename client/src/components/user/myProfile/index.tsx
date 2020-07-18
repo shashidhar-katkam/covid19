@@ -15,7 +15,6 @@ import { connect } from "react-redux";
 import { AppState } from "../../../Redux/app.store";
 import { IUserState } from "../../../Redux/models";
 import { UserType } from "../../../constants/constants";
-import RequestAccess from "../myDashboard/RequestAccess";
 
 interface IState {
   isLoading: boolean;
@@ -50,7 +49,7 @@ class MyProfile extends React.PureComponent<IProps, IState> {
     if (user) {
       this.setState({ isLoading: true });
       this.service.getProfileByIdF({ id: user._id }).then((data: any) => {
-        if (data && data.data[0]) {
+        if (data && data.data && data.data[0]) {
           let userInfo = data.data[0];
           this.setState((prevState: IState) => {
             return {
@@ -60,6 +59,9 @@ class MyProfile extends React.PureComponent<IProps, IState> {
               isLoading: false
             }
           });
+        }else{
+          this.setState({ isLoading: false });
+
         }
       });
     }
@@ -78,7 +80,7 @@ class MyProfile extends React.PureComponent<IProps, IState> {
     return (
       <>
         <Navbar />
-        <div className="sp-container">
+        <div className="">
           <div className="ms-Grid sp-bg-white my-profile" dir="ltr" >
             {this.state.isLoading && <Loading />}
 
@@ -111,42 +113,15 @@ class MyProfile extends React.PureComponent<IProps, IState> {
                     <hr className="sp-no-pm sp-m3" />
                     <Address city={this.state.User2.city} state={this.state.User2.state} userId={this.state.User2._id} ></Address>
                   </div>
-                  <div className="card card-2">
-                    <div className="header">
-                      <p className="sp-no-pm">Reporter Info</p>
-                    </div>
-                    <div className="reporter-tab">
-                      {this.props.User.User.userType === UserType.Normal ? <div className="sp-mb10">
-                        <RequestAccess />
-                      </div> :
-                        <div className="reporter-details-wrapper">
-                          <p>Your Press Card</p>
-                          <p>If we found that your are misusing this card. Will take serious action on you.</p>
-                          <div className="reporter-details" style={{ backgroundImage: `url('http://localhost:7777/uploads/static_files/template.jpg')`, backgroundSize: "cover", backgroundRepeat: "no-repeat", }}>
-                            <div className="r-img-w">
-                              <img src={`http://localhost:7777${this.state.User2.imagePath}`} className="r-image" alt="dd" />
-                            </div>
-                            <p className="r-name">{this.state.User2.firstName}. {this.state.User2.lastName.substring(0, 1)}</p>
-                            <p className="r-id">ID: {this.state.User2.UId}</p>
-                          </div>
-                        </div>
-                      }
-                    </div>
-                  </div>
                 </div>
               </div>
             }
           </div>
         </div>
-
       </>
     );
   }
 }
-
-//export default MyProfile;
-
-
 
 const mapStateToProps = (state: AppState): AppState => ({
   User: state.User,

@@ -200,7 +200,7 @@ class Comment extends React.Component<IProps, IState> {
             <div className="comments-container">
                 <div className="sp-m10 button-div">
                     <p className="sp-float-right comment-p" onClick={this._showComments}>
-                        {this.props.User.staticConstants.Constants.comments}
+                        Comments
                     </p>
                 </div>
                 {this.state.showComments && <>
@@ -213,7 +213,7 @@ class Comment extends React.Component<IProps, IState> {
                                 <input
                                     className="comment-in"
                                     value={this.state.commentForm.comment}
-                                    placeholder={this.props.User.staticConstants.Constants.writeAComment}
+                                    placeholder="Write a comment."
                                     name="Title"
                                     onKeyDown={this._onKeyDown}
                                     onChange={(event: any) => this._inputChangeHandle(event)}
@@ -227,10 +227,10 @@ class Comment extends React.Component<IProps, IState> {
                                 return <CommentInfo User={info.CommetPoster} Comment={info.Comment} DateTime={info.DateTime} key={info._id} />
                             })}
                             {!this.state.hideMoreCommentsButton &&
-                                <p className="view-more" onClick={this._getMoreComments}>{this.props.User.staticConstants.Constants.viewMoreComments}</p>}
+                                <p className="view-more" onClick={this._getMoreComments}>View more comments.</p>}
                         </div> :
                         <>
-                            {!this.state.isLoading && <p className="sp-ml10 view-more">{this.props.User.staticConstants.Constants.beFirstOneToComment}</p>}
+                            {!this.state.isLoading && <p className="sp-ml10 view-more">Be the first one to comment.</p>}
                         </>
                     }
                 </>

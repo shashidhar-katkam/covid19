@@ -1,5 +1,3 @@
-import { FileType, NewsStatus } from '../models/models';
-import { IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 
 export const States = ['Andaman and Nicobar', 'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chandigarh',
     'Chhattisgarh', 'Delhi', 'Daman and Diu', 'Dadra and Nagar Haveli', 'Goa', 'Gujarat', 'Haryana',
@@ -190,170 +188,22 @@ export const StatesAndDirstricts = [
     { State: 'Puducherry', Districts: ['Karaikal', 'Mahé', 'Pondicherry', 'Yanam'] }
 ];
 
-export const FileTypes: IDropdownOption[] =
-    [
-        { key: FileType.png, text: FileType.png },
-        { key: FileType.jpeg, text: FileType.jpeg },
-        { key: FileType.mp3, text: FileType.mp3 },
-        { key: FileType.mp4, text: FileType.mp4 },
-        { key: FileType.pdf, text: FileType.pdf },
-        { key: FileType.othersImage, text: FileType.othersImage },
-        { key: FileType.youtube, text: FileType.youtube },
-        { key: FileType.facebook, text: FileType.facebook },
-        { key: FileType.msword, text: FileType.msword },
-    ];
-
-export const FileTypes2: IDropdownOption[] =
-    [
-        { key: FileType.othersImage, text: FileType.othersImage },
-        { key: FileType.youtube, text: FileType.youtube },
-        { key: FileType.facebook, text: FileType.facebook },
-    ];
-
-export const CategoryOptions: IDropdownOption[] = [
-    { key: 'news', text: 'News' },
-    { key: 'info', text: 'Useful Info' },
-    { key: 'article', text: 'Article' },
-    { key: 'curruption', text: 'Curruption' },
-    { key: 'kcr', text: 'KCR' },
-    { key: 'telangana', text: "Telangana" },
-    { key: 'india', text: 'India' },
-    { key: 'movie', text: 'Movies' },
-    { key: 'sports', text: 'Sports' },
-    { key: 'business', text: 'Business' },
-    { key: 'trending', text: 'Trending' },
-    { key: 'mustwatch', text: 'Mustwatch' },
-    { key: 'timepass', text: 'Timepass' },
-    { key: 'crime', text: 'crime' },
-    { key: 'jobs', text: 'jobs' },
-    { key: 'polls', text: 'Polls' },
-    { key: 'corona', text: 'corona' }
-];
-
-export const ImageOnly: IDropdownOption[] =
-    [
-        { key: FileType.othersImage, text: FileType.othersImage }
-    ];
-
-export const NewsStatusD: IDropdownOption[] =
-    [
-        { key: NewsStatus.Submitted, text: NewsStatus.Submitted },
-        { key: NewsStatus.Approved, text: NewsStatus.Approved },
-        { key: NewsStatus.Process, text: NewsStatus.Process },
-        { key: NewsStatus.Rejected, text: NewsStatus.Rejected }
-    ];
-
-export const NewsStatusU: IDropdownOption[] =
-    [
-        { key: NewsStatus.Submitted, text: NewsStatus.Submitted },
-        { key: NewsStatus.Approved, text: NewsStatus.Approved },
-        { key: NewsStatus.Rejected, text: NewsStatus.Rejected }
-    ];
-
-export const NewsCategory: IDropdownOption[] =
-    [
-        { key: 'all', text: 'All' },
-        { key: 'news', text: 'News' },
-        { key: 'info', text: 'Useful Info' },
-        { key: 'article', text: 'Article' }
-    ];
-
 export const URLs = {
-    getNewsForUserHomePage: '/api/gnfuhp',
-    getLatestNews: '/api/getLatestNews',
-    getNewsByFilter: '/api/gnbf',
-    getNewsById: '/api/gnbi',
-    getHeadLines: '/api/getheadlines',
-    getTopNews: '/api/gettopnews',
-    getAllNewsByUserId: '/api/getallnewsbyuserid',
-    createNews: '/api/createnews',
-    createNewsBySelfAdmin: '/api/createnewsbyselfadmin',
-    raiseHelpRequest: '/api/raisehelprequest',
-    registerUser: '/api/registeruser',
-    getUserInfoAndNewsCount: '/api/guianc',
+    createStory: '/api/createStory',
+    getStories: '/api/getStories',
+    raiseHelpRequest1: '/api/raiseHelpRequest1',
+    getHelpRequests1: '/api/getHelpRequests1',
     getMyProfileInfo: '/api/getmyprofileinfo',
     updateMyProfile: '/api/updatemyprofile',
     checkIsUserAvailable: '/api/checkisuseravailable',
     changePassword: '/api/changepassword',
     login: '/api/login',
     uploadProfilePic: '/api/addprofilepiccc',
-    approveAndPostNews: '/api/approveandpost',
-    updateMainNews: '/api/updateetnews',
-    createMainNews: '/api/createnews',
-    getLatestNewsSubmittedByUser: '/api/getallnews',
-    getTNewsByERefId: '/api/getnewsbyref',
-    getAllNewsPostedByUser: '/api/getalluserpostednews',
-    getRejectedNews: '/api/getrejectednews',
-    getMainNewsByFilter: '/api/getnewsbyfilter',
-    getMainNewsByFilter2: '/api/getallnewsad',
-    getMainNewsByFilter3: '/api/getallmainnewsbyclientfilter',
-    getNewsByFilterAll: '/api/getnewsbyfilterall',
-    getNewsCountByCategory: '/api/getnewscountbycategory',
-    getAllHelpRequest: '/api/getallhelprequests',
-    getUserDetailsById: '/api/getuserdetailsbyid',
-    getUserDetailsByIdAndNewsCount: '/api/getuserdetailsbyidandnewscount',
-    getAllUsersByFilter: '/api/getallusersbyfilter',
-    getAllSelfAdminRequests: '/api/getallselfadminrequests',
-    getRejectedUsers: '/api/getrejectedusers',
-    updateProfile: '/api/updateprofile',
-    updateProfileForSelfAdmin: '/api/updateprofileforselfadmin',
-    getAllNewsPostedByMe: '/api/getallnewspostedbyme',
-    sendSelfAdminRequest: '/api/sendselfadminrequest',
-    getAllNewsPostedByMeAndFilter: '/api/getallnewspostedbymeandfilter',
-    getAllInfoForMyDashboard: '/api/getallinfoformydashboard',
-    getAllUsersBySearch: '/api/getallusersbysearch',
-    getAllUserPostedNewsByFilter: '/api/getalluserpostednewsbyfilter',
-
-
-    getHelpRequestsCountByStatus: '/api/getHelpRequestsCountByStatus',
-    acceptHelpRequestAndCreate: '/api/accepthelprequestandcreate',
-    getHelpRequestsCountByCategory: '/api/getHelpRequestsCountByCategory',
-    getAllHelpReqestsForAdmin: '/api/getallhelpreqestsforadmin',
-    getAllEnHelpReqestsForAdmin: '/api/getallenhelpreqestsforadmin',
-    getHelpRequestInTeByERefId: '/api/getHelpRequestInTeByERefId',
-    updateHelpRequestInET: '/api/updateHelpRequestInET',
-
     postComment: '/api/postcomment',
     getCommentsByRef: '/api/getcommentsbyref',
-    saveQuestion: '/api/savequestion',
-    getQAsByRefId: '/api/getqasbyrefid',
-
-    SavePersonInfo: '/api/savepersoninfo',
-    updatePost: '/api/updatePost',
-    getPosts: '/api/getposts',
-
-    getPollOptionsByRefId: '/api/getpolloptionsbyrefId',
-    SavePollResults: '/api/savepollresults',
-    getPollResultsByRefId: '/api/getpollresultsbyrefid',
-
-    checkIsUserIsPolled: '/api/checkisuserispolled',
-    checkIsRequestSubmitted: '/api/checkisrequestsubmitted',
-    getMyHelpRequests: '/api/getmyhelprequests',
-    getUsersCountByAccountStatus: '/api/getUsersCountByAccountStatus',
-    getAllUsersByFilter3: '/api/getAllUsersByFilter3',
-
-    getNewsCountByStatus: '/api/getNewsCountByStatus',
-    getAllUserNewsForAdmin: '/api/getAllUserNewsForAdmin',
-    getPostsCountByStatus: '/api/getPostsCountByStatus',
-    getAllPostsForAdmin: '/api/getAllPostsForAdmin',
-
-    deleteUploadedFile: '/api/deleteUploadedFile',
-    getAllFiles: '/api/getallfiles',
-    getFilesByFilterAll: '/api/getFilesByFilterAll',
-
-    addImages: '/api/addImages',
-    getImages: '/api/getImages',
-    updateImage: '/api/updateImage',
-
-    addImagesM: '/api/addImagesm',
-    getImagesM: '/api/getImagesm',
-    updateImageM: '/api/updateImagem',
-    saveQuery: '/api/saveQuery',
     raiseDonationRequest: '/api/raiseDonationRequest',
     updateDonationRequest: '/api/updateDonationRequest',
-
-    downloadfile : '/api/downloadfile',
-    deleteFile : '/api/deleteFile'
+    registerUser: '/api/registeruser',
 }
 
 export const UserType = {

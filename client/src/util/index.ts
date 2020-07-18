@@ -1,14 +1,4 @@
 export default class Util {
-  public static phonenumber(inputText: string): boolean {
-    let phoneno: RegExp = /^\d{10}$/;
-    if (inputText.match(phoneno)) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
-
   public static validateEmail(email: string): boolean {
     let filter: RegExp = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
     if (filter.test(email)) {
@@ -18,27 +8,6 @@ export default class Util {
       return false;
     }
   }
-
-  public static validateMobileNo(mobileNo: string): boolean {
-    let filter: RegExp = /^(([0-9]{10})|(0[0-9]{10}))$/;
-    if (filter.test(mobileNo)) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
-
-  public static validateWebSiteUrl(Url: string): boolean {
-    let filter: RegExp = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/;
-    if (filter.test(Url)) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
-
   private static isToday(someDate: any) {
     const today = new Date()
     return someDate.getDate() === today.getDate() &&

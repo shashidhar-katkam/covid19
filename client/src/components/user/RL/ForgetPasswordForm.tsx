@@ -76,11 +76,11 @@ class ForgetPasswrdForm extends React.Component<IProps, IState> {
 
     private _phoneNumberChangeHandle = (event: React.ChangeEvent<HTMLInputElement>): void => {
         let errorMessage: string;
-        const phoneNumber = (event.target.validity.valid) ? event.target.value : (event.target.validationMessage === this.props.User.staticConstants.Constants.required ? '' : this.state.forgetPasswordForm.phoneNumber);
+        const phoneNumber = (event.target.validity.valid) ? event.target.value : (event.target.validationMessage === "required" ? '' : this.state.forgetPasswordForm.phoneNumber);
         if (event.target.value === "") {
-            errorMessage = this.props.User.staticConstants.Constants.required;
+            errorMessage = "Required";
         } else if (!event.target.validity.valid) {
-            errorMessage = this.props.User.staticConstants.Constants.onlyNumbersAllowed
+            errorMessage = "Only number allowed."
         } else {
             errorMessage = "";
         }
@@ -99,16 +99,16 @@ class ForgetPasswrdForm extends React.Component<IProps, IState> {
         let forgetPasswordErr: IForgetPasswordErr = this.state.forgetPasswordFormErr;
         let isFormValid: boolean = true;
         if (forgetPassword.phoneNumber === "") {
-            forgetPasswordErr.phoneNumberErr = this.props.User.staticConstants.Constants.required;
+            forgetPasswordErr.phoneNumberErr = "Required";
             isFormValid = false;
         } else {
             forgetPasswordErr.phoneNumberErr = "";
         }
         if (forgetPassword.email === "") {
-            forgetPasswordErr.emailErr = this.props.User.staticConstants.Constants.required;
+            forgetPasswordErr.emailErr = "Required";
             isFormValid = false;
         } else if (!Util.validateEmail(forgetPassword.email)) {
-            forgetPasswordErr.emailErr = this.props.User.staticConstants.Constants.invalidEmail;
+            forgetPasswordErr.emailErr = "Invalid email"
             isFormValid = false;
         }
         else {
@@ -123,9 +123,9 @@ class ForgetPasswrdForm extends React.Component<IProps, IState> {
     private _emailChangeHandle = (event: React.ChangeEvent<HTMLInputElement>): void => {
         let erorMessage: string;
         if (event.target.value === "") {
-            erorMessage = this.props.User.staticConstants.Constants.required;
+            erorMessage = "Required";
         } else if (!Util.validateEmail(event.target.value)) {
-            erorMessage = this.props.User.staticConstants.Constants.invalidEmail;
+            erorMessage = "Invalid email."
         }
         else {
             erorMessage = "";
@@ -160,7 +160,7 @@ class ForgetPasswrdForm extends React.Component<IProps, IState> {
     private _passwordChangeHandle = (event: React.ChangeEvent<HTMLInputElement>): void => {
         let erorMessage: string;
         if (event.target.value === "") {
-            erorMessage = this.props.User.staticConstants.Constants.required;
+            erorMessage = "Required";
         } else {
             erorMessage = "";
         }
@@ -172,11 +172,11 @@ class ForgetPasswrdForm extends React.Component<IProps, IState> {
 
     private __otpChangeHandle = (event: React.ChangeEvent<HTMLInputElement>): void => {
         let erorMessage: string;
-        const otp = (event.target.validity.valid) ? event.target.value : (event.target.validationMessage === this.props.User.staticConstants.Constants.required ? '' : this.state.resetPassword.otp);
+        const otp = (event.target.validity.valid) ? event.target.value : (event.target.validationMessage === "Required" ? '' : this.state.resetPassword.otp);
         if (event.target.value === "") {
-            erorMessage = this.props.User.staticConstants.Constants.required;
+            erorMessage = "Required";
         } else if (!event.target.validity.valid) {
-            erorMessage = this.props.User.staticConstants.Constants.onlyNumbersAllowed;
+            erorMessage = "Only number are allowed";
         }
         else {
             erorMessage = "";
@@ -190,9 +190,9 @@ class ForgetPasswrdForm extends React.Component<IProps, IState> {
     private _confirmPasswordChangeHandle(event: any) {
         let erorMessage: string;
         if (event.target.value === "") {
-            erorMessage = this.props.User.staticConstants.Constants.required;
+            erorMessage = "Required";
         } else if (this.state.resetPassword.newPassword !== '' && (this.state.resetPassword.newPassword !== event.target.value)) {
-            erorMessage = this.props.User.staticConstants.Constants.passwordDoesntMatch;
+            erorMessage = "Password doesn't match."
         }
         else {
             erorMessage = "";
@@ -209,7 +209,7 @@ class ForgetPasswrdForm extends React.Component<IProps, IState> {
         let isFormValid: boolean = true;
 
         if (resetPassword.otp === "") {
-            resetPasswordErr.otpErr = this.props.User.staticConstants.Constants.required;
+            resetPasswordErr.otpErr = "Required";
             isFormValid = false;
         }
         else {
@@ -217,17 +217,17 @@ class ForgetPasswrdForm extends React.Component<IProps, IState> {
         }
 
         if (resetPassword.newPassword === "") {
-            resetPasswordErr.newPasswordErr = this.props.User.staticConstants.Constants.required;
+            resetPasswordErr.newPasswordErr = "Required";
             isFormValid = false;
         } else {
             resetPasswordErr.newPasswordErr = "";
         }
 
         if (resetPassword.confirmPassword === "") {
-            resetPasswordErr.confirmPasswordErr = this.props.User.staticConstants.Constants.required;
+            resetPasswordErr.confirmPasswordErr = "Required";
             isFormValid = false;
         } else if (resetPassword.newPassword !== '' && (resetPassword.newPassword !== resetPassword.confirmPassword)) {
-            resetPasswordErr.confirmPasswordErr = this.props.User.staticConstants.Constants.passwordDoesntMatch;
+            resetPasswordErr.confirmPasswordErr = "Password doesn't match";
             isFormValid = false;
         }
         else {
@@ -267,7 +267,7 @@ class ForgetPasswrdForm extends React.Component<IProps, IState> {
                 onDismiss={() => { this.props.afterLogin() }}
                 dialogContentProps={{
                     type: DialogType.normal,
-                    title: this.props.User.staticConstants.Constants.forgetPassword,
+                    title: "Forget password",
                     closeButtonAriaLabel: 'Close',
                     showCloseButton: true,
                 }}
@@ -279,22 +279,22 @@ class ForgetPasswrdForm extends React.Component<IProps, IState> {
 
                 {!this.state.isSuccessDialogHide ? (!this.state.isUserFound ?
                     <div className="login-page">
-                        <TextField pattern="[0-9]*" label={this.props.User.staticConstants.Constants.phoneNumber} autoSave="false" autoComplete="false" name="phoneNumber" errorMessage={this.state.forgetPasswordFormErr.phoneNumberErr} value={this.state.forgetPasswordForm.phoneNumber} onChange={(event: any) => this._phoneNumberChangeHandle(event)} required minLength={10} prefix="+91" maxLength={10} />
-                        <TextField label={this.props.User.staticConstants.Constants.email} name="email" errorMessage={this.state.forgetPasswordFormErr.emailErr} value={this.state.forgetPasswordForm.email} onChange={(event: any) => this._emailChangeHandle(event)} required />
+                        <TextField pattern="[0-9]*" label="Phone number" autoSave="false" autoComplete="false" name="phoneNumber" errorMessage={this.state.forgetPasswordFormErr.phoneNumberErr} value={this.state.forgetPasswordForm.phoneNumber} onChange={(event: any) => this._phoneNumberChangeHandle(event)} required minLength={10} prefix="+91" maxLength={10} />
+                        <TextField label="Email" name="email" errorMessage={this.state.forgetPasswordFormErr.emailErr} value={this.state.forgetPasswordForm.email} onChange={(event: any) => this._emailChangeHandle(event)} required />
                         <p className="sp-danger">{this.state.FormErrMessage}</p>
-                        <DefaultButton onClick={this._submitForm} className="sp-main-btn sp-float-right btn-login" text={this.props.User.staticConstants.Constants.send} />
+                        <DefaultButton onClick={this._submitForm} className="sp-main-btn sp-float-right btn-login" text="Send" />
                     </div>
                     :
                     <div>
-                        <p>{this.props.User.staticConstants.Constants.pleaseEnter6DigiiOtp}</p>
+                        <p>Please enter Six digit OTP</p>
                         <TextField label="OTP" minLength={6} maxLength={6} pattern="[0-9]*" name="otp" errorMessage={this.state.resetPasswordErr.otpErr} value={this.state.resetPassword.otp} onChange={(event: any) => this.__otpChangeHandle(event)} required />
                         <hr />
-                        <TextField type="password" autoComplete="false" label={this.props.User.staticConstants.Constants.password} name="newPassword" errorMessage={this.state.resetPasswordErr.newPasswordErr} value={this.state.resetPassword.newPassword} onChange={(event: any) => this._passwordChangeHandle(event)} required minLength={8} />
-                        <TextField type="password" autoComplete="false" label={this.props.User.staticConstants.Constants.confirmPassword} name="confirmPassword" errorMessage={this.state.resetPasswordErr.confirmPasswordErr} value={this.state.resetPassword.confirmPassword} onChange={(event: any) => this._confirmPasswordChangeHandle(event)} required minLength={8} />
-                        <DefaultButton onClick={this._resetPassowrd} className="sp-main-btn float-right btn-login" text={this.props.User.staticConstants.Constants.send} />
+                        <TextField type="password" autoComplete="false" label="Password" name="newPassword" errorMessage={this.state.resetPasswordErr.newPasswordErr} value={this.state.resetPassword.newPassword} onChange={(event: any) => this._passwordChangeHandle(event)} required minLength={8} />
+                        <TextField type="password" autoComplete="false" label="Confirm password" name="confirmPassword" errorMessage={this.state.resetPasswordErr.confirmPasswordErr} value={this.state.resetPassword.confirmPassword} onChange={(event: any) => this._confirmPasswordChangeHandle(event)} required minLength={8} />
+                        <DefaultButton onClick={this._resetPassowrd} className="sp-main-btn float-right btn-login" text="Send" />
                     </div>) : <div style={{ textAlign: "center" }}>
-                        <p>{this.props.User.staticConstants.Constants.passwordChanged}</p>
-                        <p>{this.props.User.staticConstants.Constants.pleaseLogin}</p>
+                        <p>Password changed.</p>
+                        <p>Please login again.</p>
                         <DefaultButton className="sp-btn-login sp-mb10" onClick={this._closeDialog} text="Ok" />
                     </div>
                 }

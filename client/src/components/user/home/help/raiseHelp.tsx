@@ -1,183 +1,148 @@
 import * as React from "react";
-import FileUpload from '../../../common/fileUpload';
-import { IFileInfo, FileInfo, BasicUserInfo, IDialogPropss } from '../../../../models/models';
-import { TextField } from 'office-ui-fabric-react/lib/TextField';
-import ProgressBar from 'react-bootstrap/ProgressBar'
-import Service from '../../Service';
-import { DefaultButton, Callout } from 'office-ui-fabric-react';
-import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
-import AuthService from '../../../../services/authService';
-import Loading from "../../../common/Loading";
-import { IUserState } from "../../../../Redux/models";
-import { AppState } from "../../../../Redux/app.store";
+import { DefaultButton, IStackStyles, Dialog, DialogType, DialogFooter, PrimaryButton, TextField } from 'office-ui-fabric-react';
 import { connect } from "react-redux";
 import './styles.scss';
-import Common from "../../../common";
-const ShowMoreText = require('react-show-more-text');
+import { IUserState } from "../../../../Redux/models";
+import { AppState } from "../../../../Redux/app.store";
+import Service from '../../Service';
+import { IDialogPropss } from "../../../../models/models";
+import Loading from "../../../common/Loading";
 
-interface IComposeNewsForm {
-    Title: string;
-    Description: string;
-    User: any;
-    Files: IFileInfo[];
+const stackStyles: Partial<IStackStyles> = { root: { color: "#E55346" } };
+
+interface IDonationForm {
+    name: string;
+    phoneNumber: string;
+    email: string;
+    problem: string;
+    expect: string;
 }
-
-interface IComposeNewsFormError {
-    TitleErr: string;
-    DescriptionErr: string;
-    FilesErr: string;
+interface IDonationFormErr {
+    nameErr: string;
+    phoneNumberErr: string;
+    emailErr: string;
+    problemErr: string;
+    expectErr: string;
 }
-
 interface IState {
-    uploadedFilesInfo: any;
-    composeNewsForm: IComposeNewsForm;
-    composeNewsFormErr: IComposeNewsFormError;
-    Reset: boolean;
-    DialogProps: IDialogPropss;
+    showModel: boolean;
+    donationForm: IDonationForm;
+    donationFormErr: IDonationFormErr;
     isLoading: boolean;
-    isShowInfoPanel: boolean;
+    response: any;
+    DialogProps2: IDialogPropss;
+    errormsg: string;
 }
 
 interface IProps {
     User: IUserState;
+
 }
 
-class ComposeNews extends React.Component<IProps, IState> {
+class RaiseHelp extends React.Component<IProps, IState> {
     private service: Service;
-    private _menuButtonElement = React.createRef<HTMLImageElement>();
-    private authservice: AuthService;
     constructor(props: IProps) {
         super(props);
         this.state = {
-            uploadedFilesInfo: [],
-            composeNewsForm: { Title: '', Description: '', User: '', Files: [] },
-            composeNewsFormErr: { TitleErr: '', DescriptionErr: '', FilesErr: '' },
-            Reset: false,
-            DialogProps: { show: false, message: '' },
+            showModel: false,
+            donationForm: {
+                // _id: this.props.User && this.props.User.User && this.props.User.User._id ? this.props.User.User._id : '',
+                name: this.props.User && this.props.User.User && this.props.User.User.firstName ? this.props.User.User.firstName : '',
+                phoneNumber: this.props.User && this.props.User.User && this.props.User.User.phoneNumber ? this.props.User.User.phoneNumber : '',
+                email: this.props.User && this.props.User.User && this.props.User.User.email ? this.props.User.User.email : '',
+                problem: '',
+                expect: ''
+            },
+            donationFormErr: {
+                phoneNumberErr: '',
+                nameErr: '',
+                emailErr: '',
+                problemErr: '',
+                expectErr: ''
+            },
             isLoading: false,
-            isShowInfoPanel: false
+            response: null,
+            DialogProps2: { show: false, message: '' },
+            errormsg: ''
+
         }
-        this._afterFilesUploaded = this._afterFilesUploaded.bind(this);
-        this._onProgress = this._onProgress.bind(this);
+        this.service = new Service();
+        this._showDialog = this._showDialog.bind(this);
+        this._closeDialog = this._closeDialog.bind(this);
+        this._amountChangeHandle = this._amountChangeHandle.bind(this);
         this._inputChangeHandle = this._inputChangeHandle.bind(this);
         this._submitForm = this._submitForm.bind(this);
-        this._closeDialog = this._closeDialog.bind(this);
-        this._removefile = this._removefile.bind(this);
-        this._onCalloutDismiss = this._onCalloutDismiss.bind(this);
-        this.service = new Service();
-        this.authservice = new AuthService();
+        this.onPaymentSuccuess = this.onPaymentSuccuess.bind(this);
+        this._closeDialog2 = this._closeDialog2.bind(this);
     }
 
-    private _afterFilesUploaded(files: any) {
-        for (let i = 0; i < files.length; i++) {
-            this.setState((prevState, prevProps) => ({
-                uploadedFilesInfo: [...prevState.uploadedFilesInfo, files[i]]
-            }));
-        }
+    componentDidMount() {
+        const script = document.createElement("script");
+        script.src = "https://checkout.razorpay.com/v1/checkout.js";
+        script.async = true;
+        document.body.appendChild(script);
     }
 
-    private _removefile(fileInf: any) {
-        let uploadedFiles: any[] = [];
-        this.state.uploadedFilesInfo.forEach((fileInfo: any) => {
-            if (fileInfo.name !== fileInf.name) {
-                uploadedFiles = [...uploadedFiles, fileInfo];
-            }
-        });
+    private _showDialog() {
         this.setState({
-            uploadedFilesInfo: uploadedFiles
+            showModel: true
         });
-    }
-
-    private _onProgress(filesInfo: any) {
-        let upLoad = Common._onProgress(filesInfo, this.state.uploadedFilesInfo);
-        this.setState((prevState: IState) => {
-            return { uploadedFilesInfo: upLoad }
-        });
-    }
-
-    private _inputChangeHandle(event: React.ChangeEvent<HTMLInputElement>): void {
-        this.setState({
-            composeNewsForm: { ...this.state.composeNewsForm, [event.target.name]: event.target.value },
-        });
-    }
-
-    private isFormValid(): boolean {
-        let newsForm: IComposeNewsForm = this.state.composeNewsForm;
-        let errormsgs: IComposeNewsFormError = this.state.composeNewsFormErr;
-        let uploadedFilesInfo = this.state.uploadedFilesInfo;
-        let isFormValid: boolean = true;
-
-        if (newsForm.Title === "") {
-            errormsgs.TitleErr = this.props.User.staticConstants.Constants.required;
-            isFormValid = false;
-        } else {
-            errormsgs.TitleErr = "";
-        }
-
-        if (uploadedFilesInfo.length > 0) {
-            for (let i = 0; i < uploadedFilesInfo.length; i++) {
-                if (!uploadedFilesInfo[i].response) {
-                    errormsgs.FilesErr = this.props.User.staticConstants.Constants.fileUploadWarning;
-                    isFormValid = false;
-                } else {
-                    errormsgs.FilesErr = '';
-                }
-            }
-        }
-        this.setState({
-            composeNewsFormErr: errormsgs
-        });
-
-        setTimeout(() => {
-            this.setState((prevState: IState) => {
-                return {
-                    composeNewsFormErr: { ...prevState.composeNewsFormErr, FilesErr: '' },
-                };
-            });
-        }, 3000);
-        return isFormValid;
     }
 
     private _closeDialog() {
         this.setState({
-            DialogProps: { show: false, message: '' }
+            showModel: false,
+            donationForm: {
+                name: this.props.User && this.props.User.User && this.props.User.User.firstName ? this.props.User.User.firstName : '',
+                phoneNumber: this.props.User && this.props.User.User && this.props.User.User.phoneNumber ? this.props.User.User.phoneNumber : '',
+                email: this.props.User && this.props.User.User && this.props.User.User.email ? this.props.User.User.email : '',
+                problem: '',
+                expect: ''
+            }
+        });
+    }
+    private _inputChangeHandle(event: React.ChangeEvent<HTMLInputElement>): void {
+        this.setState({
+            donationForm: { ...this.state.donationForm, [event.target.name]: event.target.value },
         });
     }
 
-    private _submitForm() {
-        if (this.isFormValid()) {
-            let uploadedFilesInfo = this.state.uploadedFilesInfo;
-            let formData: IComposeNewsForm = this.state.composeNewsForm;
-            let FileUploadedResponse: IFileInfo[] = [];
-            for (let i = 0; i < uploadedFilesInfo.length; i++) {
-                if (uploadedFilesInfo[i].response) {
-                    FileUploadedResponse = [...FileUploadedResponse,
-                    new FileInfo(uploadedFilesInfo[i].response)]
-                }
-            }
+    public _amountChangeHandle = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        let errorMessage: string;
+        const amount = (event.target.validity.valid || event.target.value === '') ? event.target.value : this.state.donationForm.phoneNumber;
+        if (event.target.value === "") {
+            errorMessage = 'Required'
+        } else if (!event.target.validity.valid) {
+            errorMessage = "Only number are allowed";
+        } else {
+            errorMessage = "";
+        }
+        this.setState({
+            donationForm: { ...this.state.donationForm, [event.target.name]: amount },
+            donationFormErr: { ...this.state.donationFormErr, [event.target.name + 'Err']: errorMessage }
+        });
+    }
 
-            let userInfo = this.authservice.isLoggedIn();
-            formData = {
-                ...formData,
-                Files: FileUploadedResponse,
-                User: (userInfo ? new BasicUserInfo(userInfo) : null)
-            };
-            formData.Title = formData.Title.trim();
-            formData.Description = formData.Description.trim();
+    private onPaymentSuccuess(obj: any) {
+        debugger;
+        if (obj && obj.razorpay_payment_id) {
             this.setState({ isLoading: true });
-            this.service.createNews(formData).then((res) => {
-                if (res.status === true) {
+            let objee: any = {};
+            objee.PaymentSuccess = obj;
+            objee.paymentInit = this.state.response.paymentInit;
+            objee.orderId = this.state.response.orderId;
+
+            this.service.updateDonationRequest(objee).then((res: any) => {
+                console.log(res);
+                debugger;
+                if (res.status) {
                     this.setState({
-                        uploadedFilesInfo: [],
-                        composeNewsForm: { Title: '', Description: '', Files: [], User: '' },
-                        composeNewsFormErr: { TitleErr: '', DescriptionErr: '', FilesErr: '' },
-                        Reset: true,
-                        DialogProps: { show: true, message: this.props.User.staticConstants.Constants.newsSent },
+                        DialogProps2: { show: true, message: 'Thanks for donating.' },
                         isLoading: false
                     });
                 } else {
                     this.setState({
-                        DialogProps: { show: true, message: res.message },
+                        DialogProps2: { show: true, message: res.message },
                         isLoading: false
                     });
                 }
@@ -185,131 +150,166 @@ class ComposeNews extends React.Component<IProps, IState> {
         }
     }
 
-    private filesUploadedBindingInfo(filesInfo: any[]) {
-        let temp;
-        temp = filesInfo.map((fileInfo: any) => {
-            return <div key={fileInfo.name}>
-                <div className="ms-Grid upload" dir="ltr">
-                    <div className="ms-Grid-row">
-                        <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg6">
-                            <p className="filename">{fileInfo.name}</p>
-                        </div>
-                        <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg6">
-                            <div className="ms-Grid" dir="ltr">
-                                <div className="ms-Grid-row">
-                                    <div className="ms-Grid-col ms-sm10 ms-md10 ms-lg11 sp-progress-bar ">
-                                        {fileInfo.progress != 100 &&
-                                            <ProgressBar now={fileInfo.progress}
-                                                label={fileInfo.progress}
-                                                animated={true}
-                                            />
-                                        }
-                                    </div>
-                                    <div className="ms-Grid-col ms-sm2 ms-md2 ms-lg1">
-                                        <span className="btn-remove-file sp-float-right"
-                                            onClick={() => this._removefile(fileInfo)}> &times;</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        });
-        return temp;
-    }
 
-    _onCalloutDismiss() {
+    private isFormValid = (): boolean => {
+        let donationForm: IDonationForm = this.state.donationForm;
+        let donationFormErr: IDonationFormErr = this.state.donationFormErr;
+        let isFormValid: boolean = true;
+        if (donationForm.phoneNumber === "") {
+            donationFormErr.phoneNumberErr = 'Required'
+            isFormValid = false;
+        }
+        else {
+            donationFormErr.phoneNumberErr = "";
+        }
+
+        if (donationForm.phoneNumber === "") {
+            donationFormErr.phoneNumberErr = "Required";
+            isFormValid = false;
+        } else if (donationForm.phoneNumber.length < 10) {
+            donationFormErr.phoneNumberErr = "Enter valid mobile number"
+            isFormValid = false;
+        } else {
+            donationFormErr.phoneNumberErr = "";
+        }
+
+        if (donationForm.problem === "") {
+            donationFormErr.problemErr = 'Required'
+            isFormValid = false;
+        }
+        else {
+            donationFormErr.problemErr = "";
+        }
+
+        if (donationForm.expect === "") {
+            donationFormErr.expectErr = 'Required'
+            isFormValid = false;
+        }
+        else {
+            donationFormErr.expectErr = "";
+        }
+
         this.setState({
-            isShowInfoPanel: false
+            donationFormErr
         });
+        return isFormValid;
     }
 
+    private _submitForm() {
+        if (this.isFormValid()) {
+            console.log(this.state.donationForm);
+            let requestObj: any = this.state.donationForm;
+
+            this.setState({
+                isLoading: true
+            });
+            this.service.raiseHelpRequest1(requestObj).then((res: any) => {
+                debugger;
+                console.log(res);
+
+                if (res.status) {
+
+                    this.setState({
+                        showModel: false,
+                        donationForm: {
+                            name: this.props.User && this.props.User.User && this.props.User.User.firstName ? this.props.User.User.firstName : '',
+                            phoneNumber: this.props.User && this.props.User.User && this.props.User.User.phoneNumber ? this.props.User.User.phoneNumber : '',
+                            email: this.props.User && this.props.User.User && this.props.User.User.email ? this.props.User.User.email : '',
+                            problem: '',
+                            expect: ''
+                        },
+                        donationFormErr: {
+                            phoneNumberErr: '',
+                            nameErr: '',
+                            emailErr: '',
+                            problemErr: '',
+                            expectErr: ''
+                        },
+                        DialogProps2: { show: true, message: "Thanks for reaching out. We will help you." },
+                        isLoading: false
+                    });
+                }
+
+            });
+        }
+    }
+
+    private _closeDialog2() {
+        this.setState({
+            DialogProps2: { show: false, message: '' }
+        });
+
+    }
 
     public render(): JSX.Element {
-        return (
-            <>
-                {this.state.isLoading && <Loading />}
-                <div className="compose-c">
-                    <div className="sp-compose-body">
-                        <TextField label={this.props.User.staticConstants.Constants.title}
-                            placeholder={this.props.User.staticConstants.Constants.enterTitle}
-                            name="Title"
-                            errorMessage={this.state.composeNewsFormErr.TitleErr}
-                            value={this.state.composeNewsForm.Title}
-                            onChange={(event: any) => this._inputChangeHandle(event)}
-                            required />
-                        <TextField label={this.props.User.staticConstants.Constants.descripiton}
-                            multiline={true}
-                            rows={6}
-                            placeholder={this.props.User.staticConstants.Constants.enterNewsDescription}
-                            name="Description"
-                            errorMessage={this.state.composeNewsFormErr.DescriptionErr}
-                            value={this.state.composeNewsForm.Description}
+        return (<>
+            {this.state.isLoading && <Loading />}
+            <div className="raise-help c-style1" >
+                <div className="c-btns">
+                    <p className="d-txt ms-fontSize-24">Do you need any help?</p>
+                    <p className="d-txt2">Please let our community know that you are seeking something</p>
+                    <DefaultButton iconProps={{ iconName: 'Heart', styles: stackStyles }} className={`c-btn`} onClick={this._showDialog} text="Request" />
+
+                </div>
+                {
+                    this.state.showModel && <div>
+                        <TextField label="Name"
+                            placeholder="Please enter name"
+                            name="name"
+                            value={this.state.donationForm.name}
+                            required
+                            errorMessage={this.state.donationFormErr.nameErr}
                             onChange={(event: any) => this._inputChangeHandle(event)}
                         />
-                        <div className="sp-clearFix"> </div>
-                        <div className="" >
-                            {this.filesUploadedBindingInfo(this.state.uploadedFilesInfo)}
-                            <p className="sp-danger">{this.state.composeNewsFormErr.FilesErr}</p>
-                        </div>
+                        <TextField label="Phone Number"
+                            placeholder="Please enter mobile number."
+                            name="phoneNumber"
+                            pattern="[0-9]*"
+                            required
+                            minLength={10} prefix="+91" maxLength={10}
+                            errorMessage={this.state.donationFormErr.phoneNumberErr}
+                            value={this.state.donationForm.phoneNumber}
+                            onChange={(event: any) => this._amountChangeHandle(event)}
+                        />
+                        <TextField label="How can we help You?"
+                            placeholder="Describe your problem"
+                            name="problem"
+                            multiline={true}
+                            rows={3}
+                            required
+                            errorMessage={this.state.donationFormErr.problemErr}
+                            value={this.state.donationForm.problem}
+                            onChange={(event: any) => this._inputChangeHandle(event)}
+                        />
+                        <TextField label="Location"
+                            placeholder="please mention your address."
+                            name="expect"
+                            multiline={true}
+                            rows={3}
+                            required
+                            value={this.state.donationForm.expect}
+                            errorMessage={this.state.donationFormErr.expectErr}
+                            onChange={(event: any) => this._inputChangeHandle(event)}
+                        />
+                        <DefaultButton onClick={this._submitForm} className="sp-main-btn btn-register" text="Send" />
                     </div>
-                    <div className={`sp-compose-footer`} >
-                        <i className="ms-Icon ms-Icon--Info sp-icon" onClick={() => this.setState({ isShowInfoPanel: true })} ref={this._menuButtonElement} aria-hidden="true"></i>
-                        {this.state.isShowInfoPanel && (
-                            <Callout
-                                role="alertdialog"
-                                gapSpace={0}
-                                target={this._menuButtonElement.current}
-                                onDismiss={this._onCalloutDismiss}
-                                setInitialFocus={true}
-                                isBeakVisible={true}
-                            >
-                                <div className="callout-wrap">
-                                    <h4>{this.props.User.staticConstants.Constants.infoTitle}</h4>
-                                    <ShowMoreText
-                                        lines={103}
-                                        more={this.props.User.staticConstants.Constants.readMore}
-                                        less={this.props.User.staticConstants.Constants.readLess}
-                                        anchorClass='show-more-link'
-                                        expanded={false}
-                                        keepNewLines={true}
-                                    >
-                                        {this.props.User.staticConstants.Constants.infoText}
-                                    </ShowMoreText>
-                                    <p>{this.props.User.staticConstants.Constants.newsText}</p>
-                                    <p></p>
-                                    <p></p>
-                                </div>
-                            </Callout>
-                        )}
-                        <div className="sp-float-right">
-                            <FileUpload id="composeC12"
-                                multiple={true}
-                                onProgress={this._onProgress}
-                                Reset={this.state.Reset}
-                                afterFilesUploaded={this._afterFilesUploaded} />
-                            <DefaultButton onClick={this._submitForm}
-                                className="sp-btn-login btn-send"
-                                text={this.props.User.staticConstants.Constants.send} />
-                        </div>
-                    </div>
-                </div>
-                <Dialog
-                    hidden={!this.state.DialogProps.show}
-                    onDismiss={this._closeDialog}
-                    dialogContentProps={{
-                        type: DialogType.normal,
-                    }}
-                    modalProps={{
-                        styles: { main: { maxWidth: 450, textAlign: "center" } },
-                        isBlocking: true
-                    }}
-                >
-                    <p>{this.state.DialogProps.message}</p>
-                    <DefaultButton className="sp-btn-login" onClick={this._closeDialog} text="Ok" />
-                </Dialog>
-            </>
+                }
+            </div>
+            <Dialog
+                hidden={!this.state.DialogProps2.show}
+                onDismiss={this._closeDialog}
+                dialogContentProps={{
+                    type: DialogType.normal,
+                }}
+                modalProps={{
+                    styles: { main: { maxWidth: 450, textAlign: "center" } },
+                    isBlocking: true
+                }}
+            >
+                <p>{this.state.DialogProps2.message}</p>
+                <DefaultButton className="sp-btn-login" onClick={this._closeDialog2} text="Ok" />
+            </Dialog>
+        </>
         );
     }
 }
@@ -320,4 +320,4 @@ const mapStateToProps = (state: AppState): AppState => ({
 
 export default connect(
     mapStateToProps,
-)(ComposeNews);
+)(RaiseHelp);

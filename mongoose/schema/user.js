@@ -64,4 +64,4 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('UserssTadebw', UserSchema);
+module.exports = mongoose.model('COVID_user', UserSchema);

@@ -8,7 +8,7 @@ import Service from '../../Service';
 import { IDialogPropss } from "../../../../models/models";
 import Loading from "../../../common/Loading";
 
-const stackStyles: Partial<IStackStyles> = { root: { color: "#0078d4" } };
+const stackStyles: Partial<IStackStyles> = { root: { color: "#E55346" } };
 
 interface IDonationForm {
     _id: string;
@@ -108,7 +108,7 @@ class Donations extends React.Component<IProps, IState> {
         if (event.target.value === "") {
             errorMessage = 'Min Rs.10'
         } else if (!event.target.validity.valid) {
-            errorMessage = this.props.User.staticConstants.Constants.onlyNumbersAllowed;
+            errorMessage = "Only number are allowed";
         } else if (event.target.value !== "" && Number(event.target.value) < 10) {
             errorMessage = 'Min Rs.10'
         } else {
@@ -201,11 +201,11 @@ class Donations extends React.Component<IProps, IState> {
                     let options = {
                         "key": data.key,
                         "amount": data.paymentInit.amount, // 2000 paise = INR 20, amount in paisa
-                        "name": "Q GROUP MEDIA",
+                        "name": "Share Care",
                         "currency": "INR",
                         "order_id": data.paymentInit.id,
                         "description": "Please complete the payment.",
-                        "image": "http://localhost:7777/uploads/static_files/qnewslogo.jpg",
+                        "image": "",
                         "handler": function (response: any) {
                             console.log(response);
                             thisObj.onPaymentSuccuess(response);
@@ -216,7 +216,7 @@ class Donations extends React.Component<IProps, IState> {
                             "contact": `${this.props.User && this.props.User.User && this.props.User.User.phoneNumber ? this.props.User.User.phoneNumber : ''}`,
                         },
                         "theme": {
-                            "color": "#0065b3"
+                            "color": " #ee3b2b"
                         }
                     };
                     var thisWindow: any = window;
@@ -251,9 +251,8 @@ class Donations extends React.Component<IProps, IState> {
             {this.state.isLoading && <Loading />}
             <div className="donations c-style1" >
                 <div className="c-btns">
-                    <p className="d-txt">Please donate a small amount to raise Our (Journalist) voice.</p>
-                    <p className="d-txt2">A small amount can help us to save Journalism and society</p>
-                    <DefaultButton iconProps={{ iconName: 'Heart', styles: stackStyles }} className={`c-btn`} onClick={this._showDialog} text={this.props.User.staticConstants.Constants.donate} />
+                    <p className="d-txt">Please donate small amount to help the people.</p>
+                    <DefaultButton iconProps={{ iconName: 'Heart', styles: stackStyles }} className={`c-btn`} onClick={this._showDialog} text="Donate" />
                 </div>
             </div>
             <Dialog

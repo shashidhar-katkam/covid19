@@ -19,4 +19,4 @@ const OTPSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('lotpTable', OTPSchema);
+module.exports = mongoose.model('COVID_otp1', OTPSchema);

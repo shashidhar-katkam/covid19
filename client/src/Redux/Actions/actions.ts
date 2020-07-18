@@ -16,13 +16,6 @@ export default class Actions {
     };
   }
 
-  public static changeLanguage = (language: string): IChangeLanguage => {
-    return {
-      type: ActionTypes.ChangeLanguage,
-      language: language
-    };
-  }
-
   public static UpdateLoginM = (updateM: ILoginM) => {
     return {
       type: ActionTypes.UpdateLoginM,

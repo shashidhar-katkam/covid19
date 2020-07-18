@@ -3,7 +3,6 @@ import {
     Route,
     Redirect,
 } from "react-router-dom";
-
 import AuthService from '../../../services/authService';
 
 interface IProps {

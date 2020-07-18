@@ -4,21 +4,23 @@ import {
 } from 'react-router-dom';
 import './styles.scss';
 import NewsService from '../../Service';
-import { INewsInfoC, MainNewsModel } from '../../../../models/models';
-import Actions from "../compose";
+import {  ISavedStory, StoryModel } from '../../../../models/models';
 import { socket } from '../../../../app';
-import ImageCarousel from "../templates/ImageCarousel";
 import { AppState } from "../../../../Redux/app.store";
 import { connect } from "react-redux";
 import { IUserState } from "../../../../Redux/models";
 import { Shimmer3 } from "../../../common/Loading/Shimmers";
-import Analysis from "../templates/Analysis";
 import { debug } from "console";
 import Donations from "../Donations";
 import CreateStory from "./CreateStory";
+import UserInfo from "../../../common/UserInfo";
+import Sources from "../mainNews/Sources";
+import Comment from '../../../common/Comment';
+import Navbar from "../../Navbar";
+const ShowMoreText = require('react-show-more-text');
 
 interface IState {
-    allNews: INewsInfoC[];
+    allNews: ISavedStory[];
     isLoading: boolean;
     currentScrollPosition: number;
     skip: number;
@@ -58,12 +60,85 @@ class Stories extends React.Component<IProps, IState> {
         }
     }
 
-    private infoBind(filesInfo: INewsInfoC[]) {
+    private generateString(strings: string[]) {
+        debugger;
+        let dd = "";
+        strings.forEach((a: string, index: number) => {
+            if (index !== strings.length - 1) {
+                dd += a + ' ,';
+            } else {
+                dd += a + '.'
+            }
+        });
+        return dd;
+    }
+
+    private infoBind(filesInfo: ISavedStory[]) {
         console.log(filesInfo);
         let temp;
         if (filesInfo) {
-            temp = filesInfo.map((news: INewsInfoC) => {
-                return <div id={news._id}><Analysis news={news} /> </div>
+            temp = filesInfo.map((news: ISavedStory) => {
+                return <div id={news._id}>
+                    <div className="main-contai c-style1" key={news._id}>
+                        <UserInfo DateTime={news.DateTime} User={news.User} onUserClick={this._onUserClick} ></UserInfo>
+
+                        <div className="story-details">
+                            <p className="sp-no-pm"> <b>Symptoms: </b> </p>
+                            <ShowMoreText
+                                lines={4}
+                                more="read more"
+                                less="read less"
+                                anchorClass='show-more-link'
+                                expanded={false}
+                                keepNewLines={true}
+                            >
+                                {news.Symptoms}
+                            </ShowMoreText>
+                            <p className="sp-no-pm"> <b>Diseases: </b></p>
+                            <ShowMoreText
+                                lines={4}
+                                more="read more"
+                                less="read less"
+                                anchorClass='show-more-link'
+                                expanded={false}
+                                keepNewLines={true}
+                            >
+                                {this.generateString(news.Diceases)}
+                            </ShowMoreText>
+
+                            <p className="sp-no-pm"><b>Treatment:</b></p>
+                            <ShowMoreText
+                                lines={4}
+                                more="read more"
+                                less="read less"
+                                anchorClass='show-more-link'
+                                expanded={false}
+                                keepNewLines={true}
+                            >
+                                {news.Treatment}
+                            </ShowMoreText>
+                            <p className="sp-no-pm"><b>Suggestions: </b></p>
+                            <ShowMoreText
+                                lines={4}
+                                more="read more"
+                                less="read less"
+                                anchorClass='show-more-link'
+                                expanded={false}
+                                keepNewLines={true}
+                            >
+                                {news.MoreToSay}
+                            </ShowMoreText>
+                        </div>
+                        <div className="sp-clearFix msg-body" >
+
+                            {news.Files.length > 0 && <Sources Sources={news.Files} />}
+                        </div>
+
+                        <hr className="sp-hr" />
+                        <Comment RefId={news._id} />
+                    </div>
+
+                </div>
             });
         } else {
             temp = <p>no records</p>;
@@ -75,7 +150,7 @@ class Stories extends React.Component<IProps, IState> {
         if (this.language !== newProps.User.language) {
             this.setState({ isLoading: true });
             this.language = newProps.User.language;
-            this.newsService.getAllNewsForUser({ skip: 0 }).then((res: any) => {
+            this.newsService.getStories({ skip: 0 }).then((res: any) => {
                 if (res.status) {
                     let data = res.data;
                     this.setState({
@@ -93,7 +168,8 @@ class Stories extends React.Component<IProps, IState> {
     }
     componentDidMount() {
         this.setState({ isLoading: true });
-        this.newsService.getAllNewsForUser({ skip: this.state.skip }).then((res: any) => {
+        this.newsService.getStories({ skip: 0 }).then((res: any) => {
+            debugger;
             console.log(res);
             if (res.status) {
                 let data = res.data;
@@ -113,12 +189,12 @@ class Stories extends React.Component<IProps, IState> {
             debugger;
             if (this.language === 'en') {
                 let newsInfo: any = data.English;
-                let allNews: INewsInfoC[] = this.state.allNews;
-                let tempNews: INewsInfoC[] = [];
-                allNews.forEach((news: INewsInfoC) => {
+                let allNews: ISavedStory[] = this.state.allNews;
+                let tempNews: ISavedStory[] = [];
+                allNews.forEach((news: ISavedStory) => {
                     if (news._id === newsInfo._id) {
                         if (newsInfo.Show) {
-                            tempNews = [...tempNews, new MainNewsModel(newsInfo)]
+                            tempNews = [...tempNews, new StoryModel(newsInfo)]
                         }
                     } else {
                         tempNews = [...tempNews, news];
@@ -129,9 +205,9 @@ class Stories extends React.Component<IProps, IState> {
                 });
             } else if (this.language === 'te') {
                 let newsInfo: any = data.Telugu;
-                let allNews: INewsInfoC[] = this.state.allNews;
-                let tempNews: INewsInfoC[] = [];
-                allNews.forEach((news: INewsInfoC) => {
+                let allNews: ISavedStory[] = this.state.allNews;
+                let tempNews: ISavedStory[] = [];
+                allNews.forEach((news: ISavedStory) => {
                     if (news._id === newsInfo._id) {
                         if (newsInfo.Show) {
                             tempNews = [...tempNews, newsInfo]
@@ -153,11 +229,11 @@ class Stories extends React.Component<IProps, IState> {
             this.setState({
                 isLoading: true
             });
-            this.newsService.getLatestNews({ skip: this.state.skip, filter: { DateTime: this.state.DateTime } }).then((res: any) => {
+            this.newsService.getStories({ skip: this.state.skip, filter: { DateTime: this.state.DateTime } }).then((res: any) => {
                 if (res.status) {
                     let data: [] = res.data;
                     if (data.length > 0) {
-                        let allre: INewsInfoC[] = this.state.allNews;
+                        let allre: ISavedStory[] = this.state.allNews;
                         data.forEach((d: any) => {
                             allre = [...allre, d];
                         });
@@ -195,14 +271,23 @@ class Stories extends React.Component<IProps, IState> {
     render(): JSX.Element {
         return (
             <>
-                <div className="main-container-wrapper">
-                    <div className="compose-co c-style1" >
-                        <CreateStory />
+                <Navbar />
+                <div className="sp-main-wrapper">
+                    <div className="ms-Grid" dir="ltr">
+                        <div className="ms-Grid-row">
+                            <div className="ms-Grid-col ms-sm12 ms-md8 ">
+                                <div className="main-container-wrapper">
+                                    <div className="compose-co c-style1" >
+                                        <CreateStory />
+                                    </div>
+                                    {(this.state.allNews && this.infoBind(this.state.allNews))}
+                                    {this.state.isLoading && <>
+                                        <div className="shimmer-main-w"> <Shimmer3 /> </div>
+                                        <div className="shimmer-main-w"> <Shimmer3 /> </div> </>}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    {(this.state.allNews && this.infoBind(this.state.allNews))}
-                    {this.state.isLoading && <>
-                        <div className="shimmer-main-w"> <Shimmer3 /> </div>
-                        <div className="shimmer-main-w"> <Shimmer3 /> </div> </>}
                 </div>
             </>
         );

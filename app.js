@@ -1,27 +1,19 @@
 var express = require('express');
-const http = require("http");
 const socketIo = require("socket.io");
 var app = express();
-//const https = require('https');
 var mongoose = require("mongoose");
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var path = require("path");
 const routes = require('./routes/routes');
-const routes_te = require('./routes/routes-te');
-const routes_en = require('./routes/routes-en');
 const fs = require('fs');
-const adminroutes = require('./routes/admin/admin-routes');
 var port = process.env.PORT || 7777;
 mongoose.Promise = global.Promise;
 var ca = [fs.readFileSync("rds-combined-ca-bundle.pem")];
 
 //  >>>> mongoose connection string
 var dda = 'mongodb://localhost:27017/journalism';
-var mlab = 'mongodb://marriage:marriage123@ds139896.mlab.com:39896/marriage';
-var dfe = 'mongodb://mongodbtes:D1bTuGOKN1OPirD3s5t7HRTpfaFTTyNTJkl7DVdsqghqGKFcm1hLPRivJy5yJCBXyMtlya0JZwN6ZCwTazMJKQ==@mongodbtes.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@mongodbtes@';
-var efe = 'mongodb://mongodbtes:D1bTuGOKN1OPirD3s5t7HRTpfaFTTyNTJkl7DVdsqghqGKFcm1hLPRivJy5yJCBXyMtlya0JZwN6ZCwTazMJKQ==@mongodbtes.mongo.cosmos.azure.com:10255/?ssl=true&appName=@mongodbtes@';
-var dea = 'mongodb://shashidhar2katkam:Shashi123@docdb-2020-07-15-02-53-40.cluster-cjkuqagkekiw.us-east-2.docdb.amazonaws.com:27017/?ssl=true&ssl_ca_certs=rds-combined-ca-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false'
+var mlab = 'mongodb://marriage:marriage123@ds139896.mlab.com:39896/Covid19';
  mongoose.connect(dda);
 
 //  >>>> on connected
@@ -56,9 +48,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use('/use', routes);
-app.use('/use/en', routes_en);
-app.use('/use/te', routes_te);
-app.use('/adm', adminroutes);
 
 app.get('/', (req, res) => {
     console.log(req);

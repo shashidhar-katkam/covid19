@@ -1,10 +1,7 @@
 import * as React from "react";
 import { IUserC } from '../../../models/models';
 import TimeStamp, { TimeStamp3Right } from '../TimeStamp';
-import './styles.scss';
-
 interface IState {
-
 }
 
 interface IProps {
@@ -26,7 +23,6 @@ class UserInfo extends React.Component<IProps, IState> {
               {`${this.props.User.firstName} ${this.props.User.lastName}`}
               <TimeStamp3Right dateTime={this.props.DateTime} />
             </p>
-
             <p className="comment">{this.props.Comment}</p>
           </div>
         </div>
@@ -35,7 +31,6 @@ class UserInfo extends React.Component<IProps, IState> {
     </>
     );
   }
-
 }
 
 export default UserInfo;

@@ -1,22 +1,15 @@
 import * as React from "react";
 import {
   Route,
-  Switch} from 'react-router-dom';
+  Switch
+} from 'react-router-dom';
 import Home from './home/index';
 import './styles.scss';
 import PrivateRoute from '../common/PrivateRoute/index';
-import AdminApp from '../admin/index';
-import NewsInfo from "./newsComponent";
-import SelectedUserNewsInfo from './home/mainNews/SelectedUserNewsInfo';
 import MyProfile from './myProfile';
 import NotFound from '../common/NotFound';
-import MyDashboard from "./myDashboard";
-import CatIndex from "./home/CatIndex";
-import PrivacyC from "./Privacy/Privacy";
-import TermsAndConditions from "./Privacy/Terms";
-import AboutUs from "./Privacy/AboutUs/index";
-import ContactUs from "./Privacy/ContactUs";
-
+import Stories from './../user/home/stories';
+import Help from './../user/home/help';
 
 class UserApp extends React.Component {
 
@@ -29,21 +22,14 @@ class UserApp extends React.Component {
     return (
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/newsi/:id" component={NewsInfo} />
-        <Route path="/cat/:filter" component={CatIndex} />
-        <Route path="/user/:id" component={SelectedUserNewsInfo} />
-        <Route path="/privacy" component={PrivacyC} />
-        <Route path="/terms" component={TermsAndConditions} />
-        <Route path="/about-us" component={AboutUs} />
-        <Route path="/contact-us" component={ContactUs} />
-        <PrivateRoute path="/dashboard">
-          <MyDashboard />
+        <PrivateRoute path="/stories">
+          <Stories />
         </PrivateRoute>
         <PrivateRoute path="/myprofile">
           <MyProfile />
         </PrivateRoute>
-        <PrivateRoute path="/admin">
-          <AdminApp />
+        <PrivateRoute path="/help">
+          <Help />
         </PrivateRoute>
         <Route path="*">
           <NotFound />
