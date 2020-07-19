@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 import './styles.scss';
 import NewsService from '../../Service';
-import { ISaveHelpCovid,  HelpCovidModel } from '../../../../models/models';
+import { ISaveHelpCovid, HelpCovidModel } from '../../../../models/models';
 import { socket } from '../../../../app';
 import { AppState } from "../../../../Redux/app.store";
 import { connect } from "react-redux";
@@ -99,6 +99,9 @@ class Help extends React.Component<IProps, IState> {
         }
     }
     componentDidMount() {
+
+        window.scrollTo(0, 0);
+        
         this.setState({ isLoading: true });
         this.newsService.getHelpRequests1({ skip: this.state.skip }).then((res: any) => {
             console.log(res);

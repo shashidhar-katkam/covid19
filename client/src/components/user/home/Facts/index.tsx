@@ -1,10 +1,12 @@
 import * as React from 'react';
 import styles from './styles.module.scss';
 import { factsData } from './factsData';
+import Navbar from '../../Navbar';
 
 export default class Facts extends React.Component<{}, {}> {
     public render() {
         return <>
+        <Navbar />
             <div className={styles.factsContainer}>
 
                 {factsData && factsData.length ?
@@ -20,5 +22,10 @@ export default class Facts extends React.Component<{}, {}> {
                 }
             </div>
         </>;
+    }
+
+
+    componentDidMount(){
+        window.scrollTo(0,0);
     }
 }

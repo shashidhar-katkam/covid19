@@ -147,6 +147,9 @@ class Navbar extends React.Component<IProps, IState> {
                             <span onClick={() => { this._onPathClick('/help') }}>
                                 Help
                             </span>
+                            <span onClick={() => { this._onPathClick('/corona') }}>
+                                All about corona
+                            </span>
                         </div>
                         <div className="sp-topnav-right" >
                             {(this.state.isUser && this.state.LoggedInUser) && <>

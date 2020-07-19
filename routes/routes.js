@@ -19,17 +19,7 @@ routes.post(URLs.getStories, Util.verifytoken, function (req, res) {
     });
 });
 
-routes.post(URLs.raiseDonationRequest, function (req, res) {
-    UserNewsService.raiseDonationRequest(req.body, (message) => {
-        res.json(message)
-    });
-});
 
-routes.post(URLs.updateDonationRequest, function (req, res) {
-    UserNewsService.updateDonationRequest(req.body, (message) => {
-        res.json(message)
-    });
-});
 
 routes.post(URLs.raiseHelpRequest1, Util.verifytoken, function (req, res) {
     var loginUser = req.authData;
@@ -141,6 +131,17 @@ routes.post(URLs.uploadProfilePic, Util.upload.single('file'), function (req, re
         res.json(message);
     });
 });
+
+routes.post('/api/uploadfiles', Util.uploadfile.single('file'), function (req, res) {
+    res.json({
+        'success': true,
+        'fileNewName': req.file.filename,
+        'filePath': '/uploads/files/' + req.file.filename,
+        'originalName': req.file.originalname,
+        'mimeType': req.file.mimetype
+    });
+});
+
 
 let transport = nodemailer.createTransport({
     host: 'smtp.gmail.com',

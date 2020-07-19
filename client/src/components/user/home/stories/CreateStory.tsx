@@ -20,7 +20,8 @@ export const CategoryOptions: IDropdownOption[] = [
     { key: 'Lung disease', text: 'Lung disease' },
     { key: 'Hypertension', text: 'Hypertension' },
     { key: 'Heart diesease', text: 'Heart diesease' },
-    { key: 'Kidney disorder', text: 'Kidney disorder' }
+    { key: 'Kidney disorder', text: 'Kidney disorder' },
+    { key: 'No deseases', text: 'None of the above.' }
 ];
 
 interface IstoryForm {
@@ -434,7 +435,7 @@ class CreateStory extends React.Component<IProps, IState> {
                 </Dialog>
                 <div className="compose-c">
                     <div className="sp-compose-body">
-                        <p className="txt-heading">f you have tested positive with coronavirus please share your experience</p>
+                        <p className="txt-heading">If you have tested positive with coronavirus please share your experience</p>
                         <div className="ms-Grid sp-no-pm" dir="ltr">
                             <div className="ms-Grid-row">
                                 <div className="ms-Grid-col ms-sm1">
