@@ -472,7 +472,7 @@ class Register extends React.Component<IProps, IState> {
                     isBlocking: true
                 }}
             >
-                <h5>Thanks for joing our community.</h5>
+                <h5>Thanks for connecting.</h5>
                 <DefaultButton onClick={() => this.props.formHandle(FormType.Login)} className="sp-main-btn sp-float-right btn-login" text="Ok" />
             </Dialog>
         </>

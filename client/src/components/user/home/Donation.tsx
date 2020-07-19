@@ -2,13 +2,13 @@ import * as React from "react";
 import { DefaultButton, IStackStyles, Dialog, DialogType, DialogFooter, PrimaryButton, TextField } from 'office-ui-fabric-react';
 import { connect } from "react-redux";
 import './styles.scss';
-import { IUserState } from "../../../../Redux/models";
-import { AppState } from "../../../../Redux/app.store";
-import Service from '../../Service';
-import { IDialogPropss } from "../../../../models/models";
-import Loading from "../../../common/Loading";
+import { IUserState } from "../../../Redux/models";
+import { AppState } from "../../../Redux/app.store";
+import Service from '../Service';
+import { IDialogPropss } from "../../../models/models";
+import Loading from "../../common/Loading";
 
-const stackStyles: Partial<IStackStyles> = { root: { color: "#E55346" } };
+const stackStyles: Partial<IStackStyles> = { root: { color: "#614746" } };
 
 interface IDonationForm {
     _id: string;
@@ -34,7 +34,8 @@ interface IState {
 
 interface IProps {
     User: IUserState;
-
+    isShow: boolean;
+    hideDonateModel: () => void;
 }
 
 class Donations extends React.Component<IProps, IState> {
@@ -42,7 +43,7 @@ class Donations extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = {
-            showModel: false,
+            showModel: this.props.isShow,
             donationForm: {
                 _id: this.props.User && this.props.User.User && this.props.User.User._id ? this.props.User.User._id : '',
                 firstName: this.props.User && this.props.User.User && this.props.User.User.firstName ? this.props.User.User.firstName : '',
@@ -82,6 +83,7 @@ class Donations extends React.Component<IProps, IState> {
         this.setState({
             showModel: true
         });
+        
     }
 
     private _closeDialog() {
@@ -95,6 +97,7 @@ class Donations extends React.Component<IProps, IState> {
                 amount: ''
             }
         });
+        this.props.hideDonateModel();
     }
     private _inputChangeHandle(event: React.ChangeEvent<HTMLInputElement>): void {
         this.setState({
@@ -196,6 +199,7 @@ class Donations extends React.Component<IProps, IState> {
                             amount: ''
                         }
                     });
+                    this.props.hideDonateModel();
                     let data = res.data;
                     var thisObj = this;
                     let options = {
@@ -216,7 +220,7 @@ class Donations extends React.Component<IProps, IState> {
                             "contact": `${this.props.User && this.props.User.User && this.props.User.User.phoneNumber ? this.props.User.User.phoneNumber : ''}`,
                         },
                         "theme": {
-                            "color": " #ee3b2b"
+                            "color": " #4a3636"
                         }
                     };
                     var thisWindow: any = window;
@@ -246,15 +250,23 @@ class Donations extends React.Component<IProps, IState> {
 
     }
 
+    componentWillReceiveProps(newProps: IProps) {
+        debugger;
+        this.setState({
+            showModel : this.props.isShow
+        });
+
+    }
+
     public render(): JSX.Element {
         return (<>
             {this.state.isLoading && <Loading />}
-            <div className="donations c-style1" >
+            {/* <div className="donations c-style1" >
                 <div className="c-btns">
                     <p className="d-txt">Please donate small amount to help the people.</p>
                     <DefaultButton iconProps={{ iconName: 'Heart', styles: stackStyles }} className={`c-btn`} onClick={this._showDialog} text="Donate" />
                 </div>
-            </div>
+            </div> */}
             <Dialog
                 hidden={!this.state.showModel}
                 onDismiss={this._closeDialog}

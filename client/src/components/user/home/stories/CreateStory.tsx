@@ -434,7 +434,7 @@ class CreateStory extends React.Component<IProps, IState> {
                 </Dialog>
                 <div className="compose-c">
                     <div className="sp-compose-body">
-                        <p className="txt-heading">Would you like to share your Experience</p>
+                        <p className="txt-heading">f you have tested positive with coronavirus please share your experience</p>
                         <div className="ms-Grid sp-no-pm" dir="ltr">
                             <div className="ms-Grid-row">
                                 <div className="ms-Grid-col ms-sm1">

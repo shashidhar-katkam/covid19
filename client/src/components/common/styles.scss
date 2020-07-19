@@ -29,32 +29,3 @@
   }
 }
 
-.poll-otion {
-  background-color: rgb(245, 245, 245);
-  margin: 5px 0px;
-  padding-left: 10px !important;
-  border-radius: 8px;
-  width: 90%;
-  .poll-text {
-    padding: 6px 0px 0px 0px;
-    margin: 0px;
-    overflow: hidden;
-  }
-
-  .poll-ot1 {
-    .checkb {
-      color: #e55346;
-      font-size: 26px;
-      cursor: pointer;
-    }
-    .checkb:hover {
-      color: #e65c00;
-      cursor: pointer;
-    }
-  }
-}
-
-.poll-otion:hover {
-  cursor: pointer;
-  background-color: rgb(235, 235, 235);
-}

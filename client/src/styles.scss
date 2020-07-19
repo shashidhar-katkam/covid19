@@ -1,10 +1,15 @@
-// #E55346;
-//  #ee3b2b;
+// #614746;
+//  #4a3636;
 
-//  #E55346
-//   #ee3b2b
+//  #614746
+//   #4a3636
 
-// #E55346;
+
+
+// #614746;
+
+// #614746;
+// #4a3636
 
 @import "~office-ui-fabric-react/dist/css/fabric.min.css";
 
@@ -693,7 +698,7 @@ table.sp-table-list {
 
 // /* Handle on hover */
 // body::-webkit-scrollbar-thumb:hover {
-//   background: #E55346;
+//   background: #614746;
 // }
 
 .cs {
@@ -720,13 +725,13 @@ table.sp-table-list {
 
 /* Handle */
 .cs::-webkit-scrollbar-thumb {
-  background: #ee3b2b;
+  background: #4a3636;
   /* #ffa366; */
 }
 
 /* Handle on hover */
 .cs::-webkit-scrollbar-thumb:hover {
-  background: #e55346;
+  background: #614746;
   //  visibility:visible;
 }
 
@@ -760,7 +765,7 @@ table.sp-table-list {
 
 /* Handle on hover */
 .cs textarea.textarea::-webkit-scrollbar-thumb:hover {
-  background: #e55346;
+  background: #614746;
   //  visibility:visible;
 }
 
@@ -820,19 +825,19 @@ table.sp-table-list {
 
 .sp-main-btn {
   color: white;
-  background-color: #e55346;
+  background-color: #614746;
   border: none;
   //margin-top: -2px;
 }
 
 .sp-main-btn:hover {
-  background-color: #ee3b2b;
+  background-color: #4a3636;
   color: white;
   border: none;
 }
 
 .sp-main-btn:focus {
-  background-color: #ee3b2b;
+  background-color: #4a3636;
   color: white;
   border: 0px;
   outline: 0;
@@ -951,7 +956,7 @@ progress {
   color: #fff;
   text-align: center;
   white-space: nowrap;
-  background-color: #ee3b2b;
+  background-color: #4a3636;
   transition: width 0.6s ease;
 }
 
@@ -1007,7 +1012,7 @@ progress {
   background-color: #3f6ad8 !important;
 }
 .sp-orange {
-  background-color: #e55346 !important;
+  background-color: #614746 !important;
 }
 .sp-black {
   background-color: black !important;
@@ -1023,18 +1028,18 @@ progress {
   //border-top-right-radius: 50px;
   //border-bottom-right-radius: 50px;
   //box-shadow: 0 0.125rem 0.625rem rgba(255, 133, 51, 0.4), 0 0.0625rem 0.125rem rgba(255, 133, 51, 0.5);
-  background-color: #e55346;
+  background-color: #614746;
 
   padding: 18px 30px 18px 30px;
 }
 .view-all-button:hover {
   //box-shadow: 0 0.125rem 0.625rem rgba(255, 133, 51, 0.4), 0 0.0625rem 0.125rem rgba(255, 133, 51, 0.5);
-  background-color: #ee3b2b;
+  background-color: #4a3636;
 }
 
 .admin-sidenav-item {
   a.active {
-    background-color: #e55346 !important;
+    background-color: #614746 !important;
     color: white !important;
   }
 }
@@ -1059,9 +1064,9 @@ progress {
   .an-heading {
     font-weight: 500;
     margin-bottom: 0px;
-    //border-bottom: 1px solid#E55346;
+    //border-bottom: 1px solid#614746;
     //text-decoration: underline;
-    //text-decoration-color: #E55346;
+    //text-decoration-color: #614746;
     // width: 100px;
     //float: left;
   }
@@ -1115,4 +1120,10 @@ progress {
   margin: 5px 0px 10px 0px;
   background-color: white;
   padding-bottom: 5px;
+}
+
+
+
+.learn-more {
+  padding: 20px 50px;
 }
