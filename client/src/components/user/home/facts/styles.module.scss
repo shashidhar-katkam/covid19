@@ -1,5 +1,12 @@
 .factsContainer {
     width: 100%;
+    .heading {
+        font-size: 31px;
+        font-weight: bold;
+        padding: 10px 0;
+        text-align: center;
+        background: rgba(172, 236, 238, 0.5);
+    }
     .facts {
         width: 100%;
         padding: 0 40px;
@@ -21,6 +28,40 @@
                 width: 600px !important;
                 height: 340px !important;
             }
+        }
+    }
+    .container {
+        width: 100%;
+        display: flex;
+        padding: 20px;
+        .videoContainer {
+            width: 65%;
+            display: flex;
+            justify-content: center;
+            iframe {
+                // width: 600px !important;
+                // height: 340px !important;
+                font-size: 16px;
+            }
+        }
+        .questionContainer {
+            width: 35%;
+            background: rgba(238, 172, 172, 0.5);
+            padding: 20px;
+            .title {
+                font-weight: bold;
+                font-size: 18px;
+                margin-top: 20px;
+            }
+            .description {
+                padding: 10px;
+            }
+        }
+        &.even {
+            background: rgba(172, 236, 238, 0.5)
+        }
+        &.odd {
+            background: rgba(172, 236, 238, 0.6)
         }
     }
 }
