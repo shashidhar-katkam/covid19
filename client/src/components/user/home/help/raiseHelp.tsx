@@ -245,8 +245,8 @@ class RaiseHelp extends React.Component<IProps, IState> {
             {this.state.isLoading && <Loading />}
             <div className="raise-help c-style1" >
                 <div className="c-btns">
-                    <p className="d-txt ms-fontSize-24">Do you need any help?</p>
-                    <p className="d-txt2">Please let our community know that you are seeking something</p>
+                    <p className="d-txt ms-fontSize-32">Do you need any help?</p>
+                    <p className="d-txt2 ms-fontSize-20">Please reach out to us</p>
                     <DefaultButton iconProps={{ iconName: 'Heart', styles: stackStyles }} className={`c-btn`} onClick={this._showDialog} text="Request" />
 
                 </div>

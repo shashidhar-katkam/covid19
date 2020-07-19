@@ -165,6 +165,7 @@ class Stories extends React.Component<IProps, IState> {
         }
     }
     componentDidMount() {
+        window.scrollTo(0, 0);
         this.setState({ isLoading: true });
         this.newsService.getStories({ skip: 0 }).then((res: any) => {
             debugger;

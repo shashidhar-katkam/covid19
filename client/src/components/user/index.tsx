@@ -24,7 +24,7 @@ class UserApp extends React.Component {
     return (
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route ecact path="/facts" component={Facts} />
+        <Route ecact path="/corona" component={Facts} />
         <PrivateRoute path="/stories">
           <Stories />
         </PrivateRoute>

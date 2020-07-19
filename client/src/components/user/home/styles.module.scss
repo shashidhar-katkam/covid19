@@ -49,14 +49,25 @@
                 .totalValueContainer {
                     @include kpi;
                 }
+
+                img {
+                    width: 100%;
+                    height: 400px;
+                }
             }
             .indiaMap {
                 @include mapStyle;
                 // background: rgba(172, 236, 238, 0.5);
                 border-color: rgba(172, 236, 238, 0.5);
-                border-left: 1px solid;
+//                border-left: 1px solid;
                 .totalValueContainer {
                     @include kpi;
+                }
+
+                
+                img {
+                    width: 100%;
+                    height: 400px;
                 }
             }
         }

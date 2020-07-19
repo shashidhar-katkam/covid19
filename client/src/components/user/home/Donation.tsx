@@ -68,22 +68,16 @@ class Donations extends React.Component<IProps, IState> {
         this._amountChangeHandle = this._amountChangeHandle.bind(this);
         this._inputChangeHandle = this._inputChangeHandle.bind(this);
         this._submitForm = this._submitForm.bind(this);
-        this.onPaymentSuccuess = this.onPaymentSuccuess.bind(this);
         this._closeDialog2 = this._closeDialog2.bind(this);
     }
 
-    componentDidMount() {
-        const script = document.createElement("script");
-        script.src = "https://checkout.razorpay.com/v1/checkout.js";
-        script.async = true;
-        document.body.appendChild(script);
-    }
+
 
     private _showDialog() {
         this.setState({
             showModel: true
         });
-        
+
     }
 
     private _closeDialog() {
@@ -123,34 +117,6 @@ class Donations extends React.Component<IProps, IState> {
         });
     }
 
-    private onPaymentSuccuess(obj: any) {
-        debugger;
-        if (obj && obj.razorpay_payment_id) {
-            this.setState({ isLoading: true });
-            let objee: any = {};
-            objee.PaymentSuccess = obj;
-            objee.paymentInit = this.state.response.paymentInit;
-            objee.orderId = this.state.response.orderId;
-
-            this.service.updateDonationRequest(objee).then((res: any) => {
-                console.log(res);
-                debugger;
-                if (res.status) {
-                    this.setState({
-                        DialogProps2: { show: true, message: 'Thanks for donating.' },
-                        isLoading: false
-                    });
-                } else {
-                    this.setState({
-                        DialogProps2: { show: true, message: res.message },
-                        isLoading: false
-                    });
-                }
-            });
-        }
-    }
-
-
     private isFormValid = (): boolean => {
         let donationForm: IDonationForm = this.state.donationForm;
         let donationFormErr: IDonationFormErr = this.state.donationFormErr;
@@ -174,72 +140,10 @@ class Donations extends React.Component<IProps, IState> {
 
     private _submitForm() {
         if (this.isFormValid()) {
-            console.log(this.state.donationForm);
-            let requestObj: any = this.state.donationForm;
-            requestObj._id = Date().toString();
-            if (requestObj._id == '') {
-                requestObj._id = null;
-            }
             this.setState({
-                isLoading: true
+                showModel: false
             });
-            this.service.raiseDonationRequest(requestObj).then((res: any) => {
-                debugger;
-                console.log(res);
-                if (res.status && res.statuscode === 23) {
-                    this.setState({
-                        response: res.data,
-                        isLoading: false,
-                        showModel: false,
-                        donationForm: {
-                            _id: this.props.User && this.props.User.User && this.props.User.User._id ? this.props.User.User._id : '',
-                            firstName: this.props.User && this.props.User.User && this.props.User.User.firstName ? this.props.User.User.firstName : '',
-                            phoneNumber: this.props.User && this.props.User.User && this.props.User.User.phoneNumber ? this.props.User.User.phoneNumber : '',
-                            email: this.props.User && this.props.User.User && this.props.User.User.email ? this.props.User.User.email : '',
-                            amount: ''
-                        }
-                    });
-                    this.props.hideDonateModel();
-                    let data = res.data;
-                    var thisObj = this;
-                    let options = {
-                        "key": data.key,
-                        "amount": data.paymentInit.amount, // 2000 paise = INR 20, amount in paisa
-                        "name": "Share Care",
-                        "currency": "INR",
-                        "order_id": data.paymentInit.id,
-                        "description": "Please complete the payment.",
-                        "image": "",
-                        "handler": function (response: any) {
-                            console.log(response);
-                            thisObj.onPaymentSuccuess(response);
-                        },
-                        "prefill": {
-                            "name": `${this.props.User && this.props.User.User && this.props.User.User.firstName ? this.props.User.User.firstName : ''}`,
-                            "email": `${this.props.User && this.props.User.User && this.props.User.User.email ? this.props.User.User.email : ''}`,
-                            "contact": `${this.props.User && this.props.User.User && this.props.User.User.phoneNumber ? this.props.User.User.phoneNumber : ''}`,
-                        },
-                        "theme": {
-                            "color": " #4a3636"
-                        }
-                    };
-                    var thisWindow: any = window;
-                    let rzp: any = new thisWindow.Razorpay(options);
-                    rzp.open();
-                }
-                else {
-                    this.setState({
-                        isLoading: false,
-                        errormsg: res.statusmsg
-                    });
 
-                    setTimeout(() => {
-                        this.setState({
-                            errormsg: ''
-                        });
-                    }, 5000);
-                }
-            });
         }
     }
 
@@ -253,7 +157,7 @@ class Donations extends React.Component<IProps, IState> {
     componentWillReceiveProps(newProps: IProps) {
         debugger;
         this.setState({
-            showModel : this.props.isShow
+            showModel: this.props.isShow
         });
 
     }
@@ -261,12 +165,6 @@ class Donations extends React.Component<IProps, IState> {
     public render(): JSX.Element {
         return (<>
             {this.state.isLoading && <Loading />}
-            {/* <div className="donations c-style1" >
-                <div className="c-btns">
-                    <p className="d-txt">Please donate small amount to help the people.</p>
-                    <DefaultButton iconProps={{ iconName: 'Heart', styles: stackStyles }} className={`c-btn`} onClick={this._showDialog} text="Donate" />
-                </div>
-            </div> */}
             <Dialog
                 hidden={!this.state.showModel}
                 onDismiss={this._closeDialog}
@@ -298,8 +196,6 @@ class Donations extends React.Component<IProps, IState> {
                     <PrimaryButton className="sp-main-btn" onClick={this._submitForm} text="Donate" />
                 </DialogFooter>
             </Dialog>
-
-
             <Dialog
                 hidden={!this.state.DialogProps2.show}
                 onDismiss={this._closeDialog}
