@@ -279,7 +279,7 @@ class Home extends React.Component<IProps, IState> {
                             </div>
                         </div>
                         <div className={styles.imageContainer}>
-                            <img className={styles.image} src={`http://localhost:7777/uploads/static_files/donate.jpg`} alt="Be precautious" />
+                            <img className={styles.image} src={`/uploads/static_files/donate.jpg`} alt="Be precautious" />
                         </div>
                     </div>
                 </div>
