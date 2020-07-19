@@ -224,7 +224,7 @@ class Home extends React.Component<IProps, IState> {
                                 highcharts={Highcharts}
                                 options={mapOptionsWorld}
                             /> */}
-                            <img src="http://localhost:7777/uploads/static_files/worldmap.jpg" alt="worldmap" />
+                            <img src="/uploads/static_files/worldmap.jpg" alt="worldmap" />
                             <div className={styles.totalValueContainer}>
                                 <div className={styles.total}>
                                     Confirmed: <b>{this.state.covidDataWorld.confirmed}</b>
@@ -238,7 +238,7 @@ class Home extends React.Component<IProps, IState> {
                             </div>
                         </div>
                         <div className={styles.indiaMap}>
-                            <img src="http://localhost:7777/uploads/static_files/indiamap.jpg" alt="indiamap" />
+                            <img src="/uploads/static_files/indiamap.jpg" alt="indiamap" />
                             <div className={styles.totalValueContainer}>
                                 <div className={styles.total}>
                                     Confirmed: <b>{this.state.covidDataIndia.confirmed}</b>
