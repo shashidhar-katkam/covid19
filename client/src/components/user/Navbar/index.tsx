@@ -135,10 +135,10 @@ class Navbar extends React.Component<IProps, IState> {
                 <div className="sp-topnav">
                     <div className="sp-nav-container nav-items">
                         <NavLink exact className="home-lin" to="/">
-                            <img src={'/uploads/static_files/logo.png'} className="sp-logo" />
+                            <img src={'/uploads/static_files/logo_new.png'} className="sp-logo" />
                         </NavLink>
                         <NavLink exact className="home-link" to="/">
-                            Share Care
+                            Share_care
                         </NavLink>
                         <div className="nav-items1">
                             <span onClick={() => { this._onPathClick('/stories') }}>

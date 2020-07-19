@@ -1,6 +1,6 @@
 import * as React from "react";
 import { IUserC } from '../../../models/models';
-import TimeStamp, { TimeStamp3Right } from '../TimeStamp';
+import { TimeStamp3Right } from '../TimeStamp';
 interface IState {
 }
 

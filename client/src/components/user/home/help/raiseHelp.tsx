@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DefaultButton, IStackStyles, Dialog, DialogType, DialogFooter, PrimaryButton, TextField } from 'office-ui-fabric-react';
+import { DefaultButton, IStackStyles, Dialog, DialogType,TextField } from 'office-ui-fabric-react';
 import { connect } from "react-redux";
 import './styles.scss';
 import { IUserState } from "../../../../Redux/models";
@@ -8,7 +8,7 @@ import Service from '../../Service';
 import { IDialogPropss } from "../../../../models/models";
 import Loading from "../../../common/Loading";
 
-const stackStyles: Partial<IStackStyles> = { root: { color: "#E55346" } };
+const stackStyles: Partial<IStackStyles> = { root: { color: "#614746" } };
 
 interface IDonationForm {
     name: string;
@@ -46,7 +46,6 @@ class RaiseHelp extends React.Component<IProps, IState> {
         this.state = {
             showModel: false,
             donationForm: {
-                // _id: this.props.User && this.props.User.User && this.props.User.User._id ? this.props.User.User._id : '',
                 name: this.props.User && this.props.User.User && this.props.User.User.firstName ? this.props.User.User.firstName : '',
                 phoneNumber: this.props.User && this.props.User.User && this.props.User.User.phoneNumber ? this.props.User.User.phoneNumber : '',
                 email: this.props.User && this.props.User.User && this.props.User.User.email ? this.props.User.User.email : '',

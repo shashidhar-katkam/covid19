@@ -50,7 +50,7 @@
 .input-control:focus,
 .input-control:focus {
   background-color: #fff;
-  border-left: 4px solid #E55346;
+  border-left: 4px solid #614746;
 }
 
 .input-control:placeholder,
@@ -77,7 +77,7 @@
   bottom: -10px;
   width: 0;
   height: 2px;
-  background-color: #E55346;
+  background-color: #614746;
   content: "";
   transition: width 0.2s;
 }
@@ -164,7 +164,7 @@
 }
 
 .required {
-  color: #E55346;
+  color: #614746;
   font-size: 20px;
 }
 
@@ -174,13 +174,13 @@
 }
 
 .privacy-checkbox-mark {
-  background: #E55346;
-  border-color: #E55346;
+  background: #614746;
+  border-color: #614746;
 }
 
 .privacy-checkbox .checkbox-166 {
   border: none;
-  background-color: #E55346 !important;
+  background-color: #614746 !important;
 }
 
 .register-scrollbar {
@@ -202,22 +202,22 @@
   margin-bottom: 25px;
   .forget-password {
     font-weight: 600;
-    color: #E55346;
+    color: #614746;
     cursor: pointer;
   }
   .forget-password:hover {
-    color: #E55346;
+    color: #614746;
   }
   .register {
     //padding-top: 10px;
     margin-left: 10px;
     font-weight: 600;
-    color: #E55346;
+    color: #614746;
     cursor: pointer;
   }
 
   .register:hover {
-    color: #E55346;
+    color: #614746;
   }
 
   .create-account {
@@ -228,7 +228,7 @@
     margin: 0px;
 
     span {
-      color: #E55346;
+      color: #614746;
       cursor: pointer;
       font-weight: bold;
     }
