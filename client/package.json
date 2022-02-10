@@ -28,7 +28,7 @@
     "highcharts-react-official": "^3.0.0",
     "material-table": "^1.57.2",
     "moment": "^2.24.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "office-ui-fabric-react": "^7.90.1",
     "rc-upload": "^3.0.0",
     "react": "^16.10.0",
